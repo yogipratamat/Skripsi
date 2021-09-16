@@ -47,6 +47,7 @@ class FarmerController extends Controller
         $groupFarmId = $authUser->farmer->groupFarm->id;
         $dataUser = [
             'email' => $request->email,
+            'name'  => $request->name,
             'password' => bcrypt($request->password),
         ];
 
@@ -80,7 +81,6 @@ class FarmerController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
@@ -111,17 +111,19 @@ class FarmerController extends Controller
 
         $password = $farmer->user->password;
 
-        if($request->password != '' ){
+        if ($request->password != '' || $request->password != null) {
             $password = bcrypt($request->password);
         }
 
+
+
         $dataUser = [
             'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'name'  => $request->name,
+            'password' => $password,
         ];
 
         $farmer->user->update($dataUser);
-
 
 
         $dataFarmer = [
@@ -153,7 +155,7 @@ class FarmerController extends Controller
     {
 
         $farmer = Farmer::find($id);
-        $farmer ->delete();
+        $farmer->delete();
 
         DB::table('users')->where('id', $farmer->user_id)->delete();
 

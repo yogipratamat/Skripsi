@@ -183,21 +183,14 @@ a:hover {
 @endsection
 
 @section('content')
-<div class="card">
-
-        @if(Session::has('success'))
-        <div class="card-header">
-        <div class="col-md-12 mt-2">
-            <div class="text-left">
-                <div class="alert alert-success alert-styled-left alert-arrow-left alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-                    <span class="font-weight-semibold">{{ Session('success') }} </span>
-                </div>
-            </div>
-        </div>
+<div class="content">
+    @if(Session::has('success'))
+    <div class="alert alert-success border-0 alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+        <span class="font-weight-semibold">{{ Session('success') }} </span>
     </div>
-        @endif
-
+    @endif
+    <div class="card">
     <div class="row">
         <div class="col-md-8 cart">
             <div class="title">
@@ -238,23 +231,24 @@ a:hover {
             </div>
             @endforeach
             @else
-<div class="text-center mt-2">Data kosong</div>
-            @endif
-            <div class="back-to-shop"><a href="{{ route('petani.product.index') }}">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
-        </div>
-        <div class="col-md-4 summary">
-            <div>
-                <h5><b>Summary</b></h5>
+        <div class="text-center mt-2">Data kosong</div>
+                @endif
+                <div class="back-to-shop"><a href="{{ route('petani.product.index') }}">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
             </div>
-            <hr>
-            <div class="row">
-                <div class="col" style="padding-left:0;">ITEMS</div>
-                <div class="col text-right">{{ $total }}</div>
+            <div class="col-md-4 summary">
+                <div>
+                    <h5><b>Summary</b></h5>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col" style="padding-left:0;">ITEMS</div>
+                    <div class="col text-right">{{ $total }}</div>
+                </div>
+                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                    <div class="col" style="padding-left:0;">TOTAL PRICE</div>
+                    <div class="col text-right">Rp. {{ number_format($totalPrice, 2, ',', '.') }}</div>
+                </div> <a href="{{ route('petani.cart.checkout') }}"><button class="btn">CHECKOUT</button></a>
             </div>
-            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                <div class="col" style="padding-left:0;">TOTAL PRICE</div>
-                <div class="col text-right">Rp. {{ number_format($totalPrice, 2, ',', '.') }}</div>
-            </div> <a href="{{ route('petani.cart.checkout') }}"><button class="btn">CHECKOUT</button></a>
         </div>
     </div>
 </div>

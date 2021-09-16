@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group">
                         <label>Password:</label>
-                        <input type="password" name="password" value="{{ $farmer->password }}" class="form-control" >
+                        <input type="password" name="password"  class="form-control" >
                     </div>
                     <div class="form-group">
                         <label>No HP:</label>

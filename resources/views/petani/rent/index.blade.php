@@ -31,17 +31,13 @@
 @section('content')
 <!-- Content area -->
 <div class="content">
+    @if(Session::has('rent'))
+    <div class="alert alert-success border-0 alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+        <span class="font-weight-semibold">{{ Session('rent') }} </span>
+    </div>
+    @endif
     <div class="card">
-        @if(Session::has('petani'))
-        <div class="col-md-6">
-            <div class="text-left">
-                <div class="alert alert-success alert-styled-left alert-arrow-left alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-                    <span class="font-weight-semibold">{{ Session('petani') }} </span>
-                </div>
-            </div>
-        </div>
-        @endif
         <div class="card-header header-elements-inline">
             <h5 class="card-title">Data Pesanan Alat</h5>
 
@@ -70,7 +66,7 @@
                 <tr>
                     <td>{!! $loop->iteration !!}</td>
                     <td>{{ $rent->farmer->name }}</td>
-                    <td>{{ $rent->land_area }}</td>
+                    <td>{{ $rent->land_area }} Are</td>
                     <td>{{ price($rent->tool->price) }}</td>
                     <td>
                         @if ($rent->status == 0 )

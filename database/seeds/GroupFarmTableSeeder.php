@@ -25,6 +25,7 @@ class GroupFarmTableSeeder extends Seeder
 
         $dataUser = [
             'email' => 'yogi@gmail.com',
+            'name'  => 'yogi',
             'password' => bcrypt('123456')
         ];
 

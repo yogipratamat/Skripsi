@@ -6,16 +6,12 @@
 
 @section('content')
 <div class="min-h-screen bg-gray-200 p-10">
-        @if(Session::has('success'))
-        <div class="col-md-6">
-            <div class="text-left">
-                <div class="alert alert-success alert-styled-left alert-arrow-left alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-                    <span class="font-weight-semibold">{{ Session('success') }} </span>
-                </div>
-            </div>
-        </div>
-        @endif
+    @if(Session::has('success'))
+    <div class="alert alert-success border-0 alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+        <span class="font-weight-semibold">{{ Session('success') }} </span>
+    </div>
+    @endif
     <div class="space-y-5">
         @if ($rent->status == 0 )
 

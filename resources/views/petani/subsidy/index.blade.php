@@ -26,16 +26,6 @@
 @section('content')
     <div class="content">
         <div class="card">
-            @if(Session::has('admin'))
-                <div class="col-md-6 mt-2">
-                    <div class="text-left">
-                        <div class="alert alert-success alert-styled-left alert-arrow-left alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-                            <span class="font-weight-semibold">{{ Session('admin') }} </span>
-                        </div>
-                    </div>
-                </div>
-            @endif
             <div class="card-header header-elements-inline">
                 <h5 class="card-title">Data Subsidi Pemerintah</h5>
 

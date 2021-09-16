@@ -12,7 +12,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::get();
+        $orders = Order::orderBy('created_at', 'desc')->get();
 
         return view('penyuluh.order.index', compact('orders'));
     }

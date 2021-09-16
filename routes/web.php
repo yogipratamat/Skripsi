@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes();
-Route::get('/', 'HomeController@index')->name('home');
+
+
+Route::get('/', 'DashboardController@index')->middleware(['auth'])->name('home');
 
 Route::middleware(['auth'])->group(function () {
     //ROLE PENYULUH//
@@ -40,6 +42,16 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('laporan')->name('report.')->group(function () {
 
             Route::get('/', 'ReportController@index')->name('index');
+        });
+        //EDUKASI & PENGENDALIAN
+        Route::prefix('edukasi')->name('education.')->group(function () {
+
+            Route::get('/', 'EducationController@index')->name('index');
+            Route::get('/create', 'EducationController@create')->name('create');
+            Route::post('/create', 'EducationController@store')->name('store');
+            Route::get('/edit/{id}', 'EducationController@edit')->name('edit');
+            Route::post('/edit/{id}', 'EducationController@update')->name('update');
+            Route::get('/delete/{id}', 'EducationController@destroy')->name('destroy');
         });
     });
 
@@ -84,6 +96,41 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'RentController@index')->name('index');
             Route::get('/show/{id}', 'RentController@show')->name('show');
             Route::get('/approve/{id}', 'RentController@approve')->name('approve');
+        });
+        //LAPORAN SEWA ALAT
+        Route::prefix('laporan-alat')->name('report.')->group(function () {
+
+            Route::get('/', 'ReportController@index')->name('index');
+        });
+        //JASA BURUH & PEMBELI PADI
+        Route::prefix('jasa')->name('service.')->group(function () {
+
+            Route::get('/', 'ServiceController@index')->name('index');
+            Route::get('/create', 'ServiceController@create')->name('create');
+            Route::post('/create', 'ServiceController@store')->name('store');
+            Route::get('/edit/{id}', 'ServiceController@edit')->name('edit');
+            Route::post('/edit/{id}', 'ServiceController@update')->name('update');
+            Route::get('/delete/{id}', 'ServiceController@destroy')->name('destroy');
+        });
+        //JADWAL RAPAT
+        Route::prefix('rapat')->name('meeting.')->group(function () {
+
+            Route::get('/', 'MeetingController@index')->name('index');
+            Route::get('/create', 'MeetingController@create')->name('create');
+            Route::post('/create', 'MeetingController@store')->name('store');
+            Route::get('/edit/{id}', 'MeetingController@edit')->name('edit');
+            Route::post('/edit/{id}', 'MeetingController@update')->name('update');
+            Route::get('/delete/{id}', 'MeetingController@destroy')->name('destroy');
+        });
+        //JADWAL MENANAM
+        Route::prefix('menanam')->name('plant.')->group(function () {
+
+            Route::get('/', 'PlantController@index')->name('index');
+            Route::get('/create', 'PlantController@create')->name('create');
+            Route::post('/create', 'PlantController@store')->name('store');
+            Route::get('/edit/{id}', 'PlantController@edit')->name('edit');
+            Route::post('/edit/{id}', 'PlantController@update')->name('update');
+            Route::get('/delete/{id}', 'PlantController@destroy')->name('destroy');
         });
     });
 

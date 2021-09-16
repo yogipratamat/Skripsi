@@ -16,10 +16,10 @@
             <a href="{{ route('penyuluh.group-farm.index') }}" class="nav-link"><i class="icon-users"></i><span>Kelompok Tani</span></a>
         </li>
         <li class="nav-item">
-            <a href="" class="nav-link"><i class="icon-eye4"></i> <span>Edukasi & Pengendalian</span></a>
+            <a href="{{ route('penyuluh.education.index') }}" class="nav-link"><i class="icon-eye4"></i> <span>Edukasi & Pengendalian</span></a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('penyuluh.product.index') }}" class="nav-link"><i class="icon-spray"></i><span>Produk</span></a>
+            <a href="{{ route('penyuluh.product.index') }}" class="nav-link"><i class="icon-spray"></i><span>Produk Pertanian</span></a>
         </li>
         <li class="nav-item">
             <a href="{{ route('penyuluh.order.index') }}" class="nav-link"><i class="icon-cart5"></i><span>Pesanan Produk</span></a>
@@ -36,18 +36,14 @@
         <li class="nav-item">
             <a href="{{ route('admin.subsidy.index') }}" class="nav-link"><i class="icon-city"></i><span>Subsidi Pemerintah</span></a>
         </li>
-        <li class="nav-item nav-item-submenu">
-            <a href="#" class="nav-link"><i class="icon-collaboration"></i><span>Kelola Jasa</span></a>
-            <ul class="nav nav-group-sub" data-submenu-title="Sewa Jasa & Alat">
-                <li class="nav-item"><a href="" class="nav-link">Buruh Tani</a></li>
-                <li class="nav-item"><a href=" " class="nav-link">Pembeli Padi</a></li>
-            </ul>
+        <li class="nav-item">
+            <a href="{{ route('admin.service.index') }}" class="nav-link"><i class="icon-collaboration"></i><span>Kelola Jasa Pertanian</span></a>
         </li>
         <li class="nav-item nav-item-submenu">
-            <a href="#" class="nav-link"><i class="icon-eye4"></i><span>Kelola Informasi</span></a>
+            <a class="nav-link"><i class="icon-eye4"></i><span>Kelola Informasi</span></a>
             <ul class="nav nav-group-sub" data-submenu-title="Kelola Informasi">
-                <li class="nav-item"><a href="" class="nav-link">Jadwal Tanam</a></li>
-                <li class="nav-item"><a href="" class="nav-link">Jadwal Rapat</a></li>
+                <li class="nav-item"><a href="{{ route('admin.meeting.index') }}" class="nav-link">Jadwal Rapat</a></li>
+                <li class="nav-item"><a href="{{ route('admin.plant.index') }}" class="nav-link">Jadwal Menanam</a></li>
             </ul>
         </li>
         <li class="nav-item">
@@ -57,19 +53,19 @@
             <a href="{{ route('admin.rent.index') }}" class="nav-link"><i class="icon-bubble-lines3"></i> <span>Pesanan Sewa Alat</span></a>
         </li>
         <li class="nav-item">
-            <a href="" class="nav-link"><i class="icon-copy2"></i> <span>Laporan Sewa Alat</span></a>
+            <a href="{{ route('admin.report.index') }}" class="nav-link"><i class="icon-copy2"></i> <span>Laporan Sewa Alat</span></a>
         </li>
         @endrole
 
         @role('petani')
         <li class="nav-item">
-            <a href="{{ route('petani.tool.index') }}" class="nav-link"><i class="icon-hammer-wrench"></i><span>Sewa Alat</span></a>
+            <a href="{{ route('petani.tool.index') }}" class="nav-link"><i class="icon-hammer-wrench"></i><span>Sewa Alat Pertanian</span></a>
         </li>
         <li class="nav-item">
             <a href="{{ route('petani.rent.index') }}" class="nav-link"><i class="icon-bubble-lines3"></i><span>Pesanan Sewa Alat</span></a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('petani.product.index') }}" class="nav-link"><i class="icon-spray"></i><span>Produk</span></a>
+            <a href="{{ route('petani.product.index') }}" class="nav-link"><i class="icon-spray"></i><span>Produk Pertanian</span></a>
         </li>
         <li class="nav-item">
             <a href="{{ route('petani.order.index') }}" class="nav-link"><i class="icon-cart5"></i><span>Pesanan Produk</span></a>

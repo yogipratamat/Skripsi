@@ -61,7 +61,7 @@
                     </div>
                     <div class="form-group">
                         <label>Batas Pengambilan:</label>
-                        <input type="date" name="date" value="{{ idFormat($subsidy->date) }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Batas Pengambilan!')" oninput="setCustomValidity('')">
+                        <input type="date" name="date" value="{{ idFormat($subsidy->date) }}" class="form-control">
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <a class="btn btn-warning" href="{{ route('admin.subsidy.index') }}">Cancel</a>

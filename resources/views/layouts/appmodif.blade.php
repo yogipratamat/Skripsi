@@ -34,11 +34,11 @@
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
-                        <a class="navbar-nav-link d-flex align-items-center" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        {{-- <a class="navbar-nav-link d-flex align-items-center" href="{{ route('login') }}">{{ __('Login') }}</a> --}}
                     </li>
                     @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="navbar-nav-link d-flex align-items-center" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            {{-- <a class="navbar-nav-link d-flex align-items-center" href="{{ route('register') }}">{{ __('Register') }}</a> --}}
                         </li>
                     @endif
                 @else

@@ -53,19 +53,19 @@
                         <div class="mx-3">
                            <form action="{{ route('petani.tool.show', [$tool->id]) }}">
                             <div class="row">
-                                <div class="col-md-4 mt-1">
+                                <div class="col-md-2">
                                     <input required type="number" name="area"  class="form-control">
                                 </div>
-                                <div class="col-md-2 mt-1">
+                                <div class="col-md-2">
                                     @if($avaiable >= 0)
                                         Tersedia: {{ $avaiable }} Are
                                     @endif
                                 </div>
-                                <div class="col-md-4 mt-1">
+                                <div class="col-md-4">
                                     <input required value="{{ $date }}" name="date" type="date" class="form-control">
                                 </div>
                                 <div class="col-sm-2">
-                                    <button class="btn btn-primary hover mb-1 mt-1" type="submit" name="check">Cek Ketersediaan</button>
+                                    <button class="btn btn-primary hover mb-1 " type="submit" name="check">Cek Ketersediaan</button>
                                 </div>
                                 <div class="col-sm-2">
                                     <button type="submit" name="rent" value="rent" class="btn btn-success mb-5">Sewa Sekarang</button>

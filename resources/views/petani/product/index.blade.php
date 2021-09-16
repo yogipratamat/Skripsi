@@ -27,16 +27,6 @@
     <!-- Inner container -->
     <div class="d-flex align-items-start flex-column flex-md-row">
         <div class="w-100 overflow-auto order-2 order-md-1">
-            @if(Session::has('success'))
-                <div class="col-md-6 mt-2">
-                    <div class="text-left">
-                        <div class="alert alert-success alert-styled-left alert-arrow-left alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-                            <span class="font-weight-semibold">{{ Session('success') }} </span>
-                        </div>
-                    </div>
-                </div>
-                @endif
             <div class="row">
                 @foreach ($products as $product)
                 <div class="col-xl-3 col-sm-6">
@@ -79,6 +69,7 @@
                 </div>
                 @endforeach
             </div>
+        </div>
     </div>
 </div>
 

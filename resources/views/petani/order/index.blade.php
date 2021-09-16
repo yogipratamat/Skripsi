@@ -31,17 +31,13 @@
 @section('content')
 <!-- Content area -->
 <div class="content">
+    @if(Session::has('order'))
+    <div class="alert alert-success border-0 alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+        <span class="font-weight-semibold">{{ Session('order') }} </span>
+    </div>
+    @endif
     <div class="card">
-        @if(Session::has('petani'))
-        <div class="col-md-6">
-            <div class="text-left">
-                <div class="alert alert-success alert-styled-left alert-arrow-left alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-                    <span class="font-weight-semibold">{{ Session('petani') }} </span>
-                </div>
-            </div>
-        </div>
-        @endif
         <div class="card-header header-elements-inline">
             <h5 class="card-title">Data Pesanan Produk</h5>
 
@@ -68,7 +64,7 @@
                 @foreach ($orders as $order )
                 <tr>
                     <td>{!! $loop->iteration !!}</td>
-                    <td>{{ $order->farmer->name }} K</td>
+                    <td>{{ $order->farmer->name }}</td>
                     <td>
                         @if ($order->status == 0 )
 

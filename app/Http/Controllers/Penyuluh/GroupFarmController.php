@@ -52,6 +52,7 @@ class GroupFarmController extends Controller
 
         $dataUser = [
             'email' => $request->email,
+            'name'  => $request->name,
             'password' => bcrypt($request->password),
         ];
 
@@ -74,7 +75,6 @@ class GroupFarmController extends Controller
         session()->flash('penyuluh', $message);
 
         return redirect(route('penyuluh.group-farm.index'));
-
     }
 
     /**
@@ -130,12 +130,13 @@ class GroupFarmController extends Controller
 
         $password = $farmer->user->password;
 
-        if($request->password != '' ){
+        if ($request->password != '') {
             $password = bcrypt($request->password);
         }
 
         $dataUser = [
             'email' => $request->email,
+            'name'  => $request->name,
             'password' => $password,
         ];
 
@@ -152,7 +153,7 @@ class GroupFarmController extends Controller
             'group_farm_id' => $groupFarm->id,
         ];
 
-        $farmer->update ($dataFarmer);
+        $farmer->update($dataFarmer);
         $message = 'Data berhasil di ubah!';
         session()->flash('penyuluh', $message);
 
@@ -171,7 +172,7 @@ class GroupFarmController extends Controller
 
         $farmers = Farmer::where('group_farm_id', $groupFarm->id)->get();
 
-        foreach($farmers as $farmer){
+        foreach ($farmers as $farmer) {
             DB::table('farmers')->where('id', $farmer->id)->delete();
             DB::table('users')->where('id', $farmer->user_id)->delete();
         }

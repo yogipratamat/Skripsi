@@ -43,7 +43,7 @@ class ToolController extends Controller
         if ($request->date) {
 
             $date = $request->date;
-            $rents = Rent::where('date', $request->date)->where('group_farm_id', $farmer->group_farm_id)->get();
+            $rents = Rent::where('date', $request->date)->where('tool_id', $id)->where('group_farm_id', $farmer->group_farm_id)->get();
 
             if ($rents) {
                 $total = 0;
@@ -72,6 +72,7 @@ class ToolController extends Controller
                     'tool_id' => $tool->id
                 ]);
 
+                session()->flash('rent', 'Berhasil Menyewa Alat!');
                 return redirect(route('petani.rent.index'));
             }
         }

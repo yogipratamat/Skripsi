@@ -33,17 +33,13 @@
 @section('content')
 <!-- Content area -->
 <div class="content">
-    <div class="card">
-        @if(Session::has('penyuluh'))
-        <div class="col-md-6 mt-2">
-            <div class="text-left">
-                <div class="alert alert-success alert-styled-left alert-arrow-left alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
-                    <span class="font-weight-semibold">{{ Session('penyuluh') }} </span>
-                </div>
-            </div>
+    @if(Session::has('penyuluh'))
+        <div class="alert alert-success border-0 alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+            <span class="font-weight-semibold">{{ Session('penyuluh') }} </span>
         </div>
-        @endif
+    @endif
+    <div class="card">
         <div class="card-header bg-white header-elements-inline">
             <h5 class="card-title">Data Produk</h5>
             <div class="header-elements">
