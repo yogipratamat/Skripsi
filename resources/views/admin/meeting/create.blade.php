@@ -43,21 +43,12 @@
                         <form action="{{ route('admin.meeting.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label>Periode Jadwal:</label>
-                                <input type="text" name="periode" class="form-control" required oninvalid="this.setCustomValidity('Masukan Periode!')" oninput="setCustomValidity('')">
-                            </div>
-                            <div class="form-group">
-                                <label>Type Jadwal</label>
-                                <div>
-                                    <select class="form-control" name="type" required oninvalid="this.setCustomValidity('Masukan Type Jadwal!')" oninput="setCustomValidity('')">
-                                        <option value="1">Jadwal Tanam</option>
-                                        <option value="2">Jadwal Rapat</option>
-                                    </select>
-                                </div>
+                                <label>Nama Rapat:</label>
+                                <input type="text" name="name" class="form-control" required oninvalid="this.setCustomValidity('Masukan Periode!')" oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label>Tanggal:</label>
-                                <input type="date" name="start_date" class="form-control" required oninvalid="this.setCustomValidity('Masukan Tanggal!')" oninput="setCustomValidity('')">
+                                <input type="date" name="date" class="form-control" required oninvalid="this.setCustomValidity('Masukan Tanggal!')" oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label>Waktu:</label>

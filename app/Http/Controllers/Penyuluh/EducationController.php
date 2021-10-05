@@ -17,7 +17,7 @@ class EducationController extends Controller
      */
     public function index()
     {
-        $educations = Education::get();
+        $educations = Education::orderBy('created_at', 'desc')->get();
         return view('penyuluh.education.index', compact('educations'));
     }
 

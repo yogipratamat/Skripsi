@@ -47,15 +47,6 @@
                                 <input type="text" name="periode" class="form-control" required oninvalid="this.setCustomValidity('Masukan Periode!')" oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group">
-                                <label>Type Jadwal</label>
-                                <div>
-                                    <select class="form-control" name="type" required oninvalid="this.setCustomValidity('Masukan Type Jadwal!')" oninput="setCustomValidity('')">
-                                        <option value="1">Jadwal Tanam</option>
-                                        <option value="2">Jadwal Menanam</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label>Batas Tgl Awal:</label>
                                 <input type="date" name="start_date" class="form-control" required oninvalid="this.setCustomValidity('Masukan Tanggal Awal!')" oninput="setCustomValidity('')">
                             </div>

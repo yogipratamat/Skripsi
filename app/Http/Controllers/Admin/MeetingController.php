@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Agenda;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Meeting;
 use Illuminate\Support\Facades\Session;
 
 class MeetingController extends Controller
@@ -16,8 +17,12 @@ class MeetingController extends Controller
      */
     public function index()
     {
-        $agendas = Agenda::get();
-        return view('admin.meeting.index', compact('agendas'));
+        $authUser = auth()->user();
+        $groupFarmId = $authUser->farmer->groupFarm->id;
+
+        $meetings = Meeting::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+
+        return view('admin.meeting.index', compact('meetings'));
     }
 
     /**
@@ -38,16 +43,19 @@ class MeetingController extends Controller
      */
     public function store(Request $request)
     {
+        $authUser = auth()->user();
+        $groupFarmId = $authUser->farmer->groupFarm->id;
+
         $data = [
-            'periode' => $request->periode,
-            'type' => $request->type,
+            'name' => $request->name,
             'place' => $request->place,
             'time' => $request->time,
-            'start_date' => $request->start_date,
+            'date' => $request->date,
             'description' => $request->description,
+            'group_farm_id' => $groupFarmId,
         ];
 
-        $agenda = Agenda::create($data);
+        $meeting = Meeting::create($data);
 
         $message = 'Data berhasil di tambah!';
         Session::flash('admin', $message);
@@ -74,8 +82,8 @@ class MeetingController extends Controller
      */
     public function edit($id)
     {
-        $agenda = Agenda::find($id);
-        return view('admin.meeting.edit', compact('agenda'));
+        $meeting = Meeting::find($id);
+        return view('admin.meeting.edit', compact('meeting'));
     }
 
     /**
@@ -87,18 +95,21 @@ class MeetingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $agenda = Agenda::find($id);
+        $authUser = auth()->user();
+        $groupFarmId = $authUser->farmer->groupFarm->id;
+
+        $meeting = Meeting::find($id);
 
         $data = [
-            'periode' => $request->periode,
-            'type' => $request->type,
+            'name' => $request->name,
             'place' => $request->place,
             'time' => $request->time,
-            'start_date' => $request->start_date,
+            'date' => $request->date,
             'description' => $request->description,
+            'group_farm_id' => $groupFarmId,
         ];
 
-        $agenda->update($data);
+        $meeting->update($data);
 
         $message = 'Data berhasil di ubah!';
         Session::flash('admin', $message);
@@ -114,8 +125,8 @@ class MeetingController extends Controller
      */
     public function destroy($id)
     {
-        $agenda = Agenda::find($id);
-        $agenda->delete();
+        $meeting = Meeting::find($id);
+        $meeting->delete();
 
         $message = 'Data berhasil di hapus!';
         Session::flash('admin', $message);

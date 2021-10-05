@@ -16,7 +16,7 @@ class OrderController extends Controller
 
         $farmer = Farmer::where('user_id', $user->id)->first();
 
-        $orders = Order::where('farmer_id', $farmer->id)->get();
+        $orders = Order::where('farmer_id', $farmer->id)->orderBy('created_at', 'desc')->get();
         return view('petani.order.index', compact('orders'));
     }
 

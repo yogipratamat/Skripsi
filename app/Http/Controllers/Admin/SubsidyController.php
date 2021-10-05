@@ -18,7 +18,7 @@ class SubsidyController extends Controller
      */
     public function index()
     {
-        $subsidies = Subsidy::get();
+        $subsidies = Subsidy::orderBy('created_at', 'desc')->get();
         return view('admin.subsidy.index', compact('subsidies'));
     }
 
@@ -124,6 +124,54 @@ class SubsidyController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = auth()->user();
+
+        $farmer = Farmer::where('user_id', $user->id)->first();
+
+        $groupFarm = $farmer->groupFarm;
+
+        $farmers = $groupFarm->farmers;
+
+        $subsidy = Subsidy::find($id);
+
+        $data = [
+            'periode' => $request->periode,
+            'type' => $request->type,
+            'name' => $request->name,
+            'price' => $request->price,
+            'qty' => $request->qty,
+            'date' => $request->date,
+        ];
+
+
+        $subsidy->update($data);
+
+        $totalLandSize = 0;
+
+        foreach ($farmers as $value) {
+            if ($value->id != $farmer->id) {
+                $totalLandSize += $value->land_area;
+            }
+        }
+
+        $perArea = ($request->qty / $totalLandSize);
+
+        foreach ($farmers as $value) {
+            if ($value->id != $farmer->id) {
+                DB::table('subsidy_farmers')->insert([
+                    'qty' => ($value->land_area * $perArea),
+                    'status' => 0,
+                    'price' => ($value->land_area * $perArea) * $request->price,
+                    'subsidy_id' => $subsidy->id,
+                    'farmer_id' => $value->id
+                ]);
+            }
+        }
+
+        $message = 'Data berhasil di edit!';
+        Session::flash('admin', $message);
+
+        return redirect(route('admin.subsidy.index'));
     }
 
     /**

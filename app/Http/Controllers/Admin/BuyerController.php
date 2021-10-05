@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Service;
+use App\Models\Buyer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
-class ServiceController extends Controller
+class BuyerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,12 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $services = Service::get();
-        return view('admin.service.index', compact('services'));
+        $authUser = auth()->user();
+        $groupFarmId = $authUser->farmer->groupFarm->id;
+
+        $buyers = Buyer::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+
+        return view('admin.buyer.index', compact('buyers'));
     }
 
     /**
@@ -28,7 +32,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('admin.service.create');
+        return view('admin.buyer.create');
     }
 
     /**
@@ -39,18 +43,21 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
+        $authUser = auth()->user();
+        $groupFarmId = $authUser->farmer->groupFarm->id;
+
         $file = $request->file('image');
 
         if ($file) {
             $name = time() . '-' .
                 $file->getClientOriginalName();
             $path = Storage::putFileAs(
-                'public/images/services',
+                'public/images/buyers',
                 $file,
                 $name
             );
 
-            $image = '/images/services/' . $name;
+            $image = '/images/buyers/' . $name;
         } else {
             $image = null;
         }
@@ -58,19 +65,18 @@ class ServiceController extends Controller
         $data = [
             'image' => $image,
             'name' => $request->name,
-            'service_name' => $request->service_name,
-            'type' => $request->type,
             'price' => $request->price,
             'phone' => $request->phone,
             'description' => $request->description,
+            'group_farm_id' => $groupFarmId,
         ];
 
-        $service = Service::create($data);
+        $buyer = Buyer::create($data);
 
         $message = 'Data berhasil di tambah!';
         Session::flash('admin', $message);
 
-        return redirect(route('admin.service.index'));
+        return redirect(route('admin.buyer.index'));
     }
 
     /**
@@ -81,7 +87,6 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -92,8 +97,8 @@ class ServiceController extends Controller
      */
     public function edit($id)
     {
-        $service = Service::find($id);
-        return view('admin.service.edit', compact('service'));
+        $buyer = Buyer::find($id);
+        return view('admin.buyer.edit', compact('buyer'));
     }
 
     /**
@@ -105,9 +110,12 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $service = Service::find($id);
+        $authUser = auth()->user();
+        $groupFarmId = $authUser->farmer->groupFarm->id;
 
-        $oldImage = $service->image;
+        $buyer = Buyer::find($id);
+
+        $oldImage = $buyer->image;
 
         $file = $request->file('image');
 
@@ -115,12 +123,12 @@ class ServiceController extends Controller
             $name = time() . '-' .
                 $file->getClientOriginalName();
             $path = Storage::putFileAs(
-                'public/images/services',
+                'public/images/buyers',
                 $file,
                 $name
             );
 
-            $image = '/images/services/' . $name;
+            $image = '/images/buyers/' . $name;
         } else {
             $image = $oldImage;
         }
@@ -128,19 +136,18 @@ class ServiceController extends Controller
         $data = [
             'image' => $image,
             'name' => $request->name,
-            'service_name' => $request->service_name,
-            'type' => $request->type,
             'price' => $request->price,
             'phone' => $request->phone,
             'description' => $request->description,
+            'group_farm_id' => $groupFarmId,
         ];
 
-        $service->update($data);
+        $buyer->update($data);
 
         $message = 'Data berhasil di ubah!';
         Session::flash('admin', $message);
 
-        return redirect(route('admin.service.index'));
+        return redirect(route('admin.buyer.index'));
     }
 
     /**
@@ -151,12 +158,12 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        $service = Service::find($id);
-        $service->delete();
+        $buyer = Buyer::find($id);
+        $buyer->delete();
 
         $message = 'Data berhasil di hapus!';
         Session::flash('admin', $message);
 
-        return redirect(route('admin.service.index'));
+        return redirect(route('admin.buyer.index'));
     }
 }

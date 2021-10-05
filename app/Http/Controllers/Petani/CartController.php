@@ -118,6 +118,9 @@ class CartController extends Controller
             $qty = $product->stock;
             $newqty = $qty - $cart['qty'];
 
+            $product->stock = $newqty;
+            $product->save();
+
 
             DB::table('order_products')->insert(
                 [

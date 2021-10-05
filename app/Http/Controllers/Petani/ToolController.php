@@ -14,7 +14,11 @@ class ToolController extends Controller
 {
     public function index()
     {
-        $tools = Tool::get();
+        $user = auth()->user();
+
+        $farmer = Farmer::where('user_id', $user->id)->first();
+
+        $tools = Tool::where('group_farm_id', $farmer->groupFarm->id)->orderBy('created_at', 'desc')->get();
 
         return view('petani.tool.index', compact('tools'));
     }

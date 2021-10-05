@@ -48,7 +48,7 @@ class DashboardController extends Controller
         $farmerCount = Farmer::count();
         $groupFarmCount = GroupFarm::count();
         $productCount = Product::count();
-        $orders = Order::take(7)->orderBy('created_at', 'desc')->get();
+        $orders = Order::take(5)->orderBy('created_at', 'desc')->get();
 
         return view('dashboard.penyuluh', compact('farmerCount', 'groupFarmCount', 'productCount', 'orders'));
     }
@@ -61,7 +61,7 @@ class DashboardController extends Controller
         $farmerCount = Farmer::where('group_farm_id', $farmer->group_farm_id)->where('id', '!=', $farmer->id)->count();
         $toolCount = Tool::where('group_farm_id', $farmer->group_farm_id)->count();
         $rentCount = Rent::where('group_farm_id', $farmer->group_farm_id)->count();
-        $rents = Rent::where('group_farm_id', $farmer->group_farm_id)->take(7)->orderBy('created_at', 'desc')->get();
+        $rents = Rent::where('group_farm_id', $farmer->group_farm_id)->take(5)->orderBy('created_at', 'desc')->get();
 
         return view('dashboard.admin', compact('farmerCount', 'toolCount', 'rentCount', 'rents'));
     }

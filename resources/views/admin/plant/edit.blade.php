@@ -40,32 +40,23 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.plant.update', [$agenda->id]) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.plant.update', [$plant->id]) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Periode Jadwal:</label>
-                                <input type="text" name="periode" value="{{ $agenda->periode }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Periode!')" oninput="setCustomValidity('')">
-                            </div>
-                            <div class="form-group">
-                                <label>Type Jadwal</label>
-                                <div>
-                                    <select class="form-control" name="type" value="{{ $agenda->type }}" required oninvalid="this.setCustomValidity('Masukan Type Jadwal!')" oninput="setCustomValidity('')">
-                                        <option value="1">Jadwal Tanam</option>
-                                        <option value="2">Jadwal Menanam</option>
-                                    </select>
-                                </div>
+                                <input type="text" name="periode" value="{{ $plant->periode }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Periode!')" oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label>Batas Tgl Awal:</label>
-                                <input type="date" name="start_date" value="{{ $agenda->start_date }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Tanggal Awal!')" oninput="setCustomValidity('')">
+                                <input type="date" name="start_date" value="{{ $plant->start_date }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Tanggal Awal!')" oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label>Batas Tgl Akhir:</label>
-                                <input type="date" name="end_date" value="{{ $agenda->end_date }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Batas Tanggal Akhir!')" oninput="setCustomValidity('')">
+                                <input type="date" name="end_date" value="{{ $plant->end_date }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Batas Tanggal Akhir!')" oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label>Deskripsi:</label>
-                                <textarea name="description" id="" class="form-control" required oninvalid="this.setCustomValidity('Masukan Deskripsi!')" oninput="setCustomValidity('')">{{ $agenda->description }}</textarea>
+                                <textarea name="description" id="" class="form-control" required oninvalid="this.setCustomValidity('Masukan Deskripsi!')" oninput="setCustomValidity('')">{{ $plant->description }}</textarea>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a class="btn btn-warning" href="{{ route('admin.plant.index') }}">Cancel</a>

@@ -21,7 +21,7 @@ class ToolController extends Controller
         $authUser = auth()->user();
         $groupFarmId = $authUser->farmer->groupFarm->id;
 
-        $tools = Tool::where('group_farm_id', $groupFarmId)->get();
+        $tools = Tool::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
 
         return view('admin.tool.index', compact('tools'));
     }
@@ -88,7 +88,6 @@ class ToolController extends Controller
      */
     public function show($id)
     {
-
     }
 
     /**
@@ -121,15 +120,16 @@ class ToolController extends Controller
 
         $file = $request->file('image');
 
-        if ($file){
-            $name = time() . '-'.
-            $file->getClientOriginalName();
+        if ($file) {
+            $name = time() . '-' .
+                $file->getClientOriginalName();
             $path = Storage::putFileAs(
                 'public/images/tools',
-                $file, $name
+                $file,
+                $name
             );
 
-            $image = '/images/tools/'. $name;
+            $image = '/images/tools/' . $name;
         } else {
             $image = $oldImage;
         }
@@ -161,7 +161,7 @@ class ToolController extends Controller
     public function destroy($id)
     {
         $tool = Tool::find($id);
-        $tool ->delete();
+        $tool->delete();
 
         $message = 'Data berhasil di hapus!';
         Session::flash('admin', $message);

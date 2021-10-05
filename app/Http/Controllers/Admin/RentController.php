@@ -11,7 +11,8 @@ class RentController extends Controller
 {
     public function index()
     {
-        $rents = Rent::get();
+        $rents = Rent::orderBy('created_at', 'desc')->get();
+
 
         return view('admin.rent.index', compact('rents'));
     }
@@ -20,7 +21,7 @@ class RentController extends Controller
     {
         $rent = Rent::find($id);
 
-        return view('admin.rent.show', compact('rent', 'total'));
+        return view('admin.rent.show', compact('rent'));
     }
 
     public function approve($id)

@@ -19,7 +19,8 @@ class GroupFarmController extends Controller
      */
     public function index()
     {
-        $groupFarms = GroupFarm::get();
+
+        $groupFarms = GroupFarm::orderBy('created_at', 'desc')->get();
         return view('penyuluh.group-farm.index', compact('groupFarms'));
     }
 

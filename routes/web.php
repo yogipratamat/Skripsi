@@ -103,14 +103,23 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'ReportController@index')->name('index');
         });
         //JASA BURUH & PEMBELI PADI
-        Route::prefix('jasa')->name('service.')->group(function () {
+        Route::prefix('pembeli')->name('buyer.')->group(function () {
 
-            Route::get('/', 'ServiceController@index')->name('index');
-            Route::get('/create', 'ServiceController@create')->name('create');
-            Route::post('/create', 'ServiceController@store')->name('store');
-            Route::get('/edit/{id}', 'ServiceController@edit')->name('edit');
-            Route::post('/edit/{id}', 'ServiceController@update')->name('update');
-            Route::get('/delete/{id}', 'ServiceController@destroy')->name('destroy');
+            Route::get('/', 'BuyerController@index')->name('index');
+            Route::get('/create', 'BuyerController@create')->name('create');
+            Route::post('/create', 'BuyerController@store')->name('store');
+            Route::get('/edit/{id}', 'BuyerController@edit')->name('edit');
+            Route::post('/edit/{id}', 'BuyerController@update')->name('update');
+            Route::get('/delete/{id}', 'BuyerController@destroy')->name('destroy');
+        });
+        Route::prefix('buruh-tani')->name('farm-worker.')->group(function () {
+
+            Route::get('/', 'FarmWorkerController@index')->name('index');
+            Route::get('/create', 'FarmWorkerController@create')->name('create');
+            Route::post('/create', 'FarmWorkerController@store')->name('store');
+            Route::get('/edit/{id}', 'FarmWorkerController@edit')->name('edit');
+            Route::post('/edit/{id}', 'FarmWorkerController@update')->name('update');
+            Route::get('/delete/{id}', 'FarmWorkerController@destroy')->name('destroy');
         });
         //JADWAL RAPAT
         Route::prefix('rapat')->name('meeting.')->group(function () {
@@ -172,6 +181,35 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/', 'RentController@index')->name('index');
             Route::get('/show/{id}', 'RentController@show')->name('show');
+        });
+        //EDUKASI & PENGENDALIAN
+        Route::prefix('informasi')->name('information.')->group(function () {
+
+            Route::get('/education', 'InformationController@education')->name('education');
+            Route::get('/plant', 'InformationController@plant')->name('plant');
+            Route::get('/meeting', 'InformationController@meeting')->name('meeting');
+        });
+
+        Route::prefix('jasa')->name('service.')->group(function () {
+
+            Route::get('/farm-worker', 'ServiceController@farmWorker')->name('farm-worker');
+            Route::get('/buyer', 'ServiceController@buyer')->name('buyer');
+        });
+        Route::prefix('galeri')->name('galery.')->group(function () {
+            //FOTP
+            Route::get('/', 'GaleryController@index')->name('index');
+
+            Route::get('/create', 'GaleryController@createFoto')->name('create');
+            Route::post('/create', 'GaleryController@storeFoto')->name('store');
+            Route::get('/edit/{id}', 'GaleryController@editFoto')->name('edit');
+            Route::post('/edit/{id}', 'GaleryController@updateFoto')->name('update');
+            // Route::get('/delete/{id}', 'GaleryController@destroy')->name('destroy');
+
+            //VIDEO YOUTUBE
+            Route::get('/create-video', 'GaleryController@createVideo')->name('create-video');
+            Route::post('/create-video', 'GaleryController@storeVideo')->name('store-video');
+            Route::get('/edit-video/{id}', 'GaleryController@editVideo')->name('edit-video');
+            Route::post('/edit-video/{id}', 'GaleryController@updateVideo')->name('update-video');
         });
     });
 });

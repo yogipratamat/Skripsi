@@ -15,7 +15,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::get();
+
+        $products = Product::where('stock', '>', 0)->orderBy('created_at', 'desc')->get();
+
         return view('petani.product.index', compact('products'));
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Penyuluh;
 use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Farmer;
+use Barryvdh\DomPDF\Facade as PDF;
+use App\Models\GroupFarm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,7 +15,8 @@ class ReportController extends Controller
     public function index(Request $request)
     {
 
-        $farmers = Farmer::get();
+        $groupFarms = GroupFarm::get();
+        // $farmers = Farmer::get();
 
         $farmerActive = null;
 
@@ -28,11 +31,14 @@ class ReportController extends Controller
             $monthEndDate = $request->endDate;
         }
 
-        $orders = Order::whereBetween('date', [$monthStartDate, $monthEndDate]);
+        $orders = Order::orderBy('created_at', 'desc')->whereBetween('date', [$monthStartDate, $monthEndDate]);
 
-        if ($request->farmer) {
-            $orders = $orders->where('farmer_id', $request->farmer);
-            $farmerActive = $request->farmer;
+        if ($request->groupFarm) {
+
+
+            $farmers = Farmer::where('group_farm_id', $request->groupFarm)->pluck('id');
+            $orders = $orders->whereIn('farmer_id', $farmers);
+            $farmerActive = $request->groupFarm;
         }
 
         $orders = $orders->get();
@@ -42,6 +48,15 @@ class ReportController extends Controller
             $total += $order->price;
         }
 
-        return view('penyuluh.report.index', compact('orders', 'monthEndDate', 'monthStartDate', 'total', 'farmers', 'farmerActive'));
+        if ($request->has('cetak')) {
+            $pdf = PDF::loadView('penyuluh.report.cetak', [
+                'orders' => $orders, 'monthStartDate' => $monthStartDate, 'monthEndDate' => $monthEndDate,
+                'total' => $total
+            ]);
+
+            return $pdf->download('laporan-pesanan-pestisida.pdf');
+        }
+
+        return view('penyuluh.report.index', compact('orders', 'monthEndDate', 'monthStartDate', 'total',  'farmerActive', 'groupFarms'));
     }
 }

@@ -4,68 +4,47 @@
 
 @section('asset')
     <!-- Theme JS files -->
-    <script src="{{ asset('/global_assets/js/plugins/visualization/d3/d3.min.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/plugins/visualization/d3/d3_tooltip.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/plugins/forms/styling/switchery.min.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/plugins/pickers/daterangepicker.js') }}"></script>
+    <script src="/global_assets/js/plugins/visualization/echarts/echarts.min.js"></script>
+    {{-- <script src="/global_assets/js/plugins/tables/datatables/datatables.min.js"></script> --}}
+    <script src="/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script src="/global_assets/js/plugins/tables/datatables/extensions/jszip/jszip.min.js"></script>
+    <script src="/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js"></script>
+    <script src="/global_assets/js/plugins/tables/datatables/extensions/responsive.min.js"></script>
 
-    <script src="{{ asset('/assets/js/app.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/demo_pages/dashboard.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/demo_charts/pages/dashboard/light/streamgraph.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/demo_charts/pages/dashboard/light/sparklines.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/demo_charts/pages/dashboard/light/lines.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/demo_charts/pages/dashboard/light/areas.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/demo_charts/pages/dashboard/light/donuts.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/demo_charts/pages/dashboard/light/bars.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/demo_charts/pages/dashboard/light/progress.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/demo_charts/pages/dashboard/light/heatmaps.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/demo_charts/pages/dashboard/light/pies.js') }}"></script>
-    <script src="{{ asset('/global_assets/js/demo_charts/pages/dashboard/light/bullets.js') }}"></script>
-	<!-- /theme JS files -->
-
-    <!-- Theme JS files -->
-	<script src="/global_assets/js/plugins/visualization/echarts/echarts.min.js"></script>
-	{{-- <script src="/global_assets/js/plugins/tables/datatables/datatables.min.js"></script> --}}
-	<script src="/global_assets/js/plugins/forms/selects/select2.min.js"></script>
-	<script src="/global_assets/js/plugins/tables/datatables/extensions/jszip/jszip.min.js"></script>
-	<script src="/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js"></script>
-	<script src="/global_assets/js/plugins/tables/datatables/extensions/responsive.min.js"></script>
-
-	<script src="/assets/js/app.js"></script>
-	<script src="/global_assets/js/demo_pages/ecommerce_customers.js"></script>
-	<script src="/global_assets/js/demo_charts/pages/ecommerce/light/customers.js"></script>
+    <script src="/assets/js/app.js"></script>
+    <script src="/global_assets/js/demo_pages/ecommerce_customers.js"></script>
+    <script src="/global_assets/js/demo_charts/pages/ecommerce/light/customers.js"></script>
     <script src="/global_assets/js/demo_pages/gallery_library.js"></script>
     <script src="/global_assets/js/plugins/media/fancybox.min.js"></script>
-	<!-- /theme JS files -->
+    <!-- /theme JS files -->
 @endsection
 
 @section('breadcum')
-<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
-    <div class="d-flex">
-        <div class="breadcrumb">
-            <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-            <span class="breadcrumb-item active">Dashboard</span>
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="index.html" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <span class="breadcrumb-item active">Dashboard</span>
+            </div>
+            <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
         </div>
-        <a href="#" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
     </div>
-</div>
 @endsection
 
 @section('content')
 
-<!-- Content area -->
-<div class="content">
-		<!-- Dashboard content -->
+    <!-- Content area -->
+    <div class="content">
+        <!-- Dashboard content -->
         <div class="row">
             <div class="col-lg-4">
                 <div class="card bg-teal-400">
                     <div class="card-body">
                         <div class="d-flex">
-                            <h3 class="font-weight-semibold mb-0">{{ $farmerCount }}</h3>
+                            <h1 class="font-weight-semibold mb-0" style="font-size: 40pt">{{ $farmerCount }}</h1>
                         </div>
                         <div>
-                            Jumlah Petani
+                            <h3>Jumlah Petani</h3>
                         </div>
                     </div>
                 </div>
@@ -74,10 +53,10 @@
                 <div class="card bg-pink-400">
                     <div class="card-body">
                         <div class="d-flex">
-                            <h3 class="font-weight-semibold mb-0">{{ $toolCount }}</h3>
+                            <h1 class="font-weight-semibold mb-0" style="font-size: 40pt">{{ $toolCount }}</h1>
                         </div>
                         <div>
-                            Jumlah Alat
+                            <h3>Jumlah Alat</h3>
                         </div>
                     </div>
                 </div>
@@ -86,10 +65,10 @@
                 <div class="card bg-blue-400">
                     <div class="card-body">
                         <div class="d-flex">
-                            <h3 class="font-weight-semibold mb-0">{{ $rentCount }}</h3>
+                            <h1 class="font-weight-semibold mb-0" style="font-size: 40pt">{{ $rentCount }}</h1>
                         </div>
                         <div>
-                            Jumlah Pesanan Alat
+                            <h3>Jumlah Pesanan Alat</h3>
                         </div>
                     </div>
                 </div>
@@ -106,46 +85,34 @@
                         <th>Status</th>
                         <th>Harga</th>
                         <th>Tanggal</th>
-                        <th class="text-center"></th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($rents as $rent)
-                    <tr>
-                        <td>{!! $loop->iteration !!}</td>
-                        <td>{{ $rent->tool->name }} </td>
-                        <td>{{ $rent->farmer->name }}</td>
-                        <td>{{ $rent->land_area }} Are</td>
-                        <td>
-                            @if ($rent->status == 0 )
+                        <tr>
+                            <td>{!! $loop->iteration !!}</td>
+                            <td>{{ $rent->tool->name }} </td>
+                            <td>{{ $rent->farmer->name }}</td>
+                            <td>{{ $rent->land_area }} Are</td>
+                            <td>
+                                @if ($rent->status == 0)
 
-                            <span class="badge badge-warning">
-                                Dipesan
-                            </span>
+                                    <span class="badge badge-warning">
+                                        Dipesan
+                                    </span>
 
-                            @else
-                            <span class="badge badge-success">
-                                Diselesaikan
-                            </span>
-                            @endif
-                        </td>
-                        <td>{{ price($rent->tool->price) }}</td>
-                        <td>{{ idFormat($rent->date) }}</td>
-                        <td class="text-right">
-                            <div class="list-icons">
-                                <div class="dropdown">
-                                    <a href="#" class="list-icons-item" data-toggle="dropdown">
-                                        <i class="icon-menu7"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="pl-0"></td>
-                    </tr>
+                                @else
+                                    <span class="badge badge-success">
+                                        Diselesaikan
+                                    </span>
+                                @endif
+                            </td>
+                            <td>{{ price($rent->tool->price) }}</td>
+                            <td>{{ idFormat($rent->date) }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-</div>
+    </div>
 @endsection

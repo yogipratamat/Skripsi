@@ -10,7 +10,7 @@ class SubsidyController extends Controller
 {
     public function index()
     {
-        $subsidies = Subsidy::get();
+        $subsidies = Subsidy::orderBy('created_at', 'desc')->get();
         return view('petani.subsidy.index', compact('subsidies'));
     }
 

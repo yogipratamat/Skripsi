@@ -40,36 +40,27 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.meeting.update', [$agenda->id]) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.meeting.update', [$meeting->id]) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label>Periode Jadwal:</label>
-                                <input type="text" name="periode" value="{{ $agenda->periode }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Periode!')" oninput="setCustomValidity('')">
-                            </div>
-                            <div class="form-group">
-                                <label>Type Jadwal</label>
-                                <div>
-                                    <select class="form-control" value="{{ $agenda->type }}" name="type" required oninvalid="this.setCustomValidity('Masukan Type Jadwal!')" oninput="setCustomValidity('')">
-                                        <option value="1">Jadwal Tanam</option>
-                                        <option value="2">Jadwal Rapat</option>
-                                    </select>
-                                </div>
+                                <label>Nama Rapat:</label>
+                                <input type="text" name="name" value="{{ $meeting->name }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Periode!')" oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label>Tanggal:</label>
-                                <input type="date" name="start_date" value="{{ $agenda->start_date }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Tanggal!')" oninput="setCustomValidity('')">
+                                <input type="date" name="date" value="{{ $meeting->date }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Tanggal!')" oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label>Waktu:</label>
-                                <input type="time" name="time" value="{{ $agenda->time }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Waktu!')" oninput="setCustomValidity('')">
+                                <input type="time" name="time" value="{{ $meeting->time }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Waktu!')" oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label>Tempat:</label>
-                                <input type="text" name="place" value="{{ $agenda->place }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Tempat!')" oninput="setCustomValidity('')">
+                                <input type="text" name="place" value="{{ $meeting->place }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Tempat!')" oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label>Deskripsi:</label>
-                                <textarea name="description" id="" class="form-control" required oninvalid="this.setCustomValidity('Masukan Deskripsi!')" oninput="setCustomValidity('')">{{ $agenda->description }}</textarea>
+                                <textarea name="description" id="" class="form-control" required oninvalid="this.setCustomValidity('Masukan Deskripsi!')" oninput="setCustomValidity('')">{{ $meeting->description }}</textarea>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a class="btn btn-warning" href="{{ route('admin.meeting.index') }}">Cancel</a>

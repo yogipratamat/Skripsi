@@ -21,7 +21,7 @@ class FarmerController extends Controller
         $authUser = auth()->user();
         $groupFarmId = $authUser->farmer->groupFarm->id;
 
-        $farmers = Farmer::where('group_farm_id', $groupFarmId)->where('id', '!=', $authUser->farmer->id)->get();
+        $farmers = Farmer::where('group_farm_id', $groupFarmId)->where('id', '!=', $authUser->farmer->id)->orderBy('created_at', 'desc')->get();
         return view('admin.farmer.index', compact('farmers'));
     }
 
