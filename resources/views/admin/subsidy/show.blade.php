@@ -136,11 +136,18 @@
                                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                                         @if ($farmer->pivot->status == 0)
                                                             <a
-                                                                href="{{ route('admin.subsidy.process', [$subsidy->id, $farmer->id]) }}">
-                                                                <button class="btn btn-sm btn-success">
+                                                                href="{{ route('admin.subsidy.process', [$subsidy->id_subsidy, $farmer->id_farmer]) }}">
+                                                                <button class="btn btn-sm btn-primary">
                                                                     Proses
                                                                 </button>
                                                             </a>
+                                                        @else
+                                                            <form action="{{ 'penyuluh.subsidy.index' }}" method="GET">
+                                                                <button type="submit" class="btn btn-sm btn-success"
+                                                                    name="cetak"><i class="icon-printer2"></i>
+                                                                    Cetak
+                                                                </button>
+                                                            </form>
                                                         @endif
                                                     </td>
                                                 </tr>

@@ -14,10 +14,10 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
 
-        $farmers = Farmer::where('group_farm_id', $groupFarmId)->where('id', '!=', $authUser->farmer->id)->get();
+        $farmers = Farmer::where('group_farm_id', $groupFarmId)->where('id_farmer', '!=', $authUser->farmer->id_farmer)->get();
 
         $farmerActive = null;
 

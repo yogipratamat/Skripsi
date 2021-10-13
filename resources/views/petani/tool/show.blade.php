@@ -51,7 +51,7 @@
                             </div>
 
                             <div class="mx-3">
-                                <form action="{{ route('petani.tool.show', [$tool->id]) }}">
+                                <form action="{{ route('petani.tool.show', [$tool->id_tool]) }}">
                                     <div class="row">
                                         <div class="col-sm-2">
                                             <input required type="number" placeholder="Luas Lahan" name="area"

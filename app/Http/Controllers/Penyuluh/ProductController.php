@@ -90,9 +90,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_product)
     {
-        $product = Product::find($id);
+        $product = Product::find($id_product);
         return view('penyuluh.product.edit', compact('product'));
     }
 
@@ -103,9 +103,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_product)
     {
-        $product = Product::find($id);
+        $product = Product::find($id_product);
 
         $oldImage = $product->image;
 
@@ -148,9 +148,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_product)
     {
-        $product = Product::find($id);
+        $product = Product::find($id_product);
         $product->delete();
 
         $message = 'Data berhasil di hapus!';

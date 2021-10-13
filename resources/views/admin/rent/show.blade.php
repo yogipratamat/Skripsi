@@ -30,12 +30,15 @@
         <div class="space-y-5">
             @if ($rent->status == 0)
 
-                <div class="mb-4 ">
-                    <a href="{{ route('admin.rent.approve', [$rent->id]) }}"
-                        class="bg-indigo-600 px-10 py-3 text-lg rounded-md shadow w-auto hover:bg-indigo-800">
+                <div class="mb-4 m-auto">
+                    <a href="{{ route('admin.rent.approve', [$rent->id_rent]) }}" class="btn btn-success">
                         Selesai Sewa
                     </a>
+                    <a href="{{ route('admin.rent.cancel', [$rent->id_rent]) }}" class="btn btn-danger">
+                        Batalkan Sewa
+                    </a>
                 </div>
+
 
             @endif
             <div class="bg-white shadow-md rounded-md">
@@ -104,9 +107,13 @@
                                         Dipesan
                                     </span>
 
-                                @else
+                                @elseif ($rent->status == 1)
                                     <span class="badge badge-success">
                                         Diselesaikan
+                                    </span>
+                                @else
+                                    <span class="badge badge-danger">
+                                        Dibatalkan
                                     </span>
                                 @endif
                             </div>

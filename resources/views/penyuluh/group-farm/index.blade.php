@@ -69,7 +69,7 @@
                         <tr>
                             <td>{!! $loop->iteration !!}</td>
                             <td>{{ $groupFarm->name }}</td>
-                            <td>{{ $groupFarm->getPic()->name }}</td>
+                            <td>{{ $groupFarm->getPic() != null ? $groupFarm->getPic()->name : '-' }}</td>
                             <td>{{ $groupFarm->phone }}</td>
                             <td>{{ $groupFarm->vision }}</td>
                             <td>{{ $groupFarm->mission }}</td>
@@ -80,9 +80,10 @@
                                             <i class="icon-menu7"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('penyuluh.group-farm.edit', [$groupFarm]) }}"
+                                            <a href="{{ route('penyuluh.group-farm.edit', [$groupFarm->id_group_farm]) }}"
                                                 class="dropdown-item"><i class="icon-pencil7"></i>Edit</a>
-                                            <button class="dropdown-item" onclick="hapus({{ $groupFarm->id }})"><i
+                                            <button class="dropdown-item"
+                                                onclick="hapus({{ $groupFarm->id_group_farm }})"><i
                                                     class="icon-bin"></i> Delete</button>
                                         </div>
                                     </div>
@@ -100,10 +101,10 @@
 
 @section('script')
     <script>
-        function hapus(id) {
+        function hapus(id_group_farm) {
             var yakin = confirm('Yakin Hapus Data?');
             if (yakin) {
-                window.location = "{{ url('/') }}" + "/penyuluh/kelompok-tani/delete/" + id;
+                window.location = "{{ url('/') }}" + "/penyuluh/kelompok-tani/delete/" + id_group_farm;
 
             } else {
                 window.location = "{{ url('/') }}" + "/penyuluh/kelompok-tani";

@@ -45,8 +45,8 @@
                 <div class="header-elements">
                     <div class="list-icons">
                         <a class="list-icons-item" data-action="collapse"></a>
-                        <a class="list-icons-item" data-action="reload"></a>
                         <a href="{{ route('admin.meeting.create') }}" class="btn btn-primary text-white">Tambah Data</a>
+                        <a href="" class="btn btn-primary"><i class="icon-printer2"></i> Cetak Absen</a>
                     </div>
                 </div>
             </div>
@@ -75,19 +75,23 @@
                             <td class="text-right">
                                 <div class="list-icons">
                                     <div class="dropdown">
+                                        <br><br>
                                         <a href="#" class="list-icons-item" data-toggle="dropdown">
                                             <i class="icon-menu7"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
+                                            <a href="" class="dropdown-item"><i class="icon-clipboard5"></i>Absen</a>
                                             <a href="{{ route('admin.meeting.edit', [$meeting]) }}"
                                                 class="dropdown-item"><i class="icon-pencil7"></i>Edit</a>
-                                            <button class="dropdown-item" onclick="hapus({{ $meeting->id }})"><i
+                                            <button class="dropdown-item" onclick="hapus({{ $meeting->id_meeting }})"><i
                                                     class="icon-bin"></i> Delete</button>
                                         </div>
+                                        <br><br><br>
                                     </div>
                                 </div>
                             </td>
                             <td class="pl-0"></td>
+
                         </tr>
                     @endforeach
                 </tbody>
@@ -99,10 +103,10 @@
 
 @section('script')
     <script>
-        function hapus(id) {
+        function hapus(id_meeting) {
             var yakin = confirm('Yakin Hapus Data?');
             if (yakin) {
-                window.location = "{{ url('/') }}" + "/admin/rapat/delete/" + id;
+                window.location = "{{ url('/') }}" + "/admin/rapat/delete/" + id_meeting;
 
             } else {
                 window.location = "{{ url('/') }}" + "/admin/rapat";

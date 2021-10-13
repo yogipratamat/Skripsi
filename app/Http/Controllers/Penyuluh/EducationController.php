@@ -87,9 +87,9 @@ class EducationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_education)
     {
-        $education = Education::find($id);
+        $education = Education::find($id_education);
         return view('penyuluh.education.edit', compact('education'));
     }
 
@@ -100,9 +100,9 @@ class EducationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_education)
     {
-        $education = Education::find($id);
+        $education = Education::find($id_education);
 
         $oldImage = $education->image;
 
@@ -112,7 +112,7 @@ class EducationController extends Controller
             $name = time() . '-' .
                 $file->getClientOriginalName();
             $path = Storage::putFileAs(
-                'public/images/education',
+                'public/images/educations',
                 $file,
                 $name
             );
@@ -143,9 +143,9 @@ class EducationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_education)
     {
-        $education = Education::find($id);
+        $education = Education::find($id_education);
         $education->delete();
 
         $message = 'Data berhasil di hapus!';

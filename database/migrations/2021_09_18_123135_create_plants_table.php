@@ -14,7 +14,7 @@ class CreatePlantsTable extends Migration
     public function up()
     {
         Schema::create('plants', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_plant');
 
             $table->string('periode');
             $table->date('start_date');
@@ -22,7 +22,7 @@ class CreatePlantsTable extends Migration
             $table->text('description')->nullable();
 
             $table->unsignedBigInteger('group_farm_id');
-            $table->foreign('group_farm_id')->references('id')->on('group_farms')->onDelete('cascade');
+            $table->foreign('group_farm_id')->references('id_group_farm')->on('group_farms')->onDelete('cascade');
 
             $table->timestamps();
         });

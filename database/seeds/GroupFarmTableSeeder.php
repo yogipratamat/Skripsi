@@ -39,8 +39,8 @@ class GroupFarmTableSeeder extends Seeder
             'address' => 'Kapidi',
             'gender' => '1',
             'email' => 'yogi@gmail.com',
-            'user_id' => $user->id,
-            'group_farm_id' => $groupFarm->id,
+            'user_id' => $user->id_user,
+            'group_farm_id' => $groupFarm->id_group_farm,
         ];
 
         $farmer = Farmer::create($dataFarmer);

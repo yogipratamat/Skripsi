@@ -52,7 +52,7 @@
                                 <div class="card-footer d-sm-flex justify-content-sm-between align-items-sm-center">
                                     <div class="mt-2 mt-sm-0">
                                         <a class="btn btn-success"
-                                            href="{{ route('petani.tool.show', [$tool->id]) }}">Detail</a>
+                                            href="{{ route('petani.tool.show', [$tool->id_tool]) }}">Detail</a>
                                     </div>
                                 </div>
                             </div>

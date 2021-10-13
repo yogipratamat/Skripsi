@@ -14,17 +14,17 @@ class CreateSubsidyFarmersTable extends Migration
     public function up()
     {
         Schema::create('subsidy_farmers', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_subsidy_farmer');
 
             $table->integer('qty');
             $table->tinyInteger('status');
             $table->double('price');
 
             $table->unsignedBigInteger('subsidy_id');
-            $table->foreign('subsidy_id')->references('id')->on('subsidies')->onDelete('cascade');
+            $table->foreign('subsidy_id')->references('id_subsidy')->on('subsidies')->onDelete('cascade');
 
             $table->unsignedBigInteger('farmer_id');
-            $table->foreign('farmer_id')->references('id')->on('farmers')->onDelete('cascade');
+            $table->foreign('farmer_id')->references('id_farmer')->on('farmers')->onDelete('cascade');
 
             $table->timestamps();
         });

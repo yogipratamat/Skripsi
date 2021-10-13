@@ -19,9 +19,9 @@ class FarmerController extends Controller
     public function index()
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
-        $farmers = Farmer::where('group_farm_id', $groupFarmId)->where('id', '!=', $authUser->farmer->id)->orderBy('created_at', 'desc')->get();
+        $farmers = Farmer::where('group_farm_id', $groupFarmId)->where('id_farmer', '!=', $authUser->farmer->id_farmer)->orderBy('created_at', 'desc')->get();
         return view('admin.farmer.index', compact('farmers'));
     }
 
@@ -44,7 +44,7 @@ class FarmerController extends Controller
     public function store(Request $request)
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
         $dataUser = [
             'email' => $request->email,
             'name'  => $request->name,
@@ -61,7 +61,7 @@ class FarmerController extends Controller
             'address' => $request->address,
             'gender' => $request->gender,
             'email' => $request->email,
-            'user_id' => $user->id,
+            'user_id' => $user->id_user,
             'group_farm_id' => $groupFarmId,
         ];
 
@@ -89,9 +89,9 @@ class FarmerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_farmer)
     {
-        $farmer = Farmer::find($id);
+        $farmer = Farmer::find($id_farmer);
 
         return view('admin.farmer.edit', compact('farmer'));
     }
@@ -103,11 +103,11 @@ class FarmerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_farmer)
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
-        $farmer = Farmer::find($id);
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
+        $farmer = Farmer::find($id_farmer);
 
         $password = $farmer->user->password;
 
@@ -151,13 +151,13 @@ class FarmerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_farmer)
     {
 
-        $farmer = Farmer::find($id);
+        $farmer = Farmer::find($id_farmer);
         $farmer->delete();
 
-        DB::table('users')->where('id', $farmer->user_id)->delete();
+        DB::table('users')->where('id_user', $farmer->user_id)->delete();
 
         $message = 'Data berhasil di hapus!';
         Session::flash('admin', $message);

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Farmer;
 use App\Models\Subsidy;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -16,9 +18,50 @@ class SubsidyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $subsidies = Subsidy::orderBy('created_at', 'desc')->get();
+        $user = auth()->user();
+
+        $farmer = Farmer::where('user_id', $user->id_user)->first();
+
+        $groupFarmId = $farmer->group_farm_id;
+
+        //subsidy batas
+        $monthStartDate = Carbon::now()->startOfMonth()->format('Y-m-d'); // awal bulan
+        $monthEndDate = Carbon::now()->endOfMonth()->format('Y-m-d'); // akhir bulan
+
+        if ($request->startDate) {
+            $monthStartDate = $request->startDate;
+        }
+
+        if ($request->endDate) {
+            $monthEndDate = $request->endDate;
+        }
+
+        $subsidies = Subsidy::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->whereBetween('date', [$monthStartDate, $monthEndDate]);
+
+        if ($request->farmer) {
+            $subsidiess = $subsidies->where('farmer_id', $request->farmer);
+            $farmerActive = $request->farmer;
+        }
+
+        $subsidies = $subsidies->get();
+
+        $total = 0;
+        foreach ($subsidies as $subsidy) {
+            $total += $subsidy->price;
+        }
+
+        if ($request->has('cetak')) {
+            $pdf = PDF::loadView('admin.subsidy.cetak', [
+                'subsidies' => $subsidies, 'monthStartDate' => $monthStartDate, 'monthEndDate' => $monthEndDate,
+                'total' => $total
+            ]);
+
+            return $pdf->download('bukti-pengambilan-subsidy.pdf');
+        }
+        //batas
+
         return view('admin.subsidy.index', compact('subsidies'));
     }
 
@@ -43,13 +86,14 @@ class SubsidyController extends Controller
 
         $user = auth()->user();
 
-        $farmer = Farmer::where('user_id', $user->id)->first();
+        $farmer = Farmer::where('user_id', $user->id_user)->first();
 
         $groupFarm = $farmer->groupFarm;
 
         $farmers = $groupFarm->farmers;
 
         $data = [
+            'group_farm_id' => $groupFarm->id_group_farm,
             'periode' => $request->periode,
             'type' => $request->type,
             'name' => $request->name,
@@ -62,8 +106,9 @@ class SubsidyController extends Controller
 
         $totalLandSize = 0;
 
+        ///id kurang yakin
         foreach ($farmers as $value) {
-            if ($value->id != $farmer->id) {
+            if ($value->id_farmer != $farmer->id_farmer) {
                 $totalLandSize += $value->land_area;
             }
         }
@@ -71,19 +116,16 @@ class SubsidyController extends Controller
         $perArea = ($request->qty / $totalLandSize);
 
         foreach ($farmers as $value) {
-            if ($value->id != $farmer->id) {
+            if ($value->id_farmer != $farmer->id_farmer) {
                 DB::table('subsidy_farmers')->insert([
                     'qty' => ($value->land_area * $perArea),
                     'status' => 0,
                     'price' => ($value->land_area * $perArea) * $request->price,
-                    'subsidy_id' => $subsidy->id,
-                    'farmer_id' => $value->id
+                    'subsidy_id' => $subsidy->id_subsidy,
+                    'farmer_id' => $value->id_farmer
                 ]);
             }
         }
-
-
-
 
         $message = 'Data berhasil di tambah!';
         Session::flash('admin', $message);
@@ -97,9 +139,9 @@ class SubsidyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_subsidy)
     {
-        $subsidy = Subsidy::find($id);
+        $subsidy = Subsidy::find($id_subsidy);
         return view('admin.subsidy.show', compact('subsidy'));
     }
 
@@ -109,9 +151,9 @@ class SubsidyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_subsidy)
     {
-        $subsidy = Subsidy::find($id);
+        $subsidy = Subsidy::find($id_subsidy);
         return view('admin.subsidy.edit', compact('subsidy'));
     }
 
@@ -122,17 +164,20 @@ class SubsidyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_subsidy)
     {
         $user = auth()->user();
 
-        $farmer = Farmer::where('user_id', $user->id)->first();
+        $farmer = Farmer::where('user_id', $user->id_user)->first();
 
         $groupFarm = $farmer->groupFarm;
 
         $farmers = $groupFarm->farmers;
 
-        $subsidy = Subsidy::find($id);
+        $subsidy = Subsidy::find($id_subsidy);
+
+
+        DB::table('subsidy_farmers')->where('subsidy_id', $id_subsidy)->delete();
 
         $data = [
             'periode' => $request->periode,
@@ -149,7 +194,7 @@ class SubsidyController extends Controller
         $totalLandSize = 0;
 
         foreach ($farmers as $value) {
-            if ($value->id != $farmer->id) {
+            if ($value->id_subsidy != $farmer->id_farmer) {
                 $totalLandSize += $value->land_area;
             }
         }
@@ -157,13 +202,13 @@ class SubsidyController extends Controller
         $perArea = ($request->qty / $totalLandSize);
 
         foreach ($farmers as $value) {
-            if ($value->id != $farmer->id) {
+            if ($value->id_subsidy != $farmer->id_farmer) {
                 DB::table('subsidy_farmers')->insert([
                     'qty' => ($value->land_area * $perArea),
                     'status' => 0,
                     'price' => ($value->land_area * $perArea) * $request->price,
-                    'subsidy_id' => $subsidy->id,
-                    'farmer_id' => $value->id
+                    'subsidy_id' => $subsidy->id_subsidy,
+                    'farmer_id' => $value->id_farmer
                 ]);
             }
         }

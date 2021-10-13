@@ -117,10 +117,6 @@
                         class="nav-link">Jadwal Rapat</a></li>
             </ul>
         </li>
-        <li class="nav-item">
-            <a href="{{ route('petani.galery.index') }}" class="nav-link"><i
-                    class="icon-images2"></i><span>Galeri Petani</span></a>
-        </li>
         @endrole
 
     </ul>

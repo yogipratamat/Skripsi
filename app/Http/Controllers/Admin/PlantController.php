@@ -18,7 +18,7 @@ class PlantController extends Controller
     public function index()
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
         $plants = Plant::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
 
@@ -44,7 +44,7 @@ class PlantController extends Controller
     public function store(Request $request)
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
         $data = [
             'periode' => $request->periode,
@@ -52,7 +52,6 @@ class PlantController extends Controller
             'end_date' => $request->end_date,
             'description' => $request->description,
             'group_farm_id' => $groupFarmId,
-
         ];
 
         $plants = Plant::create($data);
@@ -80,9 +79,9 @@ class PlantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_plant)
     {
-        $plant = Plant::find($id);
+        $plant = Plant::find($id_plant);
         return view('admin.plant.edit', compact('plant'));
     }
 
@@ -93,12 +92,12 @@ class PlantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_plant)
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
-        $plant = Plant::find($id);
+        $plant = Plant::find($id_plant);
 
         $data = [
             'periode' => $request->periode,
@@ -122,9 +121,9 @@ class PlantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_plant)
     {
-        $plant = Plant::find($id);
+        $plant = Plant::find($id_plant);
         $plant->delete();
 
         $message = 'Data berhasil di hapus!';

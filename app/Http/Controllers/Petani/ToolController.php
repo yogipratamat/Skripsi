@@ -16,14 +16,14 @@ class ToolController extends Controller
     {
         $user = auth()->user();
 
-        $farmer = Farmer::where('user_id', $user->id)->first();
+        $farmer = Farmer::where('user_id', $user->id_user)->first();
 
-        $tools = Tool::where('group_farm_id', $farmer->groupFarm->id)->orderBy('created_at', 'desc')->get();
+        $tools = Tool::where('group_farm_id', $farmer->groupFarm->id_group_farm)->orderBy('created_at', 'desc')->get();
 
         return view('petani.tool.index', compact('tools'));
     }
 
-    public function show(Request $request, $id)
+    public function show(Request $request, $id_tool)
     {
         $date = date('Y-m-d');
 
@@ -37,17 +37,17 @@ class ToolController extends Controller
 
         $user = auth()->user();
 
-        $farmer = Farmer::where('user_id', $user->id)->first();
+        $farmer = Farmer::where('user_id', $user->id_user)->first();
 
 
-        $tool = Tool::find($id);
+        $tool = Tool::find($id_tool);
 
         $avaiable = -1;
 
         if ($request->date) {
 
             $date = $request->date;
-            $rents = Rent::where('date', $request->date)->where('tool_id', $id)->where('group_farm_id', $farmer->group_farm_id)->get();
+            $rents = Rent::where('date', $request->date)->where('tool_id', $id_tool)->where('group_farm_id', $farmer->group_farm_id)->get();
 
             if ($rents) {
                 $total = 0;
@@ -71,9 +71,9 @@ class ToolController extends Controller
                     'date' => $date,
                     'land_area' => $area,
                     'status' => 0,
-                    'farmer_id' => $farmer->id,
+                    'farmer_id' => $farmer->id_farmer,
                     'group_farm_id' => $farmer->group_farm_id,
-                    'tool_id' => $tool->id
+                    'tool_id' => $tool->id_tool
                 ]);
 
                 session()->flash('rent', 'Berhasil Menyewa Alat!');

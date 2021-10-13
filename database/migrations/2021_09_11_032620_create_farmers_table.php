@@ -14,7 +14,7 @@ class CreateFarmersTable extends Migration
     public function up()
     {
         Schema::create('farmers', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_farmer');
             $table->string('name');
             $table->string('land_area');
             $table->char('phone', 15);
@@ -25,8 +25,8 @@ class CreateFarmersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('group_farm_id');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('group_farm_id')->references('id')->on('group_farms')->onDelete('cascade');
+            $table->foreign('user_id')->references('id_user')->on('users')->onDelete('cascade');
+            $table->foreign('group_farm_id')->references('id_group_farm')->on('group_farms')->onDelete('cascade');
 
             $table->timestamps();
         });

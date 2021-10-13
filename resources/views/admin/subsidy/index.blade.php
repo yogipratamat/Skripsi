@@ -73,11 +73,11 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a href="{{ route('admin.subsidy.show', [$subsidy]) }}"
-                                                class="dropdown-item"><i class="icon-eye"></i>Show</a>
-                                            <a href="{{ route('admin.subsidy.edit', [$subsidy]) }}"
+                                                class="dropdown-item"><i class="icon-eye"></i>Detail</a>
+                                            <a href="{{ route('admin.subsidy.edit', [$subsidy->id_subsidy]) }}"
                                                 class="dropdown-item"><i class="icon-pencil7"></i>Edit</a>
-                                            <button class="dropdown-item" onclick="hapus({{ $subsidy->id }})"><i
-                                                    class="icon-bin"></i> Delete</button>
+                                            <button class="dropdown-item" onclick="hapus({{ $subsidy->id_subsidy }})"><i
+                                                    class="icon-bin"></i>Delete</button>
                                         </div>
                                     </div>
                                 </div>
@@ -92,10 +92,10 @@
 
 @section('script')
     <script>
-        function hapus(id) {
+        function hapus(id_subsidy) {
             var yakin = confirm('Yakin Hapus Data?');
             if (yakin) {
-                window.location = "{{ url('/') }}" + "/admin/subsidi/delete/" + id;
+                window.location = "{{ url('/') }}" + "/admin/subsidi/delete/" + id_subsidy;
 
             } else {
                 window.location = "{{ url('/') }}" + "/admin/subsidi";

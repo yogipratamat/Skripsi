@@ -22,6 +22,8 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    protected $primaryKey = 'id_user';
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -40,7 +42,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function farmer(){
-        return $this->hasOne(Farmer::class, 'user_id', 'id');
+    public function farmer()
+    {
+        return $this->hasOne(Farmer::class, 'user_id', 'id_user');
     }
 }

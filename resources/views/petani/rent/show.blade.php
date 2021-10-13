@@ -68,7 +68,7 @@
                                 Total Harga
                             </div>
                             <div class="col-span-3">
-                                :
+                                : :{{ price($rent->tool->price * $rent->land_area) }}
                             </div>
                         </div>
                         <div class="grid grid-cols-4">
@@ -83,9 +83,13 @@
                                         Dipesan
                                     </span>
 
-                                @else
+                                @elseif ($rent->status == 1)
                                     <span class="badge badge-success">
                                         Diselesaikan
+                                    </span>
+                                @else
+                                    <span class="badge badge-danger">
+                                        Dibatalkan
                                     </span>
                                 @endif
                             </div>

@@ -18,7 +18,7 @@ class BuyerController extends Controller
     public function index()
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
         $buyers = Buyer::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
 
@@ -44,7 +44,7 @@ class BuyerController extends Controller
     public function store(Request $request)
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
         $file = $request->file('image');
 
@@ -95,9 +95,9 @@ class BuyerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_buyer)
     {
-        $buyer = Buyer::find($id);
+        $buyer = Buyer::find($id_buyer);
         return view('admin.buyer.edit', compact('buyer'));
     }
 
@@ -108,12 +108,12 @@ class BuyerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_buyer)
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
-        $buyer = Buyer::find($id);
+        $buyer = Buyer::find($id_buyer);
 
         $oldImage = $buyer->image;
 

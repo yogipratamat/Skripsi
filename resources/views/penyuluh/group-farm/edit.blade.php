@@ -27,7 +27,7 @@
 
 @section('content')
     <div class="content">
-        <form action="{{ route('penyuluh.group-farm.update', [$groupFarm->id]) }}" method="POST">
+        <form action="{{ route('penyuluh.group-farm.update', [$groupFarm->id_group_farm]) }}" method="POST">
             @csrf
             <div class="card">
                 <div class="row">

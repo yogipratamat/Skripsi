@@ -14,14 +14,14 @@ class CreateOrdersTable extends Migration
     public function up()
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_order');
 
             $table->string('date');
             $table->tinyInteger('status');
             $table->double('price');
 
             $table->unsignedBigInteger('farmer_id');
-            $table->foreign('farmer_id')->references('id')->on('farmers')->onDelete('cascade');
+            $table->foreign('farmer_id')->references('id_farmer')->on('farmers')->onDelete('cascade');
 
             $table->timestamps();
         });

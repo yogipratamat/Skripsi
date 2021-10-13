@@ -14,7 +14,7 @@ class CreateSubsidiesTable extends Migration
     public function up()
     {
         Schema::create('subsidies', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_subsidy');
 
             $table->string('periode');
             $table->tinyInteger('type');
@@ -22,6 +22,9 @@ class CreateSubsidiesTable extends Migration
             $table->integer('qty');
             $table->double('price');
             $table->date('date');
+
+            $table->unsignedBigInteger('group_farm_id');
+            $table->foreign('group_farm_id')->references('id_group_farm')->on('group_farms')->onDelete('cascade');
 
             $table->timestamps();
         });

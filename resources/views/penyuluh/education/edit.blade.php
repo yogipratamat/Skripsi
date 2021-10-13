@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('penyuluh.education.update', [$education->id]) }}" method="POST"
+                        <form action="{{ route('penyuluh.education.update', [$education->id_education]) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">

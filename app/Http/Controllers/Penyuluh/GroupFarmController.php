@@ -19,7 +19,6 @@ class GroupFarmController extends Controller
      */
     public function index()
     {
-
         $groupFarms = GroupFarm::orderBy('created_at', 'desc')->get();
         return view('penyuluh.group-farm.index', compact('groupFarms'));
     }
@@ -67,8 +66,8 @@ class GroupFarmController extends Controller
             'address' => $request->address,
             'gender' => $request->gender,
             'email' => $request->email,
-            'user_id' => $user->id,
-            'group_farm_id' => $groupFarm->id,
+            'user_id' => $user->id_user,
+            'group_farm_id' => $groupFarm->id_group_farm,
         ];
 
         $farmer = Farmer::create($dataFarmer);
@@ -95,9 +94,9 @@ class GroupFarmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_group_farm)
     {
-        $groupFarm = GroupFarm::find($id);
+        $groupFarm = GroupFarm::find($id_group_farm);
 
         $farmer = $groupFarm->getPic();
 
@@ -111,9 +110,9 @@ class GroupFarmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_group_farm)
     {
-        $groupFarm = GroupFarm::find($id);
+        $groupFarm = GroupFarm::find($id_group_farm);
 
 
         // dd($groupFarm->getPic());
@@ -151,7 +150,7 @@ class GroupFarmController extends Controller
             'gender' => $request->gender,
             'email' => $request->email,
             'user_id' => $farmer->user_id,
-            'group_farm_id' => $groupFarm->id,
+            'group_farm_id' => $groupFarm->id_group_farm,
         ];
 
         $farmer->update($dataFarmer);
@@ -167,21 +166,18 @@ class GroupFarmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_group_farm)
     {
-        $groupFarm = GroupFarm::find($id);
+        $groupFarm = GroupFarm::find($id_group_farm);
 
-        $farmers = Farmer::where('group_farm_id', $groupFarm->id)->get();
+        $farmers = Farmer::where('group_farm_id', $groupFarm->id_group_farm)->get();
 
         foreach ($farmers as $farmer) {
-            DB::table('farmers')->where('id', $farmer->id)->delete();
-            DB::table('users')->where('id', $farmer->user_id)->delete();
+            DB::table('farmers')->where('id_farmer', $farmer->id_farmer)->delete();
+            DB::table('users')->where('id_user', $farmer->user_id)->delete();
         }
 
         $groupFarm->delete();
-
-
-
 
         $message = 'Data berhasil di hapus!';
         Session::flash('penyuluh', $message);

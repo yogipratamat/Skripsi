@@ -14,15 +14,15 @@ class OrderController extends Controller
     {
         $user = auth()->user();
 
-        $farmer = Farmer::where('user_id', $user->id)->first();
+        $farmer = Farmer::where('user_id', $user->id_user)->first();
 
-        $orders = Order::where('farmer_id', $farmer->id)->orderBy('created_at', 'desc')->get();
+        $orders = Order::where('farmer_id', $farmer->id_farmer)->orderBy('created_at', 'desc')->get();
         return view('petani.order.index', compact('orders'));
     }
 
-    public function show($id)
+    public function show($id_order)
     {
-        $order = Order::find($id);
+        $order = Order::find($id_order);
 
         $total = 0;
         foreach ($order->products as $product) {

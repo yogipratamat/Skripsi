@@ -16,7 +16,6 @@ class ReportController extends Controller
     {
 
         $groupFarms = GroupFarm::get();
-        // $farmers = Farmer::get();
 
         $farmerActive = null;
 
@@ -35,8 +34,7 @@ class ReportController extends Controller
 
         if ($request->groupFarm) {
 
-
-            $farmers = Farmer::where('group_farm_id', $request->groupFarm)->pluck('id');
+            $farmers = Farmer::where('group_farm_id', $request->groupFarm)->pluck('id_farmer');
             $orders = $orders->whereIn('farmer_id', $farmers);
             $farmerActive = $request->groupFarm;
         }

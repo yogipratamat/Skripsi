@@ -62,8 +62,8 @@
                                 <select class="form-control" name="groupFarm">
                                     <option value="">Pilih Kelompok Tani</option>
                                     @foreach ($groupFarms as $groupFarm)
-                                        <option {{ $groupFarm->id == $farmerActive ? 'selected' : '' }}
-                                            value="{{ $groupFarm->id }}">{{ $groupFarm->name }}</option>
+                                        <option {{ $groupFarm->id_group_farm == $farmerActive ? 'selected' : '' }}
+                                            value="{{ $groupFarm->id_group_farm }}">{{ $groupFarm->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -73,7 +73,7 @@
                                 Filter
                             </button>
                             <button type="submit" name="cetak" class="btn btn-primary">
-                                Cetak PDF
+                                <i class="icon-printer2"></i> Cetak PDF
                             </button>
                         </div>
                     </div>
@@ -106,18 +106,4 @@
         </div>
     </div>
     <!-- /content area -->
-@endsection
-
-@section('script')
-    <script>
-        function hapus(id) {
-            var yakin = confirm('Yakin Hapus Data?');
-            if (yakin) {
-                window.location = 'http://si-gotani.io/admin/subsidi/delete/' + id;
-
-            } else {
-                window.location = 'http://si-gotani.io/admin/subsidi';
-            }
-        }
-    </script>
 @endsection

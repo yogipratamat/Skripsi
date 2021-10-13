@@ -3,26 +3,26 @@
 @section('title', 'Edit Jadwal Menanam')
 
 @section('asset')
-<!-- Theme JS files -->
+    <!-- Theme JS files -->
     <script src="/global_assets/js/plugins/forms/styling/switchery.min.js"></script>
-	<script src="/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
-	<script src="/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script src="/global_assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <script src="/global_assets/js/plugins/forms/selects/select2.min.js"></script>
 
-	<script src="/assets/js/app.js"></script>
-	<script src="/global_assets/js/demo_pages/form_actions.js"></script>
-<!-- /theme JS files -->
+    <script src="/assets/js/app.js"></script>
+    <script src="/global_assets/js/demo_pages/form_actions.js"></script>
+    <!-- /theme JS files -->
 @endsection
 
 @section('breadcum')
-<div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
-    <div class="d-flex">
-        <div class="breadcrumb">
-            <a href="{{ route('home') }}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
-            <a href="{{ route('admin.plant.index') }}" class="breadcrumb-item">Jadwal Menanam</a>
-            <span class="breadcrumb-item active">Edit Jadwal Menanam</span>
+    <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
+        <div class="d-flex">
+            <div class="breadcrumb">
+                <a href="{{ route('home') }}" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+                <a href="{{ route('admin.plant.index') }}" class="breadcrumb-item">Jadwal Menanam</a>
+                <span class="breadcrumb-item active">Edit Jadwal Menanam</span>
+            </div>
         </div>
     </div>
-</div>
 @endsection
 
 @section('content')
@@ -40,27 +40,38 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('admin.plant.update', [$plant->id]) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.plant.update', [$plant->id_plant]) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Periode Jadwal:</label>
-                                <input type="text" name="periode" value="{{ $plant->periode }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Periode!')" oninput="setCustomValidity('')">
+                                <input type="text" name="periode" value="{{ $plant->periode }}" class="form-control"
+                                    required oninvalid="this.setCustomValidity('Masukan Periode!')"
+                                    oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label>Batas Tgl Awal:</label>
-                                <input type="date" name="start_date" value="{{ $plant->start_date }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Tanggal Awal!')" oninput="setCustomValidity('')">
+                                <input type="date" name="start_date" value="{{ $plant->start_date }}"
+                                    class="form-control" required
+                                    oninvalid="this.setCustomValidity('Masukan Tanggal Awal!')"
+                                    oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label>Batas Tgl Akhir:</label>
-                                <input type="date" name="end_date" value="{{ $plant->end_date }}" class="form-control" required oninvalid="this.setCustomValidity('Masukan Batas Tanggal Akhir!')" oninput="setCustomValidity('')">
+                                <input type="date" name="end_date" value="{{ $plant->end_date }}" class="form-control"
+                                    required oninvalid="this.setCustomValidity('Masukan Batas Tanggal Akhir!')"
+                                    oninput="setCustomValidity('')">
                             </div>
                             <div class="form-group">
                                 <label>Deskripsi:</label>
-                                <textarea name="description" id="" class="form-control" required oninvalid="this.setCustomValidity('Masukan Deskripsi!')" oninput="setCustomValidity('')">{{ $plant->description }}</textarea>
+                                <textarea name="description" id="" class="form-control" required
+                                    oninvalid="this.setCustomValidity('Masukan Deskripsi!')"
+                                    oninput="setCustomValidity('')">{{ $plant->description }}</textarea>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a class="btn btn-warning" href="{{ route('admin.plant.index') }}">Cancel</a>
-                                <button type="submit" class="btn bg-blue">Submit<i class="icon-paperplane ml-2"></i></button>
+                                <button type="submit" class="btn bg-blue">Submit<i
+                                        class="icon-paperplane ml-2"></i></button>
                             </div>
                         </form>
                     </div>

@@ -21,9 +21,9 @@ class InformationController extends Controller
     {
         $user = auth()->user();
 
-        $farmer = Farmer::where('user_id', $user->id)->first();
+        $farmer = Farmer::where('user_id', $user->id_user)->first();
 
-        $plants = Plant::where('group_farm_id', $farmer->groupFarm->id)->orderBy('created_at', 'desc')->get();
+        $plants = Plant::where('group_farm_id', $farmer->groupFarm->id_group_farm)->orderBy('created_at', 'desc')->get();
 
         return view('petani.information.plant', compact('plants'));
     }
@@ -32,9 +32,9 @@ class InformationController extends Controller
     {
         $user = auth()->user();
 
-        $farmer = Farmer::where('user_id', $user->id)->first();
+        $farmer = Farmer::where('user_id', $user->id_user)->first();
 
-        $meetings = Meeting::where('group_farm_id', $farmer->groupFarm->id)->orderBy('created_at', 'desc')->get();
+        $meetings = Meeting::where('group_farm_id', $farmer->groupFarm->id_group_farm)->orderBy('created_at', 'desc')->get();
 
         return view('petani.information.meeting', compact('meetings'));
     }

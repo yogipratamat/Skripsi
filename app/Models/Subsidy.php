@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Subsidy extends Model
 {
     protected $guarded = [];
+    protected $primaryKey = 'id_subsidy';
 
     public function farmers()
     {

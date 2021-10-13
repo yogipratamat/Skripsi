@@ -13,15 +13,15 @@ class RentController extends Controller
     {
         $user = auth()->user();
 
-        $farmer = Farmer::where('user_id', $user->id)->first();
+        $farmer = Farmer::where('user_id', $user->id_user)->first();
 
-        $rents = Rent::where('farmer_id', $farmer->id)->get();
+        $rents = Rent::where('farmer_id', $farmer->id_farmer)->get();
         return view('petani.rent.index', compact('rents', 'farmer'));
     }
 
-    public function show($id)
+    public function show($id_rent)
     {
-        $rent = Rent::find($id);
+        $rent = Rent::find($id_rent);
 
         return view('petani.rent.show', compact('rent'));
     }

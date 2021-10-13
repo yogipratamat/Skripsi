@@ -62,21 +62,22 @@
                                         <div class="form-group">
 
                                             <label>Masukan Jumlah:</label>
-                                            <input value="1" min="1" id="qty-{{ $product->id }}" type="number"
+                                            <input value="1" min="1" id="qty-{{ $product->id_product }}" type="number"
                                                 name="stock" class="form-control alert" required>
 
                                         </div>
-                                        <input type="hidden" id="price-{{ $product->id }}"
+                                        <input type="hidden" id="price-{{ $product->id_product }}"
                                             value="{{ $product->price }}">
-                                        <input type="hidden" id="stock-{{ $product->id }}"
+                                        <input type="hidden" id="stock-{{ $product->id_product }}"
                                             value="{{ $product->stock }}">
-                                        <input type="hidden" id="image-{{ $product->id }}"
+                                        <input type="hidden" id="image-{{ $product->id_product }}"
                                             value="{{ $product->image }}">
-                                        <input type="hidden" id="name-{{ $product->id }}"
+                                        <input type="hidden" id="name-{{ $product->id_product }}"
                                             value="{{ $product->name }}">
                                     </form>
-                                    <button data-id="{{ $product->id }}" type="button" class="addCart btn bg-teal-400"><i
-                                            class="icon-cart-add mr-2"></i> Tambah Keranjang</button>
+                                    <button data-id="{{ $product->id_product }}" type="button"
+                                        class="addCart btn bg-teal-400"><i class="icon-cart-add mr-2"></i> Tambah
+                                        Keranjang</button>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +110,7 @@
                 $.ajax({
                     url: "{{ route('petani.cart.addToCart') }}",
                     data: {
-                        id: id,
+                        id_product: id,
                         qty: qty,
                         image: image,
                         price: price,
@@ -126,8 +127,6 @@
                     }
                 });
             }
-
-
 
 
         })

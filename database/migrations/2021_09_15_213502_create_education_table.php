@@ -14,7 +14,7 @@ class CreateEducationTable extends Migration
     public function up()
     {
         Schema::create('education', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_education');
 
             $table->string('image');
             $table->string('name');

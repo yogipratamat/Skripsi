@@ -52,9 +52,10 @@
                     <tr>
                         <th>No</th>
                         <th>Petani</th>
+                        <th>Kelompok Tani</th>
                         <th>Status</th>
                         <th>Total Harga</th>
-                        <th>Tanggal Pemesanan</th>
+                        <th class="text-center">Tanggal Pemesanan</th>
                         <th class="text-center">Actions</th>
                         <th></th>
                     </tr>
@@ -64,29 +65,34 @@
                         <tr>
                             <td>{!! $loop->iteration !!}</td>
                             <td>{{ $order->farmer->name }}</td>
+                            <td> </td>
                             <td>
                                 @if ($order->status == 0)
 
-                                    <span class="badge badge-primary">
+                                    <span class="badge badge-warning">
                                         Dipesan
                                     </span>
 
+                                @elseif($order->status == 1)
+                                    <span class="badge badge-primary">
+                                        Diterima
+                                    </span>
                                 @else
                                     <span class="badge badge-success">
-                                        Diterima
+                                        Diambil
                                     </span>
                                 @endif
                             </td>
                             <td>{{ price($order->price) }}</td>
-                            <td>{{ idFormat($order->date) }}</td>
-                            <td class="text-right">
+                            <td class="text-center">{{ idFormat($order->date) }}</td>
+                            <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">
                                         <a href="#" class="list-icons-item" data-toggle="dropdown">
                                             <i class="icon-menu7"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('penyuluh.order.show', [$order->id]) }}"
+                                            <a href="{{ route('penyuluh.order.show', [$order->id_order]) }}"
                                                 class="dropdown-item"><i class="icon-eye"></i>Detail</a>
                                         </div>
                                     </div>

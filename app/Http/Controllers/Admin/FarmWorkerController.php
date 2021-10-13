@@ -18,7 +18,7 @@ class FarmWorkerController extends Controller
     public function index()
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
         $farmWorkers = FarmWorker::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
 
@@ -44,7 +44,7 @@ class FarmWorkerController extends Controller
     public function store(Request $request)
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
         $file = $request->file('image');
 
@@ -97,9 +97,9 @@ class FarmWorkerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_farm_worker)
     {
-        $farmWorker = FarmWorker::find($id);
+        $farmWorker = FarmWorker::find($id_farm_worker);
         return view('admin.farm-worker.edit', compact('farmWorker'));
     }
 
@@ -110,12 +110,12 @@ class FarmWorkerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_farm_worker)
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
-        $farmWorker = FarmWorker::find($id);
+        $farmWorker = FarmWorker::find($id_farm_worker);
 
         $oldImage = $farmWorker->image;
 
@@ -159,9 +159,9 @@ class FarmWorkerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_farm_worker)
     {
-        $farmWorker = FarmWorker::find($id);
+        $farmWorker = FarmWorker::find($id_farm_worker);
         $farmWorker->delete();
 
         $message = 'Data berhasil di hapus!';

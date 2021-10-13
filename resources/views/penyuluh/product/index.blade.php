@@ -41,7 +41,7 @@
         @endif
         <div class="card">
             <div class="card-header bg-white header-elements-inline">
-                <h5 class="card-title">Produk Pertanian</h5>
+                <h5 class="card-title">Produk Pestisida</h5>
                 <div class="header-elements">
                     <div class="list-icons">
                         <a class="list-icons-item" data-action="collapse"></a>
@@ -89,7 +89,7 @@
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a href="{{ route('penyuluh.product.edit', [$product]) }}"
                                                 class="dropdown-item"><i class="icon-pencil7"></i>Edit</a>
-                                            <button class="dropdown-item" onclick="hapus({{ $product->id }})"><i
+                                            <button class="dropdown-item" onclick="hapus({{ $product->id_product }})"><i
                                                     class="icon-bin"></i> Delete</button>
                                         </div>
                                     </div>
@@ -107,10 +107,10 @@
 
 @section('script')
     <script>
-        function hapus(id) {
+        function hapus(id_product) {
             var yakin = confirm('Yakin Hapus Data?');
             if (yakin) {
-                window.location = "{{ url('/') }}" + "/penyuluh/produk/delete/" + id;
+                window.location = "{{ url('/') }}" + "/penyuluh/produk/delete/" + id_product;
 
             } else {
                 window.location = "{{ url('/') }}" + "/penyuluh/produk";

@@ -67,14 +67,16 @@
                             <td>{{ $order->farmer->name }}</td>
                             <td>
                                 @if ($order->status == 0)
-
-                                    <span class="badge badge-primary">
+                                    <span class="badge badge-warning">
                                         Dipesan
                                     </span>
-
+                                @elseif($order->status == 1)
+                                    <span class="badge badge-primary">
+                                        Diterima
+                                    </span>
                                 @else
                                     <span class="badge badge-success">
-                                        Diterima
+                                        Diambil
                                     </span>
                                 @endif
                             </td>
@@ -87,7 +89,7 @@
                                             <i class="icon-menu7"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('petani.order.show', [$order->id]) }}"
+                                            <a href="{{ route('petani.order.show', [$order->id_order]) }}"
                                                 class="dropdown-item"><i class="icon-eye"></i>Show</a>
                                         </div>
                                     </div>

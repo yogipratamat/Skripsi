@@ -14,7 +14,7 @@ class CreateMeetingsTable extends Migration
     public function up()
     {
         Schema::create('meetings', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_meeting');
 
             $table->string('name');
             $table->string('place');
@@ -23,7 +23,7 @@ class CreateMeetingsTable extends Migration
             $table->text('description')->nullable();
 
             $table->unsignedBigInteger('group_farm_id');
-            $table->foreign('group_farm_id')->references('id')->on('group_farms')->onDelete('cascade');
+            $table->foreign('group_farm_id')->references('id_group_farm')->on('group_farms')->onDelete('cascade');
 
             $table->timestamps();
         });

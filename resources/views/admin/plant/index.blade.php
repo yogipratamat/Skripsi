@@ -79,7 +79,7 @@
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a href="{{ route('admin.plant.edit', [$plant]) }}" class="dropdown-item"><i
                                                     class="icon-pencil7"></i>Edit</a>
-                                            <button class="dropdown-item" onclick="hapus({{ $plant->id }})"><i
+                                            <button class="dropdown-item" onclick="hapus({{ $plant->id_plant }})"><i
                                                     class="icon-bin"></i> Delete</button>
                                         </div>
                                     </div>
@@ -97,10 +97,10 @@
 
 @section('script')
     <script>
-        function hapus(id) {
+        function hapus(id_plant) {
             var yakin = confirm('Yakin Hapus Data?');
             if (yakin) {
-                window.location = "{{ url('/') }}" + "/admin/menanam/delete/" + id;
+                window.location = "{{ url('/') }}" + "/admin/menanam/delete/" + id_plant;
 
             } else {
                 window.location = "{{ url('/') }}" + "/admin/menanam";

@@ -77,9 +77,13 @@
                                         Dipesan
                                     </span>
 
-                                @else
+                                @elseif($rent->status == 1)
                                     <span class="badge badge-success">
                                         Diselesaikan
+                                    </span>
+                                @else
+                                    <span class="badge badge-danger">
+                                        Dibatalkan
                                     </span>
                                 @endif
                             </td>
@@ -91,7 +95,7 @@
                                             <i class="icon-menu7"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('petani.rent.show', [$rent->id]) }}"
+                                            <a href="{{ route('petani.rent.show', [$rent->id_rent]) }}"
                                                 class="dropdown-item"><i class="icon-eye"></i>Detail</a>
                                         </div>
                                     </div>

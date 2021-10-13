@@ -14,7 +14,7 @@ class CreateToolsTable extends Migration
     public function up()
     {
         Schema::create('tools', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_tool');
             $table->string('image');
             $table->string('name');
             $table->string('merk');
@@ -22,7 +22,7 @@ class CreateToolsTable extends Migration
             $table->text('description');
 
             $table->unsignedBigInteger('group_farm_id');
-            $table->foreign('group_farm_id')->references('id')->on('group_farms')->onDelete('cascade');
+            $table->foreign('group_farm_id')->references('id_group_farm')->on('group_farms')->onDelete('cascade');
 
             $table->timestamps();
         });

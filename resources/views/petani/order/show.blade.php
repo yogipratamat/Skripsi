@@ -63,10 +63,22 @@
                                 Status Pesanan
                             </div>
                             <div class="col-span-3">
-                                : <span class="bg-green-400 py-0 px-2 text-xs rounded">
+                                :
+                                @if ($order->status == 0)
 
-                                    {{ $order->status == 0 ? 'Dipesan' : 'Diterima' }}
-                                </span>
+                                    <span class="badge badge-warning">
+                                        Dipesan
+                                    </span>
+
+                                @elseif($order->status == 1)
+                                    <span class="badge badge-primary">
+                                        Diterima
+                                    </span>
+                                @else
+                                    <span class="badge badge-success">
+                                        Diambil
+                                    </span>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -17,9 +17,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'GroupFarmController@index')->name('index');
             Route::get('/create', 'GroupFarmController@create')->name('create');
             Route::post('/create', 'GroupFarmController@store')->name('store');
-            Route::get('/edit/{id}', 'GroupFarmController@edit')->name('edit');
-            Route::post('/edit/{id}', 'GroupFarmController@update')->name('update');
-            Route::get('/delete/{id}', 'GroupFarmController@destroy')->name('destroy');
+            Route::get('/edit/{id_group_farm}', 'GroupFarmController@edit')->name('edit');
+            Route::post('/edit/{id_group_farm}', 'GroupFarmController@update')->name('update');
+            Route::get('/delete/{id_group_farm}', 'GroupFarmController@destroy')->name('destroy');
         });
         //PRODUK
         Route::prefix('produk')->name('product.')->group(function () {
@@ -27,16 +27,17 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'ProductController@index')->name('index');
             Route::get('/create', 'ProductController@create')->name('create');
             Route::post('/create', 'ProductController@store')->name('store');
-            Route::get('/edit/{id}', 'ProductController@edit')->name('edit');
-            Route::post('/edit/{id}', 'ProductController@update')->name('update');
-            Route::get('/delete/{id}', 'ProductController@destroy')->name('destroy');
+            Route::get('/edit/{id_product}', 'ProductController@edit')->name('edit');
+            Route::post('/edit/{id_product}', 'ProductController@update')->name('update');
+            Route::get('/delete/{id_product}', 'ProductController@destroy')->name('destroy');
         });
         //PESANAN PRODUK
         Route::prefix('pesanan')->name('order.')->group(function () {
 
             Route::get('/', 'OrderController@index')->name('index');
-            Route::get('/show/{id}', 'OrderController@show')->name('show');
-            Route::get('/approve/{id}', 'OrderController@approve')->name('approve');
+            Route::get('/show/{id_order}', 'OrderController@show')->name('show');
+            Route::get('/approve/{id_order}', 'OrderController@approve')->name('approve');
+            Route::get('/accept/{id_order}', 'OrderController@accept')->name('accept');
         });
         //LAPORAN PRODUK
         Route::prefix('laporan')->name('report.')->group(function () {
@@ -49,9 +50,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'EducationController@index')->name('index');
             Route::get('/create', 'EducationController@create')->name('create');
             Route::post('/create', 'EducationController@store')->name('store');
-            Route::get('/edit/{id}', 'EducationController@edit')->name('edit');
-            Route::post('/edit/{id}', 'EducationController@update')->name('update');
-            Route::get('/delete/{id}', 'EducationController@destroy')->name('destroy');
+            Route::get('/edit/{id_education}', 'EducationController@edit')->name('edit');
+            Route::post('/edit/{id_education}', 'EducationController@update')->name('update');
+            Route::get('/delete/{id_education}', 'EducationController@destroy')->name('destroy');
         });
     });
 
@@ -63,9 +64,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'FarmerController@index')->name('index');
             Route::get('/create', 'FarmerController@create')->name('create');
             Route::post('/create', 'FarmerController@store')->name('store');
-            Route::get('/edit/{id}', 'FarmerController@edit')->name('edit');
-            Route::post('/edit/{id}', 'FarmerController@update')->name('update');
-            Route::get('/delete/{id}', 'FarmerController@destroy')->name('destroy');
+            Route::get('/edit/{id_farmer}', 'FarmerController@edit')->name('edit');
+            Route::post('/edit/{id_farmer}', 'FarmerController@update')->name('update');
+            Route::get('/delete/{id_farmer}', 'FarmerController@destroy')->name('destroy');
         });
         //ALAT
         Route::prefix('alat')->name('tool.')->group(function () {
@@ -73,9 +74,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'ToolController@index')->name('index');
             Route::get('/create', 'ToolController@create')->name('create');
             Route::post('/create', 'ToolController@store')->name('store');
-            Route::get('/edit/{id}', 'ToolController@edit')->name('edit');
-            Route::post('/edit/{id}', 'ToolController@update')->name('update');
-            Route::get('/delete/{id}', 'ToolController@destroy')->name('destroy');
+            Route::get('/edit/{id_tool}', 'ToolController@edit')->name('edit');
+            Route::post('/edit/{id_tool}', 'ToolController@update')->name('update');
+            Route::get('/delete/{id_tool}', 'ToolController@destroy')->name('destroy');
         });
         //SUBSIDI
         Route::prefix('subsidi')->name('subsidy.')->group(function () {
@@ -83,19 +84,21 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'SubsidyController@index')->name('index');
             Route::get('/create', 'SubsidyController@create')->name('create');
             Route::post('/create', 'SubsidyController@store')->name('store');
-            Route::get('/show/{id}', 'SubsidyController@show')->name('show');
+            Route::get('/show/{id_subsidy}', 'SubsidyController@show')->name('show');
             Route::get('/process/{subsidy}/{farmer}', 'SubsidyController@process')->name('process');
 
-            Route::get('/edit/{id}', 'SubsidyController@edit')->name('edit');
-            Route::post('/edit/{id}', 'SubsidyController@update')->name('update');
-            Route::get('/delete/{id}', 'SubsidyController@destroy')->name('destroy');
+
+            Route::get('/edit/{id_subsidy}', 'SubsidyController@edit')->name('edit');
+            Route::post('/edit/{id_subsidy}', 'SubsidyController@update')->name('update');
+            Route::get('/delete/{id_subsidy}', 'SubsidyController@destroy')->name('destroy');
         });
         //PENEYEWAAN
         Route::prefix('penyewaan')->name('rent.')->group(function () {
 
             Route::get('/', 'RentController@index')->name('index');
-            Route::get('/show/{id}', 'RentController@show')->name('show');
-            Route::get('/approve/{id}', 'RentController@approve')->name('approve');
+            Route::get('/show/{id_rent}', 'RentController@show')->name('show');
+            Route::get('/approve/{id_rent}', 'RentController@approve')->name('approve');
+            Route::get('/cancel/{id_rent}', 'RentController@cancel')->name('cancel');
         });
         //LAPORAN SEWA ALAT
         Route::prefix('laporan-alat')->name('report.')->group(function () {
@@ -108,18 +111,18 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'BuyerController@index')->name('index');
             Route::get('/create', 'BuyerController@create')->name('create');
             Route::post('/create', 'BuyerController@store')->name('store');
-            Route::get('/edit/{id}', 'BuyerController@edit')->name('edit');
-            Route::post('/edit/{id}', 'BuyerController@update')->name('update');
-            Route::get('/delete/{id}', 'BuyerController@destroy')->name('destroy');
+            Route::get('/edit/{id_buyer}', 'BuyerController@edit')->name('edit');
+            Route::post('/edit/{id_buyer}', 'BuyerController@update')->name('update');
+            Route::get('/delete/{id_buyer}', 'BuyerController@destroy')->name('destroy');
         });
         Route::prefix('buruh-tani')->name('farm-worker.')->group(function () {
 
             Route::get('/', 'FarmWorkerController@index')->name('index');
             Route::get('/create', 'FarmWorkerController@create')->name('create');
             Route::post('/create', 'FarmWorkerController@store')->name('store');
-            Route::get('/edit/{id}', 'FarmWorkerController@edit')->name('edit');
-            Route::post('/edit/{id}', 'FarmWorkerController@update')->name('update');
-            Route::get('/delete/{id}', 'FarmWorkerController@destroy')->name('destroy');
+            Route::get('/edit/{id_farm_worker}', 'FarmWorkerController@edit')->name('edit');
+            Route::post('/edit/{id_farm_worker}', 'FarmWorkerController@update')->name('update');
+            Route::get('/delete/{id_farm_worker}', 'FarmWorkerController@destroy')->name('destroy');
         });
         //JADWAL RAPAT
         Route::prefix('rapat')->name('meeting.')->group(function () {
@@ -127,9 +130,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'MeetingController@index')->name('index');
             Route::get('/create', 'MeetingController@create')->name('create');
             Route::post('/create', 'MeetingController@store')->name('store');
-            Route::get('/edit/{id}', 'MeetingController@edit')->name('edit');
-            Route::post('/edit/{id}', 'MeetingController@update')->name('update');
-            Route::get('/delete/{id}', 'MeetingController@destroy')->name('destroy');
+            Route::get('/edit/{id_meeting}', 'MeetingController@edit')->name('edit');
+            Route::post('/edit/{id_meeting}', 'MeetingController@update')->name('update');
+            Route::get('/delete/{id_meeting}', 'MeetingController@destroy')->name('destroy');
         });
         //JADWAL MENANAM
         Route::prefix('menanam')->name('plant.')->group(function () {
@@ -137,9 +140,9 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/', 'PlantController@index')->name('index');
             Route::get('/create', 'PlantController@create')->name('create');
             Route::post('/create', 'PlantController@store')->name('store');
-            Route::get('/edit/{id}', 'PlantController@edit')->name('edit');
-            Route::post('/edit/{id}', 'PlantController@update')->name('update');
-            Route::get('/delete/{id}', 'PlantController@destroy')->name('destroy');
+            Route::get('/edit/{id_plant}', 'PlantController@edit')->name('edit');
+            Route::post('/edit/{id_plant}', 'PlantController@update')->name('update');
+            Route::get('/delete/{id_plant}', 'PlantController@destroy')->name('destroy');
         });
     });
 
@@ -162,25 +165,25 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('pesanan')->name('order.')->group(function () {
 
             Route::get('/', 'OrderController@index')->name('index');
-            Route::get('/show/{id}', 'OrderController@show')->name('show');
+            Route::get('/show/{id_order}', 'OrderController@show')->name('show');
         });
         //SUBSIDI
         Route::prefix('subsidi')->name('subsidy.')->group(function () {
 
             Route::get('/', 'SubsidyController@index')->name('index');
-            Route::get('/show/{id}', 'SubsidyController@show')->name('show');
+            Route::get('/show/{id_subsidy}', 'SubsidyController@show')->name('show');
         });
         //ALAT
         Route::prefix('alat')->name('tool.')->group(function () {
 
             Route::get('/', 'ToolController@index')->name('index');
-            Route::get('/show/{id}', 'ToolController@show')->name('show');
+            Route::get('/show/{id_tool}', 'ToolController@show')->name('show');
         });
         //PENYEWAAN ALAT
         Route::prefix('penyewaan')->name('rent.')->group(function () {
 
             Route::get('/', 'RentController@index')->name('index');
-            Route::get('/show/{id}', 'RentController@show')->name('show');
+            Route::get('/show/{id_rent}', 'RentController@show')->name('show');
         });
         //EDUKASI & PENGENDALIAN
         Route::prefix('informasi')->name('information.')->group(function () {
@@ -194,22 +197,6 @@ Route::middleware(['auth'])->group(function () {
 
             Route::get('/farm-worker', 'ServiceController@farmWorker')->name('farm-worker');
             Route::get('/buyer', 'ServiceController@buyer')->name('buyer');
-        });
-        Route::prefix('galeri')->name('galery.')->group(function () {
-            //FOTP
-            Route::get('/', 'GaleryController@index')->name('index');
-
-            Route::get('/create', 'GaleryController@createFoto')->name('create');
-            Route::post('/create', 'GaleryController@storeFoto')->name('store');
-            Route::get('/edit/{id}', 'GaleryController@editFoto')->name('edit');
-            Route::post('/edit/{id}', 'GaleryController@updateFoto')->name('update');
-            // Route::get('/delete/{id}', 'GaleryController@destroy')->name('destroy');
-
-            //VIDEO YOUTUBE
-            Route::get('/create-video', 'GaleryController@createVideo')->name('create-video');
-            Route::post('/create-video', 'GaleryController@storeVideo')->name('store-video');
-            Route::get('/edit-video/{id}', 'GaleryController@editVideo')->name('edit-video');
-            Route::post('/edit-video/{id}', 'GaleryController@updateVideo')->name('update-video');
         });
     });
 });

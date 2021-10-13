@@ -38,7 +38,7 @@ class DashboardController extends Controller
     public function farmer()
     {
         $user = auth()->user();
-        $farmer = Farmer::where('user_id', $user->id)->first();
+        $farmer = Farmer::where('user_id', $user->id_user)->first();
 
         return view('dashboard.petani', compact('farmer'));
     }
@@ -56,12 +56,12 @@ class DashboardController extends Controller
     public function admin()
     {
         $user = auth()->user();
-        $farmer = Farmer::where('user_id', $user->id)->first();
+        $farmer = Farmer::where('user_id', $user->id_user)->first();
 
-        $farmerCount = Farmer::where('group_farm_id', $farmer->group_farm_id)->where('id', '!=', $farmer->id)->count();
-        $toolCount = Tool::where('group_farm_id', $farmer->group_farm_id)->count();
-        $rentCount = Rent::where('group_farm_id', $farmer->group_farm_id)->count();
-        $rents = Rent::where('group_farm_id', $farmer->group_farm_id)->take(5)->orderBy('created_at', 'desc')->get();
+        $farmerCount = Farmer::where('group_farm_id', $farmer->id_farmer)->where('id_farmer', '!=', $farmer->id_farmer)->count();
+        $toolCount = Tool::where('group_farm_id', $farmer->id_farmer)->count();
+        $rentCount = Rent::where('group_farm_id', $farmer->id_farmer)->count();
+        $rents = Rent::where('group_farm_id', $farmer->id_farmer)->take(5)->orderBy('created_at', 'desc')->get();
 
         return view('dashboard.admin', compact('farmerCount', 'toolCount', 'rentCount', 'rents'));
     }

@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $guarded = [];
+    protected $primaryKey = 'id_order';
 
     public function farmer()
     {
-        return $this->belongsTo(Farmer::class, 'farmer_id', 'id');
+        return $this->belongsTo(Farmer::class, 'farmer_id', 'id_farmer');
     }
 
     public function products()

@@ -19,7 +19,7 @@ class ToolController extends Controller
     public function index()
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
         $tools = Tool::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
 
@@ -45,7 +45,7 @@ class ToolController extends Controller
     public function store(Request $request)
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
         $file = $request->file('image');
 
@@ -96,9 +96,9 @@ class ToolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_tool)
     {
-        $tool = Tool::find($id);
+        $tool = Tool::find($id_tool);
         return view('admin.tool.edit', compact('tool'));
     }
 
@@ -109,12 +109,12 @@ class ToolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_tool)
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id;
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
-        $tool = Tool::find($id);
+        $tool = Tool::find($id_tool);
 
         $oldImage = $tool->image;
 
@@ -158,9 +158,9 @@ class ToolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_tool)
     {
-        $tool = Tool::find($id);
+        $tool = Tool::find($id_tool);
         $tool->delete();
 
         $message = 'Data berhasil di hapus!';

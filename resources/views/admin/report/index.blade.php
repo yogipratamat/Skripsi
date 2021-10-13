@@ -57,13 +57,11 @@
                         <div class="col-md-3">
                             <label>Kelompok Tani</label>
                             <div>
-                                <select class="form-control" name="farmer" required
-                                    oninvalid="this.setCustomValidity('Masukan Kelompok Tani !')"
-                                    oninput="setCustomValidity('')">
+                                <select class="form-control" name="farmer">
                                     <option value="">Pilih Petani</option>
                                     @foreach ($farmers as $farmer)
-                                        <option {{ $farmer->id == $farmerActive ? 'selected' : '' }}
-                                            value="{{ $farmer->id }}">{{ $farmer->name }}</option>
+                                        <option {{ $farmer->id_farmer == $farmerActive ? 'selected' : '' }}
+                                            value="{{ $farmer->id_farmer }}">{{ $farmer->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -73,7 +71,7 @@
                                 Filter
                             </button>
                             <button type="submit" name="cetak" class="btn btn-primary">
-                                Cetak PDF
+                                <i class="icon-printer2"></i> Cetak PDF
                             </button>
                         </div>
                     </div>

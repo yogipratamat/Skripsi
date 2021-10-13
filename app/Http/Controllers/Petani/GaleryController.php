@@ -100,6 +100,18 @@ class GaleryController extends Controller
         return redirect(route('petani.galery.index'));
     }
 
+    public function destroyFoto($id)
+    {
+        $galeryFoto = GaleryFoto::find($id);
+        $galeryFoto->delete();
+
+        $message = 'Data berhasil di hapus!';
+        Session::flash('petani', $message);
+
+        return redirect(route('petani.galery.index'));
+    }
+
+
     //video
     public function createVideo()
     {
@@ -142,6 +154,17 @@ class GaleryController extends Controller
         $galeryVideo->update($data);
 
         $message = 'Data berhasil di ubah!';
+        Session::flash('petani', $message);
+
+        return redirect(route('petani.galery.index'));
+    }
+
+    public function destroyVideo($id)
+    {
+        $galeryVideo = GaleryVideo::find($id);
+        $galeryVideo->delete();
+
+        $message = 'Data berhasil di hapus!';
         Session::flash('petani', $message);
 
         return redirect(route('petani.galery.index'));

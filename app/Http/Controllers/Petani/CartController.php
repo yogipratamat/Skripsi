@@ -93,7 +93,7 @@ class CartController extends Controller
 
         $total = 0;
 
-        $userId = auth()->user()->id;
+        $userId = auth()->user()->id_user;
         $farmer = Farmer::where('user_id', $userId)->first();
 
 
@@ -105,7 +105,7 @@ class CartController extends Controller
         $data = [
             'date' => date('Y-m-d'),
             'price' => $total,
-            'farmer_id' => $farmer->id,
+            'farmer_id' => $farmer->id_farmer,
             'status' => 0
         ];
 

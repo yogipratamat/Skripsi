@@ -31,14 +31,23 @@
         @endif
         <div class="space-y-5">
             @if ($order->status == 0)
-
                 <div class="mb-4 ">
-                    <a href="{{ route('penyuluh.order.approve', [$order->id]) }}"
-                        class="bg-indigo-600 px-10 py-3 text-lg rounded-md shadow w-auto hover:bg-indigo-800">
-                        Terima pesanan
+                    <a href="{{ route('penyuluh.order.approve', [$order->id_order]) }}" class="btn btn-warning">
+                        <i class="icon-checkmark4 "></i> Terima Pesanan
                     </a>
                 </div>
-
+            @elseif($order->status == 1)
+                <div class="mb-4 ">
+                    <a href="{{ route('penyuluh.order.accept', [$order->id_order]) }}" class="btn btn-primary">
+                        <i class="icon-hand "></i> Proses Ambil
+                    </a>
+                </div>
+            @elseif($order->status == 2)
+                <form action="{{ route('penyuluh.order.index') }}">
+                    <button class="btn btn-success" type=" submit" name="cetak">
+                        <i class="icon-printer2"></i> Cetak Bukti
+                    </button>
+                </form>
             @endif
             <div class="bg-white shadow-md rounded-md">
                 <div class="bg-gray-800 rounded-t-md py-2 uppercase text-sm font-normal text-center">
@@ -78,13 +87,17 @@
                                 :
                                 @if ($order->status == 0)
 
-                                    <span class="badge badge-primary">
+                                    <span class="badge badge-warning">
                                         Dipesan
                                     </span>
 
+                                @elseif($order->status == 1)
+                                    <span class="badge badge-primary">
+                                        Diterima
+                                    </span>
                                 @else
                                     <span class="badge badge-success">
-                                        Diterima
+                                        Diambil
                                     </span>
                                 @endif
                             </div>

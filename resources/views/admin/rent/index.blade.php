@@ -76,11 +76,17 @@
                                         Dipesan
                                     </span>
 
-                                @else
+                                @elseif ($rent->status == 1)
                                     <span class="badge badge-success">
                                         Diselesaikan
                                     </span>
+
+                                @else
+                                    <span class="badge badge-danger">
+                                        Dibatalkan
+                                    </span>
                                 @endif
+
                             </td>
                             {{-- <td>{{ price($rent->tool->price) }}</td> --}}
                             <td>{{ idFormat($rent->date) }}</td>

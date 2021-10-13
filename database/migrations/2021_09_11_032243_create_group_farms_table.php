@@ -14,7 +14,7 @@ class CreateGroupFarmsTable extends Migration
     public function up()
     {
         Schema::create('group_farms', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id_group_farm');
             $table->string('name');
             $table->string('phone');
             $table->text('vision');
