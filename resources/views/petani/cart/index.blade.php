@@ -256,8 +256,8 @@
 
                                     <div class="col">Rp.
                                         {{ number_format($cart['price'] * $cart['qty'], 2, ',', '.') }}
-                                        {{-- <a href="{{ route('petani.cart.deleteFromCart', [$cart['id']]) }}">
-                                            <span class="close">&#10005;</span></a> --}}
+                                        <a href="{{ route('petani.cart.deleteFromCart', [$cart['id']]) }}">
+                                            <span class="close">&#10005;</span></a>
                                     </div>
                                 </div>
                             </div>

@@ -50,7 +50,6 @@
                         <th>Subsidy</th>
                         <th>Nama</th>
                         <th>Berat</th>
-                        <th>Harga/Kg</th>
                         <th class="text-center">Batas<br>Pengambilan</th>
                         <th class="text-center">Actions</th>
                     </tr>
@@ -63,8 +62,7 @@
                             <td>{{ $subsidy->type == 1 ? 'Pupuk' : 'Benih' }}</td>
                             <td>{{ $subsidy->name }}</td>
                             <td>{{ $subsidy->qty }} Kg</td>
-                            <td>{{ price($subsidy->price) }}</td>
-                            <td>{{ idFormat($subsidy->date) }}</td>
+                            <td>{{ $subsidy->date }}</td>
                             <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">

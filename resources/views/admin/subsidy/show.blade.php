@@ -142,7 +142,8 @@
                                                                 </button>
                                                             </a>
                                                         @else
-                                                            <form action="{{ 'penyuluh.subsidy.index' }}" method="GET">
+                                                            <form action="{{ route('admin.cetaksubsidy.index') }}"
+                                                                method="GET">
                                                                 <button type="submit" class="btn btn-sm btn-success"
                                                                     name="cetak"><i class="icon-printer2"></i>
                                                                     Cetak

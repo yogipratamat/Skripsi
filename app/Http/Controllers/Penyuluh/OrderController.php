@@ -44,15 +44,6 @@ class OrderController extends Controller
             $total += $order->price;
         }
 
-        if ($request->has('cetak')) {
-            $pdf = PDF::loadView('penyuluh.order.cetak', [
-                'orders' => $orders, 'monthStartDate' => $monthStartDate, 'monthEndDate' => $monthEndDate,
-                'total' => $total
-            ]);
-
-            return $pdf->download('bukti-pengambilan.pdf');
-        }
-
         return view('penyuluh.order.index', compact('orders'));
     }
 

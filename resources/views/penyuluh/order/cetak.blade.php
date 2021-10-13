@@ -1,127 +1,70 @@
 <html>
 
 <head>
-    <title>Cetak</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Faktur Pembayaran</title>
     <style>
-        h1 {
-            font-family: sans-serif;
+        #tabel {
+            font-size: 15px;
+            border-collapse: collapse;
         }
 
-        table {
-            font-family: Arial, Helvetica, sans-serif;
-            color: #666;
-            text-shadow: 1px 1px 0px #fff;
-            border: #ccc 1px solid;
-        }
-
-        table th {
-            padding: 15px 35px;
-            border-left: 1px solid #e0e0e0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        /* table th:first-child {
-            border-left: none;
-        } */
-
-        table tr {
-            text-align: center;
-            padding-left: 20px;
-        }
-
-        /* table td:first-child {
-            text-align: left;
-            padding-left: 20px;
-            border-left: 0;
-        } */
-
-        table td {
-            padding: 15px 35px;
-            border-top: 1px solid #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-            border-left: 1px solid #e0e0e0;
-            background: #fafafa;
-            background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
-            background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
-        }
-
-        table tr:last-child td {
-            border-bottom: 0;
-        }
-
-        table tr:last-child td:first-child {
-            -moz-border-radius-bottomleft: 3px;
-            -webkit-border-bottom-left-radius: 3px;
-            border-bottom-left-radius: 3px;
-        }
-
-        table tr:last-child td:last-child {
-            -moz-border-radius-bottomright: 3px;
-            -webkit-border-bottom-right-radius: 3px;
-            border-bottom-right-radius: 3px;
-        }
-
-        table tr:hover td {
-            background: #f2f2f2;
-            background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
-            background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0);
+        #tabel td {
+            padding-left: 5px;
+            border: 1px solid black;
         }
 
     </style>
 </head>
 
-<body>
+<body style='font-family:tahoma; font-size:8pt;'>
     <center>
-        <h1>Laporan Pengeluaran</h1>
-    </center>
-    <table cellspacing='0'>
-        <thead>
+        <table style='width:700px; font-size:8pt; font-family:calibri; border-collapse: collapse;' border='0'>
+            <td style='vertical-align:top' width='30%' align='center'>
+                <b><span style='font-size:12pt'>FAKTUR PENJUALAN</span></b><br><br>
+                <b><span>Tanggal Pengambilan : </span></b>
+            </td>
+        </table>
+        <br><br>
+        <table cellspacing='0'
+            style='width:700px; font-size:8pt; font-family:calibri;  border-collapse: collapse; center;' border='1'>
+            <tr align='left'>
+                <td width='25%'>Nama Produk</td>
+                <td width='5%'>Jumlah</td>
+                <td width='25%'>Harga Satuan</td>
+                <td width='25%'>Total Harga</td>
             <tr>
-                <th>No</th>
-                <th>Nama Pemesan</th>
-                <th>Tanggal Pesanan</th>
-                <th>Total Harga</th>
+                <td>Plenum</td>
+                <td>10</td>
+                <td>Rp2.40000000</td>
+                <td>500000000</td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach ($orders as $order)
-                <tr>
-                    <td>{!! $loop->iteration !!}</td>
-                    <td>{{ $order->farmer->name }}</td>
-                    <td>{{ idFormat($order->date) }}</td>
-                    <td>{{ price($order->price) }}</td>
-                </tr>
-            @endforeach
 
-        </tbody>
-
-        <thead>
-            <th>No</th>
-            <th>Nama Produk</th>
-            <th>Jumlah Pesanan</th>
-            <th>Total Satuan</th>
-            <th>Total Harga</th>
-        </thead>
-        <tbody>
-            @foreach ($order->products as $product)
-                <tr>
-                    <td>
-                        {{ $product->name }}
-                    </td>
-                    <td>
-                        {{ $product->pivot->qty }}
-                    </td>
-                    <td>
-                        {{ price($product->pivot->price) }}
-                    </td>
-                    <td>
-                        {{ price($product->pivot->total_price) }}
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+            <tr>
+                <td colspan='3'>
+                    <div style='text-align:left'>Total Yang Harus Di Bayar Adalah</div>
+                </td>
+                <td style='text-align:left'>Rp2.460.000,00</td>
+            </tr>
+            <tr>
+                <td colspan='3'>
+                    <div style='text-align:left'>Nama Pemesan</div>
+                </td>
+                <td style='text-align:left'>P. Kadek Yase</td>
+            </tr>
+            <tr>
+                <td colspan='3'>
+                    <div style='text-align:left'>Tanggal Pesanan</div>
+                </td>
+                <td style='text-align:left'>12 Oktober 2021</td>
+            </tr>
+        </table>
+        <br><br>
+        <table style='width:520; font-size:7pt;' cellspacing='2'>
+            <tr>
+                <td align='right'>Diterima Oleh, <br><br><br><br><u>(.......................)</u></td>
+            </tr>
+        </table>
+    </center>
 </body>
 
 </html>

@@ -52,14 +52,14 @@ class SubsidyController extends Controller
             $total += $subsidy->price;
         }
 
-        if ($request->has('cetak')) {
-            $pdf = PDF::loadView('admin.subsidy.cetak', [
-                'subsidies' => $subsidies, 'monthStartDate' => $monthStartDate, 'monthEndDate' => $monthEndDate,
-                'total' => $total
-            ]);
+        // if ($request->has('cetak')) {
+        //     $pdf = PDF::loadView('admin.subsidy.cetak', [
+        //         'subsidies' => $subsidies, 'monthStartDate' => $monthStartDate, 'monthEndDate' => $monthEndDate,
+        //         'total' => $total
+        //     ]);
 
-            return $pdf->download('bukti-pengambilan-subsidy.pdf');
-        }
+        //     return $pdf->download('bukti-pengambilan-subsidy.pdf');
+        // }
         //batas
 
         return view('admin.subsidy.index', compact('subsidies'));

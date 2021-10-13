@@ -43,7 +43,7 @@
                     </a>
                 </div>
             @elseif($order->status == 2)
-                <form action="{{ route('penyuluh.order.index') }}">
+                <form action="{{ route('penyuluh.cetakorder.index') }}">
                     <button class="btn btn-success" type=" submit" name="cetak">
                         <i class="icon-printer2"></i> Cetak Bukti
                     </button>

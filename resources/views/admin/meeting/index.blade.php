@@ -46,7 +46,10 @@
                     <div class="list-icons">
                         <a class="list-icons-item" data-action="collapse"></a>
                         <a href="{{ route('admin.meeting.create') }}" class="btn btn-primary text-white">Tambah Data</a>
-                        <a href="" class="btn btn-primary"><i class="icon-printer2"></i> Cetak Absen</a>
+                        <form action="{{ route('admin.absen.index') }}" method="GET">
+                            <button type="submit" name="cetak" class="btn btn-primary"><i class="icon-printer2"></i> Cetak
+                                Absen</button>
+                        </form>
                     </div>
                 </div>
             </div>

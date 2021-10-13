@@ -29,7 +29,7 @@
             <div class="w-100 overflow-auto order-2 order-md-1">
                 <div class="row">
                     @foreach ($products as $product)
-                        <div class="col-xl-3 col-sm-6">
+                        <div class="col-xl-4 col-sm-6">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="card-img-actions">
@@ -110,7 +110,7 @@
                 $.ajax({
                     url: "{{ route('petani.cart.addToCart') }}",
                     data: {
-                        id_product: id,
+                        id: id,
                         qty: qty,
                         image: image,
                         price: price,

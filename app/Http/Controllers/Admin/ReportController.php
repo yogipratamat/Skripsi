@@ -14,8 +14,8 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         $authUser = auth()->user();
-        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
+        $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
         $farmers = Farmer::where('group_farm_id', $groupFarmId)->where('id_farmer', '!=', $authUser->farmer->id_farmer)->get();
 
@@ -39,7 +39,7 @@ class ReportController extends Controller
             $farmerActive = $request->farmer;
         }
 
-        $rents = $rents->get();
+        $rents = $rents->where('group_farm_id', $groupFarmId)->get();
 
         $total = 0;
         foreach ($rents as $rent) {

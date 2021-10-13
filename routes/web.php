@@ -39,6 +39,10 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/approve/{id_order}', 'OrderController@approve')->name('approve');
             Route::get('/accept/{id_order}', 'OrderController@accept')->name('accept');
         });
+        Route::prefix('cetak-pesanan')->name('cetakorder.')->group(function () {
+
+            Route::get('/', 'CetakOrderController@index')->name('index');
+        });
         //LAPORAN PRODUK
         Route::prefix('laporan')->name('report.')->group(function () {
 
@@ -68,6 +72,11 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/edit/{id_farmer}', 'FarmerController@update')->name('update');
             Route::get('/delete/{id_farmer}', 'FarmerController@destroy')->name('destroy');
         });
+
+        Route::prefix('absen')->name('absen.')->group(function () {
+
+            Route::get('/', 'AbsenController@index')->name('index');
+        });
         //ALAT
         Route::prefix('alat')->name('tool.')->group(function () {
 
@@ -91,6 +100,10 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/edit/{id_subsidy}', 'SubsidyController@edit')->name('edit');
             Route::post('/edit/{id_subsidy}', 'SubsidyController@update')->name('update');
             Route::get('/delete/{id_subsidy}', 'SubsidyController@destroy')->name('destroy');
+        });
+        Route::prefix('cetak')->name('cetaksubsidy.')->group(function () {
+
+            Route::get('/', 'CetakSubsidyController@index')->name('index');
         });
         //PENEYEWAAN
         Route::prefix('penyewaan')->name('rent.')->group(function () {

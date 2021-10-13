@@ -127,7 +127,7 @@ class CartController extends Controller
                     'qty' => $cart['qty'],
                     'price' => $cart['price'],
                     'total_price' => $cart['totalPrice'],
-                    'order_id' => $order->id,
+                    'order_id' => $order->id_order,
                     'product_id' => $cart['id'],
                 ]
             );

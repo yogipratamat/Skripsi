@@ -59,7 +59,7 @@
                             <td>{{ $subsidy->name }}</td>
                             <td>{{ $subsidy->qty }} Kg</td>
                             <td>{{ price($subsidy->price) }}</td>
-                            <td>{{ idFormat($subsidy->date) }}</td>
+                            <td>{{ $subsidy->date }}</td>
                             <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">
