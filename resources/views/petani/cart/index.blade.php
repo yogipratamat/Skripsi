@@ -12,7 +12,7 @@
     <script src="/global_assets/js/plugins/tables/datatables/extensions/pdfmake/vfs_fonts.min.js"></script>
     <script src="/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js"></script>
 
-    <script src="assets/js/app.js"></script>
+    <script src="/assets/js/app.js"></script>
     <script src="/global_assets/js/demo_pages/ecommerce_orders_history.js"></script>
     <!-- /theme JS files -->
 

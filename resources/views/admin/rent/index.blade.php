@@ -54,11 +54,9 @@
                         <th>No</th>
                         <th>Nama Alat</th>
                         <th>Petani</th>
-                        {{-- <th>Luas Lahan</th> --}}
                         <th>Status</th>
-                        {{-- <th>Harga</th> --}}
                         <th>Tanggal</th>
-                        <th>Actions</th>
+                        <th class="text-center">Actions</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -68,7 +66,6 @@
                             <td>{!! $loop->iteration !!}</td>
                             <td>{{ $rent->tool->name }}</td>
                             <td>{{ $rent->farmer->name }}</td>
-                            {{-- <td>{{ $rent->land_area }} are</td> --}}
                             <td>
                                 @if ($rent->status == 0)
 
@@ -90,7 +87,7 @@
                             </td>
                             {{-- <td>{{ price($rent->tool->price) }}</td> --}}
                             <td>{{ idFormat($rent->date) }}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">
                                         <a href="#" class="list-icons-item" data-toggle="dropdown">

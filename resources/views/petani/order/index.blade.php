@@ -56,7 +56,7 @@
                         <th>Status</th>
                         <th>Total Harga</th>
                         <th>Tanggal</th>
-                        <th>Actions</th>
+                        <th class="text-center">Actions</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -82,7 +82,7 @@
                             </td>
                             <td>{{ price($order->price) }}</td>
                             <td>{{ idFormat($order->date) }}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">
                                         <a href="#" class="list-icons-item" data-toggle="dropdown">

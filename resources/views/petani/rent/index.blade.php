@@ -88,7 +88,7 @@
                                 @endif
                             </td>
                             <td>{{ idFormat($rent->date) }}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">
                                         <a href="#" class="list-icons-item" data-toggle="dropdown">

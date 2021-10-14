@@ -4,9 +4,18 @@
 
 @section('asset')
 
-    <script src="/assets/js/app.js"></script>
+    <!-- Theme JS files -->
+    <script src="/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script src="/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script src="/global_assets/js/plugins/tables/datatables/extensions/jszip/jszip.min.js"></script>
+    <script src="/global_assets/js/plugins/tables/datatables/extensions/pdfmake/pdfmake.min.js"></script>
+    <script src="/global_assets/js/plugins/tables/datatables/extensions/pdfmake/vfs_fonts.min.js"></script>
+    <script src="/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js"></script>
 
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <script src="/assets/js/app.js"></script>
+    <script src="/global_assets/js/demo_pages/ecommerce_orders_history.js"></script>
+    <!-- /theme JS files -->
+
 
 @endsection
 
@@ -23,81 +32,68 @@
 @endsection
 
 @section('content')
-    <div class="min-h-screen bg-gray-200 p-10">
-        <div class="space-y-5">
-            <div class="bg-white shadow-md rounded-md">
-                <div class="bg-gray-800 rounded-t-md py-2 uppercase text-sm font-normal text-center">
-                    Detail Penyewaan
-                </div>
-                <div class="py-4 px-4">
-                    <div class="space-y-2 text-gray-600 font-medium">
-                        <div class="grid grid-cols-4">
-                            <div class="col-span-1">
-                                Tanggal
-                            </div>
-                            <div class="col-span-3">
-                                : {{ idFormat($rent->date) }}.
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-4">
-                            <div class="col-span-1">
-                                Harga / Are
-                            </div>
-                            <div class="col-span-3">
-                                : {{ price($rent->tool->price) }}.
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-4">
-                            <div class="col-span-1">
-                                Nama Petani
-                            </div>
-                            <div class="col-span-3">
-                                : {{ $rent->farmer->name }}.
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-4">
-                            <div class="col-span-1">
-                                Luas Lahan
-                            </div>
-                            <div class="col-span-3">
-                                : {{ $rent->land_area }} are.
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-4">
-                            <div class="col-span-1">
-                                Total Harga
-                            </div>
-                            <div class="col-span-3">
-                                : :{{ price($rent->tool->price * $rent->land_area) }}
-                            </div>
-                        </div>
-                        <div class="grid grid-cols-4">
-                            <div class="col-span-1">
-                                Status Pesanan
-                            </div>
-                            <div class="col-span-3">
-                                :
-                                @if ($rent->status == 0)
-
-                                    <span class="badge badge-primary">
-                                        Dipesan
-                                    </span>
-
-                                @elseif ($rent->status == 1)
-                                    <span class="badge badge-success">
-                                        Diselesaikan
-                                    </span>
-                                @else
-                                    <span class="badge badge-danger">
-                                        Dibatalkan
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+    <div class="content">
+        @if (Session::has('success'))
+            <div class="alert alert-success border-0 alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                <span class="font-weight-semibold">{{ Session('success') }} </span>
             </div>
+        @endif
+        <div style="border-radius: 1rem" class="card shadow">
+            <div style="border-top-left-radius: 1rem; border-top-right-radius: 1rem"
+                class="card-header bg-dark header-elements-inline justify-content-center">
+                <h5 class="card-title"><b>Detail Pesanan Alat</b></h5>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Tanggal</td>
+                        <td> : {{ idFormat($rent->date) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Nama Petani</td>
+                        <td> : {{ $rent->farmer->name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Nama Alat</td>
+                        <td> : {{ $rent->tool->name }}</td>
+                    </tr>
+                    <tr>
+                        <td>Luas Lahan</td>
+                        <td> : {{ $rent->land_area }} are</td>
+                    </tr>
+                    <tr>
+                        <td>Harga/are</td>
+                        <td> : {{ price($rent->tool->price) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Total Harga</td>
+                        <td> : {{ price($rent->tool->price * $rent->land_area) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>
+                            :
+                            @if ($rent->status == 0)
+
+                                <span class="badge badge-primary">
+                                    Dipesan
+                                </span>
+
+                            @elseif ($rent->status == 1)
+                                <span class="badge badge-success">
+                                    Diselesaikan
+                                </span>
+                            @else
+                                <span class="badge badge-danger">
+                                    Dibatalkan
+                                </span>
+                            @endif
+                        </td>
+                    </tr>
+
+                </thead>
+            </table>
         </div>
     </div>
 @endsection
