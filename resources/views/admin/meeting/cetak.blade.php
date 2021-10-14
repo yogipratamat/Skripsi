@@ -21,28 +21,31 @@
         <table style='width:700px; font-size:8pt; font-family:calibri; border-collapse: collapse;' border='0'>
             <td style='vertical-align:top' width='30%' align='center'>
                 <b><span style='font-size:12pt'>ABSENSI RAPAT KELOMPOK TANI</span></b><br><br>
-                <b><span>Nama Rapat : </span></b><br>
+                <b><span>Nama Kelompok Tani : </span></b><br>
                 <b><span>Tanggal Rapat : </span></b>
             </td>
         </table>
-        <br><br>
+        <br>
         <table cellspacing='0'
             style='width:700px; font-size:8pt; font-family:calibri;  border-collapse: collapse; center;' border='1'>
-            <tr align='center'>
+            <tr>
                 <td width='4%'>N0</td>
                 <td width='10%'>Nama</td>
                 <td width='25%'>Alamat</td>
                 <td width='10%'>No HP</td>
                 <td width='10%'>Jenis Kelamin</td>
                 <td width='10%'>TTD</td>
-            <tr>
-                <td align="center">1</td>
-                <td>P. KD Yase</td>
-                <td>Kapidi</td>
-                <td>08765432398</td>
-                <td>Laki-laki</td>
-                <td></td>
             </tr>
+            @foreach ($farmers as $farmer)
+                <tr>
+                    <td>{!! $loop->iteration !!}</td>
+                    <td>{{ $farmer->name }}</td>
+                    <td>{{ $farmer->address }}</td>
+                    <td>{{ $farmer->phone }}</td>
+                    <td>{{ $farmer->gender == 1 ? 'Laki-Laki' : 'Perempuan' }}</td>
+                    <td></td>
+                </tr>
+            @endforeach
         </table>
         <br><br>
         <table style='width:520; font-size:7pt;' cellspacing='2'>

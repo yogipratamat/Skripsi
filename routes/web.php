@@ -41,7 +41,7 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::prefix('cetak-pesanan')->name('cetakorder.')->group(function () {
 
-            Route::get('/', 'CetakOrderController@index')->name('index');
+            Route::get('/{id_order}', 'CetakOrderController@index')->name('index');
         });
         //LAPORAN PRODUK
         Route::prefix('laporan')->name('report.')->group(function () {
@@ -103,7 +103,7 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::prefix('cetak')->name('cetaksubsidy.')->group(function () {
 
-            Route::get('/', 'CetakSubsidyController@index')->name('index');
+            Route::get('/{id_subsidy}', 'CetakSubsidyController@index')->name('index');
         });
         //PENEYEWAAN
         Route::prefix('penyewaan')->name('rent.')->group(function () {

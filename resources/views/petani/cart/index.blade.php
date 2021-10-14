@@ -4,16 +4,7 @@
 
 @section('asset')
 
-    <script src="/global_assets/js/plugins/visualization/echarts/echarts.min.js"></script>
-    <script src="/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
-    <script src="/global_assets/js/plugins/forms/selects/select2.min.js"></script>
-    <script src="/global_assets/js/plugins/tables/datatables/extensions/jszip/jszip.min.js"></script>
-    <script src="/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js"></script>
-    <script src="/global_assets/js/plugins/tables/datatables/extensions/responsive.min.js"></script>
-
     <script src="/assets/js/app.js"></script>
-    <script src="/global_assets/js/demo_pages/ecommerce_customers.js"></script>
-    <script src="/global_assets/js/demo_charts/pages/ecommerce/light/customers.js"></script>
 
     <style>
         body {

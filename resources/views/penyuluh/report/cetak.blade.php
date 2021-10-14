@@ -21,23 +21,14 @@
             border-bottom: 1px solid #e0e0e0;
         }
 
-        /* table th:first-child {
-            border-left: none;
-        } */
-
         table tr {
-            text-align: center;
+            text-align: left;
             padding-left: 20px;
         }
 
-        /* table td:first-child {
-            text-align: left;
-            padding-left: 20px;
-            border-left: 0;
-        } */
 
         table td {
-            padding: 15px 35px;
+            padding: 5px 25px;
             border-top: 1px solid #ffffff;
             border-bottom: 1px solid #e0e0e0;
             border-left: 1px solid #e0e0e0;
@@ -73,7 +64,7 @@
 
 <body>
     <center>
-        <h1>Laporan Pengeluaran</h1>
+        <h1>LAPORAN PEMBELIAN PESTISIDA</h1>
     </center>
     <table cellspacing='0'>
         <thead>

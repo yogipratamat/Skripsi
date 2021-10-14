@@ -21,20 +21,12 @@
             border-bottom: 1px solid #e0e0e0;
         }
 
-        /* table th:first-child {
-            border-left: none;
-        } */
 
         table tr {
             text-align: center;
             padding-left: 20px;
         }
 
-        /* table td:first-child {
-            text-align: left;
-            padding-left: 20px;
-            border-left: 0;
-        } */
 
         table td {
             padding: 15px 35px;
@@ -73,7 +65,7 @@
 
 <body>
     <center>
-        <h1>Laporan Pengeluaran</h1>
+        <h1>LAPORAN SEWA ALAT</h1>
     </center>
     <table cellspacing='0'>
         <thead>
@@ -82,7 +74,7 @@
                 <th>Nama Pemesan</th>
                 <th>Nama Alat</th>
                 <th>Tanggal Pesanan</th>
-                <td>Total Harga</td>
+                <th>Total Harga</th>
             </tr>
         </thead>
         <tbody>

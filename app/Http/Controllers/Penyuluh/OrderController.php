@@ -31,7 +31,6 @@ class OrderController extends Controller
 
         if ($request->groupFarm) {
 
-            //id tidak yakin
             $farmers = Farmer::where('group_farm_id', $request->groupFarm)->pluck('id_group_farm');
             $orders = $orders->whereIn('farmer_id', $farmers);
             $farmerActive = $request->groupFarm;

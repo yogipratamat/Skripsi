@@ -9,13 +9,20 @@ use Illuminate\Http\Request;
 
 class CetakOrderController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $id_order)
     {
-        $orders = Order::get();
+        // $orders = Order::get();
+        $order = Order::find($id_order);
+
+        $total = 0;
+        foreach ($order->products as $product) {
+            $total += $product->pivot->total_price;
+        }
 
         if ($request->has('cetak')) {
             $pdf = PDF::loadView('penyuluh.order.cetak', [
-                'orders' => $orders,
+                'order' => $order,
+                'total' => $total
             ]);
 
             return $pdf->download('bukti-pengambilan-pestisida.pdf');

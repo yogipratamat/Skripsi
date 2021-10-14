@@ -65,7 +65,7 @@
                         <tr>
                             <td>{!! $loop->iteration !!}</td>
                             <td>{{ $order->farmer->name }}</td>
-                            <td> </td>
+                            <td>  </td>
                             <td>
                                 @if ($order->status == 0)
 

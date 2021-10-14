@@ -28,28 +28,48 @@
         <table cellspacing='0'
             style='width:700px; font-size:8pt; font-family:calibri;  border-collapse: collapse; center;' border='1'>
             <tr align='left'>
-                <td width='20%'>Nama Subsidi</td>
-                <td width='10%'>Luas Lahan</td>
-                <td width='25%'>Jumlah Jatah</td>
-                <td width='25%'>Harga/Kg</td>
-            <tr>
-                <td>Pupuk</td>
-                <td>1000 are</td>
-                <td>100 kg</td>
-                <td>Rp.5000</td>
+                <th width='25%'>Nama Petani</th>
+                <th width='25%'>Luas Lahan</th>
+                <th width='25%'>Jumlah Jatah</th>
+                <th width='25%'>Total Harga</th>
             </tr>
-
+            @foreach ($subsidy->farmers as $farmer)
+                <tr>
+                    <td>{{ $farmer->name }}</td>
+                    <td>{{ $farmer->land_area }} are</td>
+                    <td>{{ $farmer->pivot->qty }} Kg</td>
+                    <td>{{ price($farmer->pivot->price) }}</td>
+                </tr>
+            @endforeach
             <tr>
                 <td colspan='3'>
-                    <div style='text-align:left'>Total Yang Harus Di Bayar Adalah</div>
+                    <div style='text-align:left'>Periode</div>
                 </td>
-                <td style='text-align:left'>Rp. 5000.000</td>
+                <td style='text-align:left'>{{ $subsidy->periode }}.</td>
             </tr>
             <tr>
                 <td colspan='3'>
-                    <div style='text-align:left'>Nama Petani</div>
+                    <div style='text-align:left'>Subsidi</div>
                 </td>
-                <td style='text-align:left'>P. Kadek Yase</td>
+                <td style='text-align:left'>{{ $subsidy->type == 1 ? 'Pupuk' : 'Benih' }}.</td>
+            </tr>
+            <tr>
+                <td colspan='3'>
+                    <div style='text-align:left'>Nama Produk</div>
+                </td>
+                <td style='text-align:left'>{{ $subsidy->name }}</td>
+            </tr>
+            <tr>
+                <td colspan='3'>
+                    <div style='text-align:left'>Berat</div>
+                </td>
+                <td style='text-align:left'>{{ $subsidy->qty }} Kg.</td>
+            </tr>
+            <tr>
+                <td colspan='3'>
+                    <div style='text-align:left'>Harga/kg</div>
+                </td>
+                <td style='text-align:left'>{{ price($subsidy->price) }}.</td>
             </tr>
         </table>
         <br><br>
@@ -59,6 +79,6 @@
             </tr>
         </table>
     </center>
-</body>
+</body>:
 
 </html>

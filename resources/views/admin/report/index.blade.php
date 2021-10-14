@@ -97,6 +97,10 @@
                             <td>{{ price($rent->tool->price * $rent->land_area) }}</td>
                         </tr>
                     @endforeach
+                    <tr class="bg-secondary text-white">
+                        <td class="text-right" colspan="4">Total Penyewaan</td>
+                        <td>{{ price($total) }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

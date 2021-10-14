@@ -58,6 +58,7 @@
                         <th>Kelompok Tani</th>
                         <th>Nama Ketua</th>
                         <th>No HP</th>
+                        <th>Email</th>
                         <th>Visi</th>
                         <th>Misi</th>
                         <th class="text-center">Actions</th>
@@ -71,6 +72,7 @@
                             <td>{{ $groupFarm->name }}</td>
                             <td>{{ $groupFarm->getPic() != null ? $groupFarm->getPic()->name : '-' }}</td>
                             <td>{{ $groupFarm->phone }}</td>
+                            <td>{{ $groupFarm->getPic() != null ? $groupFarm->getPic()->email : '-' }}</td>
                             <td>{{ $groupFarm->vision }}</td>
                             <td>{{ $groupFarm->mission }}</td>
                             <td class="text-right">
