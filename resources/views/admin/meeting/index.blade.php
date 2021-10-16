@@ -44,7 +44,6 @@
                 <h5 class="card-title">Jadwal Rapat</h5>
                 <div class="header-elements">
                     <div class="list-icons">
-                        <a class="list-icons-item" data-action="collapse"></a>
                         <a href="{{ route('admin.meeting.create') }}" class="btn btn-primary text-white">Tambah Data</a>
                         <form action="{{ route('admin.absen.index') }}" method="GET">
                             <button type="submit" name="cetak" class="btn btn-primary"><i class="icon-printer2"></i> Cetak
@@ -83,7 +82,6 @@
                                             <i class="icon-menu7"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="" class="dropdown-item"><i class="icon-clipboard5"></i>Absen</a>
                                             <a href="{{ route('admin.meeting.edit', [$meeting]) }}"
                                                 class="dropdown-item"><i class="icon-pencil7"></i>Edit</a>
                                             <button class="dropdown-item" onclick="hapus({{ $meeting->id_meeting }})"><i

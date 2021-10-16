@@ -76,7 +76,7 @@
                             <td>{{ $farmer->land_area }} are</td>
                             <td>{{ $farmer->gender == 1 ? 'Laki-Laki' : 'Perempuan' }}</td>
                             <td>{{ $farmer->address }}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">
                                         <a href="#" class="list-icons-item" data-toggle="dropdown">

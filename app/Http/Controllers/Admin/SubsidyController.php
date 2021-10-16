@@ -131,8 +131,9 @@ class SubsidyController extends Controller
      */
     public function show($id_subsidy)
     {
+        $date = Carbon::today();
         $subsidy = Subsidy::find($id_subsidy);
-        return view('admin.subsidy.show', compact('subsidy'));
+        return view('admin.subsidy.show', compact('subsidy', 'date'));
     }
 
     /**

@@ -103,7 +103,7 @@ Route::middleware(['auth'])->group(function () {
         });
         Route::prefix('cetak')->name('cetaksubsidy.')->group(function () {
 
-            Route::get('/{id_subsidy}', 'CetakSubsidyController@index')->name('index');
+            Route::get('/{id_subsidy}/{id_farmer}', 'CetakSubsidyController@index')->name('index');
         });
         //PENEYEWAAN
         Route::prefix('penyewaan')->name('rent.')->group(function () {
@@ -112,6 +112,10 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/show/{id_rent}', 'RentController@show')->name('show');
             Route::get('/approve/{id_rent}', 'RentController@approve')->name('approve');
             Route::get('/cancel/{id_rent}', 'RentController@cancel')->name('cancel');
+        });
+        Route::prefix('cetak')->name('cetaksewaalat.')->group(function () {
+
+            Route::get('/{id_rent}', 'CetakSewaAlatController@index')->name('index');
         });
         //LAPORAN SEWA ALAT
         Route::prefix('laporan-alat')->name('report.')->group(function () {

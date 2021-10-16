@@ -7,6 +7,7 @@ use App\Models\Farmer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class RentController extends Controller
 {
@@ -25,9 +26,10 @@ class RentController extends Controller
 
     public function show($id_rent)
     {
+        $date = Carbon::today();
         $rent = Rent::find($id_rent);
 
-        return view('admin.rent.show', compact('rent'));
+        return view('admin.rent.show', compact('rent', 'date'));
     }
 
     public function approve($id_rent)

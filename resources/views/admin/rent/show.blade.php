@@ -44,6 +44,14 @@
                         Batalkan Sewa
                     </a>
                 </div>
+            @elseif($rent->status == 1)
+                <form action="{{ route('admin.cetaksewaalat.index', [$rent->id_rent]) }}" method="GET">
+                    <div>
+                        <button class="btn btn-success" type="submit" name="cetak">
+                            <i class="icon-printer2"></i> Cetak
+                        </button>
+                    </div>
+                </form>
             @endif
         </div>
         <div class="card shadow rounded">
@@ -75,6 +83,16 @@
                     <tr>
                         <td>Total Harga</td>
                         <td> : {{ price($rent->tool->price * $rent->land_area) }}</td>
+                    </tr>
+                    <tr>
+
+                        @if ($rent->status == 1)
+                            <td>Tanggal Diselesai</td>
+                            <td> : {{ idFormat($date) }}</td>
+                        @elseif ($rent->status == 2)
+                            <td>Tanggal Dibatalkan</td>
+                            <td> : {{ idFormat($date) }}</td>
+                        @endif
                     </tr>
                     <tr>
                         <td>Status Pesanan</td>

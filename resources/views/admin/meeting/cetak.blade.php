@@ -20,21 +20,19 @@
     <center>
         <table style='width:700px; font-size:8pt; font-family:calibri; border-collapse: collapse;' border='0'>
             <td style='vertical-align:top' width='30%' align='center'>
-                <b><span style='font-size:12pt'>ABSENSI RAPAT KELOMPOK TANI</span></b><br><br>
-                <b><span>Nama Kelompok Tani : </span></b><br>
-                <b><span>Tanggal Rapat : </span></b>
+                <b><span style='font-size:12pt'>ABSEN RAPAT</span></b><br>
             </td>
         </table>
         <br>
         <table cellspacing='0'
             style='width:700px; font-size:8pt; font-family:calibri;  border-collapse: collapse; center;' border='1'>
             <tr>
-                <td width='4%'>N0</td>
-                <td width='10%'>Nama</td>
-                <td width='25%'>Alamat</td>
-                <td width='10%'>No HP</td>
-                <td width='10%'>Jenis Kelamin</td>
-                <td width='10%'>TTD</td>
+                <th width='4%'>N0</th>
+                <th width='10%'>Nama</th>
+                <th width='25%'>Alamat</th>
+                <th width='10%'>No HP</th>
+                <th width='10%'>Jenis Kelamin</th>
+                <th width='10%'>TTD</th>
             </tr>
             @foreach ($farmers as $farmer)
                 <tr>

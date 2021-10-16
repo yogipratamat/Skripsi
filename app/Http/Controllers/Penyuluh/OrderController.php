@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Penyuluh;
 use Carbon\Carbon;
 use App\Models\Order;
 use App\Models\Farmer;
+use App\Models\GroupFarm;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
@@ -14,40 +15,27 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        $orders = Order::orderBy('created_at', 'desc')->get();
+        $groupFarms = GroupFarm::get();
 
-        $monthStartDate = Carbon::now()->startOfMonth()->format('Y-m-d'); // awal bulan
-        $monthEndDate = Carbon::now()->endOfMonth()->format('Y-m-d'); // akhir bulan
+        $farmerActive = null;
 
-        if ($request->startDate) {
-            $monthStartDate = $request->startDate;
-        }
-
-        if ($request->endDate) {
-            $monthEndDate = $request->endDate;
-        }
-
-        $orders = Order::orderBy('created_at', 'desc')->whereBetween('date', [$monthStartDate, $monthEndDate]);
+        $orders = Order::orderBy('created_at', 'desc');
 
         if ($request->groupFarm) {
 
-            $farmers = Farmer::where('group_farm_id', $request->groupFarm)->pluck('id_group_farm');
+            $farmers = Farmer::where('group_farm_id', $request->groupFarm)->pluck('id_farmer');
             $orders = $orders->whereIn('farmer_id', $farmers);
             $farmerActive = $request->groupFarm;
         }
 
         $orders = $orders->get();
 
-        $total = 0;
-        foreach ($orders as $order) {
-            $total += $order->price;
-        }
-
-        return view('penyuluh.order.index', compact('orders'));
+        return view('penyuluh.order.index', compact('orders', 'farmerActive', 'groupFarms'));
     }
 
     public function show($id_order)
     {
+        $date = Carbon::today();
         $order = Order::find($id_order);
 
         $total = 0;
@@ -55,7 +43,7 @@ class OrderController extends Controller
             $total += $product->pivot->total_price;
         }
 
-        return view('penyuluh.order.show', compact('order', 'total'));
+        return view('penyuluh.order.show', compact('order', 'total', 'date'));
     }
 
     public function approve($id_order)

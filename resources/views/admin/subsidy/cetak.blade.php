@@ -21,7 +21,7 @@
         <table style='width:700px; font-size:8pt; font-family:calibri; border-collapse: collapse;' border='0'>
             <td style='vertical-align:top' width='30%' align='center'>
                 <b><span style='font-size:12pt'>BUKTI PENGAMBILAN SUBSIDI</span></b><br><br>
-                <b><span>Tanggal Pengambilan : </span></b>
+                <b><span>Tanggal Pengambilan : {{ idFormat($date) }} </span></b>
             </td>
         </table>
         <br><br>
@@ -33,14 +33,12 @@
                 <th width='25%'>Jumlah Jatah</th>
                 <th width='25%'>Total Harga</th>
             </tr>
-            @foreach ($subsidy->farmers as $farmer)
-                <tr>
-                    <td>{{ $farmer->name }}</td>
-                    <td>{{ $farmer->land_area }} are</td>
-                    <td>{{ $farmer->pivot->qty }} Kg</td>
-                    <td>{{ price($farmer->pivot->price) }}</td>
-                </tr>
-            @endforeach
+            <tr>
+                <td>{{ $farmer->name }}</td>
+                <td>{{ $farmer->land_area }} are</td>
+                <td>{{ $subsidyFarmer->qty }} Kg</td>
+                <td>{{ price($subsidyFarmer->price) }}</td>
+            </tr>
             <tr>
                 <td colspan='3'>
                     <div style='text-align:left'>Periode</div>

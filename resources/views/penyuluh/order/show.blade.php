@@ -67,7 +67,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <td>Tanggal</td>
+                        <td>Tanggal Pesanan</td>
                         <td> : {{ idFormat($order->date) }}</td>
                     </tr>
                     <tr>
@@ -78,6 +78,12 @@
                         <td>Total Harga</td>
                         <td> : {{ price($order->price) }}</td>
                     </tr>
+                    @if ($order->status == 2)
+                        <tr>
+                            <td>Tanggal Pengambilan</td>
+                            <td> : {{ idFormat($date) }}</td>
+                        </tr>
+                    @endif
                     <tr>
                         <td>Status</td>
                         <td>

@@ -41,15 +41,13 @@ class ReportController extends Controller
 
         $rents = $rents->where('group_farm_id', $groupFarmId)->get();
 
-        // $total = 0;
-        // foreach ($rents as $rent) {
-        //     $total += $rent->price;
-        // }
 
         $total = 0;
         foreach ($rents as $rent) {
-            $total += $rent->price;
+
+            $total += $rent->tool->price * $rent->land_area;
         }
+        // dd($total);
 
         if ($request->has('cetak')) {
             $pdf = PDF::loadView('admin.report.cetak', [

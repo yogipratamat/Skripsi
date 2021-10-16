@@ -5,7 +5,7 @@
 @section('asset')
     <!-- Theme JS files -->
     <script src="/global_assets/js/plugins/visualization/echarts/echarts.min.js"></script>
-    <script src="/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    {{-- <script src="/global_assets/js/plugins/tables/datatables/datatables.min.js"></script> --}}
     <script src="/global_assets/js/plugins/forms/selects/select2.min.js"></script>
     <script src="/global_assets/js/plugins/tables/datatables/extensions/jszip/jszip.min.js"></script>
     <script src="/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js"></script>
@@ -47,12 +47,33 @@
                     </div>
                 </div>
             </div>
+            <div class="pt-2 pl-3 mb-2">
+                <form action="{{ route('penyuluh.order.index') }}" method="GET">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div>
+                                <select class="form-control mt-1" name="groupFarm">
+                                    <option value="">Pilih Kelompok Tani</option>
+                                    @foreach ($groupFarms as $groupFarm)
+                                        <option {{ $groupFarm->id_group_farm == $farmerActive ? 'selected' : '' }}
+                                            value="{{ $groupFarm->id_group_farm }}">{{ $groupFarm->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary mt-1">
+                                Filter
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <table class="table text-nowrap table-customers">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>Petani</th>
-                        <th>Kelompok Tani</th>
                         <th>Status</th>
                         <th>Total Harga</th>
                         <th class="text-center">Tanggal Pemesanan</th>
@@ -65,7 +86,6 @@
                         <tr>
                             <td>{!! $loop->iteration !!}</td>
                             <td>{{ $order->farmer->name }}</td>
-                            <td>  </td>
                             <td>
                                 @if ($order->status == 0)
 

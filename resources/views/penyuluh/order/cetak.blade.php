@@ -21,8 +21,7 @@
         <table style='width:700px; font-size:8pt; font-family:calibri; border-collapse: collapse;' border='0'>
             <td style='vertical-align:top' width='30%' align='center'>
                 <b><span style='font-size:15pt'>FAKTUR PENJUALAN</span></b><br><br>
-                <b><span>Kelompok Tani : </span></b><br>
-                <b><span>Tanggal Pengambilan: </span></b>
+                <b><span>Tanggal Pengambilan: {{ idFormat($date) }} </span></b>
             </td>
         </table>
         <br><br>

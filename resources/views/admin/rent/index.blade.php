@@ -85,7 +85,6 @@
                                 @endif
 
                             </td>
-                            {{-- <td>{{ price($rent->tool->price) }}</td> --}}
                             <td>{{ idFormat($rent->date) }}</td>
                             <td class="text-center">
                                 <div class="list-icons">

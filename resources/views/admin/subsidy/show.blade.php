@@ -110,7 +110,8 @@
                                             </button>
                                         </a>
                                     @else
-                                        <form action="{{ route('admin.cetaksubsidy.index', [$subsidy->id_subsidy]) }}"
+                                        <form
+                                            action="{{ route('admin.cetaksubsidy.index', [$subsidy->id_subsidy, $farmer->id_farmer]) }}"
                                             method="GET">
                                             <button type="submit" class="btn btn-sm btn-success" name="cetak"><i
                                                     class="icon-printer2"></i>
