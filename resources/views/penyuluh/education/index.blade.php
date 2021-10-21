@@ -55,6 +55,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Tanggal dibuat</th>
                         <th>Gambar</th>
                         <th>Nama Kendala</th>
                         <th>Ciri-Ciri</th>
@@ -67,6 +68,7 @@
                     @foreach ($educations as $education)
                         <tr>
                             <td>{!! $loop->iteration !!}</td>
+                            <td>{{ $education->created_at->format('d F, Y') }}</td>
                             <td>
                                 <a href="{{ asset('/storage' . $education->image) }}" data-popup="lightbox">
                                     <img style="width: 100px;" src="{{ asset('/storage' . $education->image) }}" alt=""

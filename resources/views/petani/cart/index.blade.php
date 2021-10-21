@@ -55,7 +55,6 @@
                             </thead>
                             <tbody>
                                 <tr class="table-active">
-                                    <td colspan="7" class="font-weight-semibold">{{ $total }} items</td>
                                     <td class="text-right">
                                         <span class="badge bg-secondary badge-pill">{{ $total }} items</span>
                                     </td>

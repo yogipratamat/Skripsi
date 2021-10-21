@@ -85,16 +85,6 @@
                         <td> : {{ price($rent->tool->price * $rent->land_area) }}</td>
                     </tr>
                     <tr>
-
-                        @if ($rent->status == 1)
-                            <td>Tanggal Diselesai</td>
-                            <td> : {{ idFormat($date) }}</td>
-                        @elseif ($rent->status == 2)
-                            <td>Tanggal Dibatalkan</td>
-                            <td> : {{ idFormat($date) }}</td>
-                        @endif
-                    </tr>
-                    <tr>
                         <td>Status Pesanan</td>
                         <td>
                             :

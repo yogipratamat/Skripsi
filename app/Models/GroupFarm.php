@@ -21,7 +21,6 @@ class GroupFarm extends Model
                 }
             }
         }
-
         return null;
     }
 

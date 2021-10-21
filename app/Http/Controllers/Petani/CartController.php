@@ -62,7 +62,6 @@ class CartController extends Controller
                 $carts[$id]['totalPrice'] = $carts[$id]['totalPrice'] + $totalPrice;
                 session()->put('carts', $carts);
             } else {
-                // dd(3);
                 $carts[$id] = $product;
                 session()->put('carts', $carts);
             }
@@ -70,9 +69,6 @@ class CartController extends Controller
 
         session()->flash('success', 'Berhasil Menambahkan ke card');
         return session()->get('carts');
-
-        // return $data;
-        // return response($data);
     }
 
     public function deleteFromCart($id)

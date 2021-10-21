@@ -114,9 +114,6 @@ class GroupFarmController extends Controller
     {
         $groupFarm = GroupFarm::find($id_group_farm);
 
-
-        // dd($groupFarm->getPic());
-
         $farmer = $groupFarm->getPic();
 
         $dataFarm = [

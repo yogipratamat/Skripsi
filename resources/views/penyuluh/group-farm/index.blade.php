@@ -55,6 +55,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Tanggal Dibuat</th>
                         <th>Kelompok Tani</th>
                         <th>Nama Ketua</th>
                         <th>No HP</th>
@@ -69,6 +70,7 @@
                     @foreach ($groupFarms as $groupFarm)
                         <tr>
                             <td>{!! $loop->iteration !!}</td>
+                            <td>{{ $groupFarm->created_at->format('d F, Y') }}</td>
                             <td>{{ $groupFarm->name }}</td>
                             <td>{{ $groupFarm->getPic() != null ? $groupFarm->getPic()->name : '-' }}</td>
                             <td>{{ $groupFarm->phone }}</td>

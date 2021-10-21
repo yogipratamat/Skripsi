@@ -78,9 +78,10 @@
                     <thead>
                         <tr>
                             <th>Nama Petani</th>
-                            <th>Jumlah Jatah</th>
+                            <th>Luas Lahan</th>
+                            <th>Jatah</th>
                             <th>Total Harga</th>
-                            <th>Status Pengambilan</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -88,6 +89,7 @@
                         @foreach ($subsidy->farmers as $farmer)
                             <tr>
                                 <td>{{ $farmer->name }}</td>
+                                <td>{{ $farmer->land_area }} are</td>
                                 <td>{{ $farmer->pivot->qty }} Kg</td>
                                 <td>{{ price($farmer->pivot->price) }}</td>
                                 <td>
