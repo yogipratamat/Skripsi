@@ -21,7 +21,8 @@ class ToolController extends Controller
         $authUser = auth()->user();
         $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
-        $tools = Tool::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+        // $tools = Tool::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+        $tools = Tool::where('id_group_farm', $groupFarmId)->orderBy('created_at', 'desc')->get();
 
         return view('admin.tool.index', compact('tools'));
     }
@@ -69,7 +70,8 @@ class ToolController extends Controller
             'price' => $request->price,
             'merk' => $request->merk,
             'description' => $request->description,
-            'group_farm_id' => $groupFarmId,
+            // 'group_farm_id' => $groupFarmId,
+            'id_group_farm' => $groupFarmId,
         ];
 
         $tool = Tool::create($data);
@@ -141,7 +143,8 @@ class ToolController extends Controller
             'price' => $request->price,
             'merk' => $request->merk,
             'description' => $request->description,
-            'group_farm_id' => $groupFarmId,
+            // 'group_farm_id' => $groupFarmId,
+            'id_group_farm' => $groupFarmId,
         ];
 
         $tool->update($data);

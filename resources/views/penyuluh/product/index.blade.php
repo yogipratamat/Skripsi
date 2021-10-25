@@ -61,7 +61,7 @@
                         <th>Harga</th>
                         <th>Jumlah Stok</th>
                         <th>Deskripsi</th>
-                        <th>Actions</th>
+                        <th class="text-center">Actions</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -80,7 +80,7 @@
                             <td>{{ price($product->price) }}</td>
                             <td>{{ $product->stock }}</td>
                             <td>{{ $product->description }}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">
                                         <a href="#" class="list-icons-item" data-toggle="dropdown">

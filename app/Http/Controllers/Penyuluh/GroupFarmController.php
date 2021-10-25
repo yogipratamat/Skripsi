@@ -66,8 +66,10 @@ class GroupFarmController extends Controller
             'address' => $request->address,
             'gender' => $request->gender,
             'email' => $request->email,
-            'user_id' => $user->id_user,
-            'group_farm_id' => $groupFarm->id_group_farm,
+            // 'user_id' => $user->id_user,
+            // 'group_farm_id' => $groupFarm->id_group_farm,
+            'id_user' => $user->id_user,
+            'id_group_farm' => $groupFarm->id_group_farm,
         ];
 
         $farmer = Farmer::create($dataFarmer);
@@ -146,8 +148,10 @@ class GroupFarmController extends Controller
             'address' => $request->address,
             'gender' => $request->gender,
             'email' => $request->email,
-            'user_id' => $farmer->user_id,
-            'group_farm_id' => $groupFarm->id_group_farm,
+            // 'user_id' => $farmer->user_id,
+            // 'group_farm_id' => $groupFarm->id_group_farm,
+            'id_user' => $farmer->id_user,
+            'id_group_farm' => $groupFarm->id_group_farm,
         ];
 
         $farmer->update($dataFarmer);
@@ -167,11 +171,13 @@ class GroupFarmController extends Controller
     {
         $groupFarm = GroupFarm::find($id_group_farm);
 
-        $farmers = Farmer::where('group_farm_id', $groupFarm->id_group_farm)->get();
+        // $farmers = Farmer::where('group_farm_id', $groupFarm->id_group_farm)->get();
+        $farmers = Farmer::where('id_group_farm', $groupFarm->id_group_farm)->get();
 
         foreach ($farmers as $farmer) {
             DB::table('farmers')->where('id_farmer', $farmer->id_farmer)->delete();
-            DB::table('users')->where('id_user', $farmer->user_id)->delete();
+            // DB::table('users')->where('id_user', $farmer->user_id)->delete();
+            DB::table('users')->where('id_user', $farmer->id_user)->delete();
         }
 
         $groupFarm->delete();

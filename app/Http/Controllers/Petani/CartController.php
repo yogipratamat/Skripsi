@@ -90,7 +90,8 @@ class CartController extends Controller
         $total = 0;
 
         $userId = auth()->user()->id_user;
-        $farmer = Farmer::where('user_id', $userId)->first();
+        // $farmer = Farmer::where('user_id', $userId)->first();
+        $farmer = Farmer::where('id_user', $userId)->first();
 
 
         $carts = session()->get('carts');
@@ -101,7 +102,8 @@ class CartController extends Controller
         $data = [
             'date' => date('Y-m-d'),
             'price' => $total,
-            'farmer_id' => $farmer->id_farmer,
+            // 'farmer_id' => $farmer->id_farmer,
+            'id_farmer' => $farmer->id_farmer,
             'status' => 0
         ];
 
@@ -123,8 +125,10 @@ class CartController extends Controller
                     'qty' => $cart['qty'],
                     'price' => $cart['price'],
                     'total_price' => $cart['totalPrice'],
-                    'order_id' => $order->id_order,
-                    'product_id' => $cart['id'],
+                    // 'order_id' => $order->id_order,
+                    // 'product_id' => $cart['id'],
+                    'id_order' => $order->id_order,
+                    'id_product' => $cart['id'],
                 ]
             );
         }

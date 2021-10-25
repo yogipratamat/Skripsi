@@ -11,12 +11,15 @@ class Order extends Model
 
     public function farmer()
     {
-        return $this->belongsTo(Farmer::class, 'farmer_id', 'id_farmer');
+        // return $this->belongsTo(Farmer::class, 'farmer_id', 'id_farmer');
+        return $this->belongsTo(Farmer::class, 'id_farmer', 'id_farmer');
     }
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'order_products', 'order_id', 'product_id')
+        // return $this->belongsToMany(Product::class, 'order_products', 'order_id', 'product_id')
+        //     ->withPivot('qty', 'price', 'total_price');
+        return $this->belongsToMany(Product::class, 'order_products', 'id_order', 'id_product')
             ->withPivot('qty', 'price', 'total_price');
     }
 }

@@ -21,7 +21,9 @@ class FarmerController extends Controller
         $authUser = auth()->user();
         $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
-        $farmers = Farmer::where('group_farm_id', $groupFarmId)->where('id_farmer', '!=', $authUser->farmer->id_farmer)->orderBy('created_at', 'desc')->get();
+        // $farmers = Farmer::where('group_farm_id', $groupFarmId)->where('id_farmer', '!=', $authUser->farmer->id_farmer)->orderBy('created_at', 'desc')->get();
+
+        $farmers = Farmer::where('id_group_farm', $groupFarmId)->where('id_farmer', '!=', $authUser->farmer->id_farmer)->orderBy('created_at', 'desc')->get();
         return view('admin.farmer.index', compact('farmers'));
     }
 
@@ -61,8 +63,10 @@ class FarmerController extends Controller
             'address' => $request->address,
             'gender' => $request->gender,
             'email' => $request->email,
-            'user_id' => $user->id_user,
-            'group_farm_id' => $groupFarmId,
+            // 'user_id' => $user->id_user,
+            // 'group_farm_id' => $groupFarmId,
+            'id_user' => $user->id_user,
+            'id_group_farm' => $groupFarmId,
         ];
 
         $farmer = Farmer::create($dataFarmer);
@@ -133,8 +137,10 @@ class FarmerController extends Controller
             'address' => $request->address,
             'gender' => $request->gender,
             'email' => $request->email,
-            'user_id' => $farmer->user_id,
-            'group_farm_id' => $groupFarmId,
+            // 'user_id' => $farmer->user_id,
+            // 'group_farm_id' => $groupFarmId,
+            'id_user' => $farmer->id_user,
+            'id_group_farm' => $groupFarmId,
         ];
 
         $farmer->update($dataFarmer);
@@ -157,7 +163,8 @@ class FarmerController extends Controller
         $farmer = Farmer::find($id_farmer);
         $farmer->delete();
 
-        DB::table('users')->where('id_user', $farmer->user_id)->delete();
+        // DB::table('users')->where('id_user', $farmer->user_id)->delete();
+        DB::table('users')->where('id_user', $farmer->id_user)->delete();
 
         $message = 'Data berhasil di hapus!';
         Session::flash('admin', $message);

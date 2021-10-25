@@ -80,7 +80,7 @@
                             <td>{{ price($farmWorker->price) }}</td>
                             <td>{{ $farmWorker->phone }}</td>
                             <td>{{ $farmWorker->description }}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">
                                         <a href="#" class="list-icons-item" data-toggle="dropdown">

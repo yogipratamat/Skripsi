@@ -20,7 +20,9 @@ class FarmWorkerController extends Controller
         $authUser = auth()->user();
         $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
-        $farmWorkers = FarmWorker::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+        // $farmWorkers = FarmWorker::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+        $farmWorkers = FarmWorker::where('id_group_farm', $groupFarmId)->orderBy('created_at', 'desc')->get();
+
 
         return view('admin.farm-worker.index', compact('farmWorkers'));
     }
@@ -69,7 +71,8 @@ class FarmWorkerController extends Controller
             'price' => $request->price,
             'phone' => $request->phone,
             'description' => $request->description,
-            'group_farm_id' => $groupFarmId,
+            // 'group_farm_id' => $groupFarmId,
+            'id_group_farm' => $groupFarmId,
         ];
 
         $farmWorker = FarmWorker::create($data);
@@ -142,7 +145,8 @@ class FarmWorkerController extends Controller
             'price' => $request->price,
             'phone' => $request->phone,
             'description' => $request->description,
-            'group_farm_id' => $groupFarmId,
+            // 'group_farm_id' => $groupFarmId,
+            'id_group_farm' => $groupFarmId,
         ];
 
         $farmWorker->update($data);

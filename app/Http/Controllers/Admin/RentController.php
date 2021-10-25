@@ -15,11 +15,14 @@ class RentController extends Controller
     {
         $user = auth()->user();
 
-        $farmer = Farmer::where('user_id', $user->id_user)->first();
+        // $farmer = Farmer::where('user_id', $user->id_user)->first();
+        $farmer = Farmer::where('id_user', $user->id_user)->first();
 
-        $groupFarmId = $farmer->group_farm_id;
+        // $groupFarmId = $farmer->group_farm_id;
+        $groupFarmId = $farmer->id_group_farm;
 
-        $rents = Rent::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+        // $rents = Rent::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+        $rents = Rent::where('id_group_farm', $groupFarmId)->orderBy('date', 'asc')->get();
 
         return view('admin.rent.index', compact('rents'));
     }

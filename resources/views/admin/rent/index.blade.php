@@ -87,17 +87,9 @@
                             </td>
                             <td>{{ idFormat($rent->date) }}</td>
                             <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item" data-toggle="dropdown">
-                                            <i class="icon-menu7"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('admin.rent.show', [$rent]) }}" class="dropdown-item"><i
-                                                    class="icon-eye"></i>Detail</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="btn btn-outline-primary" href="{{ route('admin.rent.show', [$rent]) }}">
+                                    <i class="icon-eye"></i> Detail
+                                </a>
                             </td>
                             <td class="pl-0"></td>
                         </tr>

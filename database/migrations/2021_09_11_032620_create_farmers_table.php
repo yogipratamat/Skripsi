@@ -22,11 +22,15 @@ class CreateFarmersTable extends Migration
             $table->string('address');
             $table->tinyInteger('gender');
 
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('group_farm_id');
+            // $table->unsignedBigInteger('user_id');
+            // $table->unsignedBigInteger('group_farm_id');
+            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_group_farm');
 
-            $table->foreign('user_id')->references('id_user')->on('users')->onDelete('cascade');
-            $table->foreign('group_farm_id')->references('id_group_farm')->on('group_farms')->onDelete('cascade');
+            // $table->foreign('user_id')->references('id_user')->on('users')->onDelete('cascade');
+            // $table->foreign('group_farm_id')->references('id_group_farm')->on('group_farms')->onDelete('cascade');
+            $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
+            $table->foreign('id_group_farm')->references('id_group_farm')->on('group_farms')->onDelete('cascade');
 
             $table->timestamps();
         });

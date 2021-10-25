@@ -57,8 +57,8 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
-                        <th>Kelompok Tani</th>
                         <th>No HP</th>
+                        <th>Email</th>
                         <th>Luas Lahan</th>
                         <th>Jenis Kelamin</th>
                         <th>Alamat</th>
@@ -71,8 +71,8 @@
                         <tr>
                             <td>{!! $loop->iteration !!}</td>
                             <td>{{ $farmer->name }}</td>
-                            <td>{{ $farmer->groupFarm->name }}</td>
                             <td>{{ $farmer->phone }}</td>
+                            <td>{{ $farmer->email }}</td>
                             <td>{{ $farmer->land_area }} are</td>
                             <td>{{ $farmer->gender == 1 ? 'Laki-Laki' : 'Perempuan' }}</td>
                             <td>{{ $farmer->address }}</td>
@@ -88,6 +88,7 @@
                                             <button class="dropdown-item" onclick="hapus({{ $farmer->id_farmer }})"><i
                                                     class="icon-bin"></i> Delete</button>
                                         </div>
+                                        <br>
                                     </div>
                                 </div>
                             </td>

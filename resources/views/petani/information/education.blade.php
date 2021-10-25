@@ -41,8 +41,22 @@
                             <div class="card-img-actions mr-3">
                                 <img class="card-img img-fluid" src="{{ asset('/storage' . $education->image) }}" alt="">
                             </div>
-                            <p class="mt-3"> <b>Ciri-Ciri :</b> {{ $education->ciri }}</p>
-                            <p class="mt-3"> <b>Solusi :</b> {{ $education->solution }}</p>
+                            <div class="card card-body bg-light rounded-left-0 border-left-3 border-left-warning">
+                                <blockquote class="blockquote d-flex mb-0">
+                                    <div>
+                                        <p class="mb-1">{{ $education->ciri }}</p>
+                                        <footer class="blockquote-footer">Ciri-Ciri</footer>
+                                    </div>
+                                </blockquote>
+                            </div>
+                            <div class="card card-body bg-light rounded-left-0 border-left-3 border-left-warning">
+                                <blockquote class="blockquote d-flex mb-0">
+                                    <div>
+                                        <p class="mb-1">{{ $education->solution }}</p>
+                                        <footer class="blockquote-footer ">Solusi</footer>
+                                    </div>
+                                </blockquote>
+                            </div>
                         </div>
                     </div>
                 @endforeach

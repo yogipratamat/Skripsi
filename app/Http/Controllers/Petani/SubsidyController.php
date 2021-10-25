@@ -13,7 +13,8 @@ class SubsidyController extends Controller
     {
         $user = auth()->user();
 
-        $farmer = Farmer::where('user_id', $user->id_user)->first();
+        // $farmer = Farmer::where('user_id', $user->id_user)->first();
+        $farmer = Farmer::where('id_user', $user->id_user)->first();
 
         // return
         $subsidies = $farmer->subsidies;

@@ -15,15 +15,9 @@ class CetakSewaAlatController extends Controller
         $date = Carbon::today();
         $rent = Rent::find($id_rent);
 
-        // $total = 0;
-        // foreach ($rent->tools as $tool) {
-        //     $total += $tool->pivot->total_price;
-        // }
-
         if ($request->has('cetak')) {
             $pdf = PDF::loadView('admin.rent.cetak', [
                 'rent' => $rent,
-                // 'total' => $total,
                 'date'  => $date
             ]);
 

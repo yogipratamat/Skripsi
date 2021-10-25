@@ -15,7 +15,7 @@ class GroupFarmTableSeeder extends Seeder
     public function run()
     {
         $dataFarm = [
-            'name' => 'Idotani',
+            'name' => 'Gapoktan',
             'phone' => '082349142532',
             'vision' => 'Lorem Ipsum',
             'mission' => 'Ipsum Lorem'
@@ -24,8 +24,8 @@ class GroupFarmTableSeeder extends Seeder
         $groupFarm = GroupFarm::create($dataFarm);
 
         $dataUser = [
-            'email' => 'yogi@gmail.com',
-            'name'  => 'yogi',
+            'email' => 'gapoktan@gmail.com',
+            'name'  => 'Yogi Admin Indotani',
             'password' => bcrypt('123456')
         ];
 
@@ -33,14 +33,16 @@ class GroupFarmTableSeeder extends Seeder
         $user->assignRole('admin');
 
         $dataFarmer = [
-            'name' => 'yogi',
+            'name' => 'Yogi',
             'land_area' => '100',
             'phone' => '082349142533',
             'address' => 'Kapidi',
             'gender' => '1',
             'email' => 'yogi@gmail.com',
-            'user_id' => $user->id_user,
-            'group_farm_id' => $groupFarm->id_group_farm,
+            // 'user_id' => $user->id_user,
+            'id_user' => $user->id_user,
+            // 'group_farm_id' => $groupFarm->id_group_farm,
+            'id_group_farm' => $groupFarm->id_group_farm,
         ];
 
         $farmer = Farmer::create($dataFarmer);

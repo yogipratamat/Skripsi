@@ -20,8 +20,11 @@ class CreateOrdersTable extends Migration
             $table->tinyInteger('status');
             $table->double('price');
 
-            $table->unsignedBigInteger('farmer_id');
-            $table->foreign('farmer_id')->references('id_farmer')->on('farmers')->onDelete('cascade');
+            // $table->unsignedBigInteger('farmer_id');
+            // $table->foreign('farmer_id')->references('id_farmer')->on('farmers')->onDelete('cascade');
+
+            $table->unsignedBigInteger('id_farmer');
+            $table->foreign('id_farmer')->references('id_farmer')->on('farmers')->onDelete('cascade');
 
             $table->timestamps();
         });

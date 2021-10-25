@@ -17,7 +17,8 @@ class ReportController extends Controller
 
         $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
-        $farmers = Farmer::where('group_farm_id', $groupFarmId)->where('id_farmer', '!=', $authUser->farmer->id_farmer)->get();
+        // $farmers = Farmer::where('group_farm_id', $groupFarmId)->where('id_farmer', '!=', $authUser->farmer->id_farmer)->get();
+        $farmers = Farmer::where('id_group_farm', $groupFarmId)->where('id_farmer', '!=', $authUser->farmer->id_farmer)->get();
 
         $farmerActive = null;
 
@@ -35,12 +36,14 @@ class ReportController extends Controller
         $rents = Rent::whereBetween('date', [$monthStartDate, $monthEndDate]);
 
         if ($request->farmer) {
-            $rents = $rents->where('farmer_id', $request->farmer);
+            // $rents = $rents->where('farmer_id', $request->farmer);
+            $rents = $rents->where('id_farmer', $request->farmer);
             $farmerActive = $request->farmer;
         }
 
-        $rents = $rents->where('group_farm_id', $groupFarmId)->get();
+        // $rents = $rents->where('group_farm_id', $groupFarmId)->get();
 
+        $rents = $rents->where('id_group_farm', $groupFarmId)->orderBy('date', 'desc')->where('status', '=', 1)->get();
 
         $total = 0;
         foreach ($rents as $rent) {

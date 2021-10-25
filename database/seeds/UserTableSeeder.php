@@ -14,7 +14,7 @@ class UserTableSeeder extends Seeder
     {
         $dataPenyuluh = [
             'email' => 'penyuluh@gmail.com',
-            'name'  =>  'yogi',
+            'name'  =>  'P. Kadek Yase',
             'password' => bcrypt('123456')
         ];
 

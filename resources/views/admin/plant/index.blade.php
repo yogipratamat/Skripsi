@@ -67,12 +67,13 @@
                         <tr>
                             <td>{!! $loop->iteration !!}</td>
                             <td>{{ $plant->periode }}</td>
-                            <td>{{ $plant->start_date }}</td>
-                            <td>{{ $plant->end_date }}</td>
+                            <td>{{ idFormat($plant->start_date) }}</td>
+                            <td>{{ idFormat($plant->end_date) }}</td>
                             <td>{{ $plant->description }}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">
+                                        <br>
                                         <a href="#" class="list-icons-item" data-toggle="dropdown">
                                             <i class="icon-menu7"></i>
                                         </a>
@@ -82,6 +83,7 @@
                                             <button class="dropdown-item" onclick="hapus({{ $plant->id_plant }})"><i
                                                     class="icon-bin"></i> Delete</button>
                                         </div>
+                                        <br><br>
                                     </div>
                                 </div>
                             </td>

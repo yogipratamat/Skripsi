@@ -11,8 +11,8 @@ class GroupFarm extends Model
 
     public function getPic()
     {
-
-        $farmers = Farmer::where('group_farm_id', $this->id_group_farm)->get();
+        // $farmers = Farmer::where('group_farm_id', $this->id_group_farm)->get();
+        $farmers = Farmer::where('id_group_farm', $this->id_group_farm)->get();
 
         if ($farmers->count() > 0) {
             foreach ($farmers as $farmer) {
@@ -26,6 +26,7 @@ class GroupFarm extends Model
 
     public function farmers()
     {
-        return $this->hasMany(Farmer::class, 'group_farm_id', 'id_group_farm');
+        // return $this->hasMany(Farmer::class, 'group_farm_id', 'id_group_farm');
+        return $this->hasMany(Farmer::class, 'id_group_farm', 'id_group_farm');
     }
 }

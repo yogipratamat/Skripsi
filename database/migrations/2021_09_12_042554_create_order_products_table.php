@@ -20,11 +20,15 @@ class CreateOrderProductsTable extends Migration
             $table->double('price');
             $table->double('total_price');
 
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id_product')->on('products')->onDelete('cascade');
+            // $table->unsignedBigInteger('product_id');
+            // $table->foreign('product_id')->references('id_product')->on('products')->onDelete('cascade');
+            $table->unsignedBigInteger('id_product');
+            $table->foreign('id_product')->references('id_product')->on('products')->onDelete('cascade');
 
-            $table->unsignedBigInteger('order_id');
-            $table->foreign('order_id')->references('id_order')->on('orders')->onDelete('cascade');
+            // $table->unsignedBigInteger('order_id');
+            // $table->foreign('order_id')->references('id_order')->on('orders')->onDelete('cascade');
+            $table->unsignedBigInteger('id_order');
+            $table->foreign('id_order')->references('id_order')->on('orders')->onDelete('cascade');
 
             $table->timestamps();
         });

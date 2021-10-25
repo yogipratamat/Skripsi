@@ -22,8 +22,10 @@ class CreateBuyersTable extends Migration
             $table->double('price');
             $table->text('description');
 
-            $table->unsignedBigInteger('group_farm_id');
-            $table->foreign('group_farm_id')->references('id_group_farm')->on('group_farms')->onDelete('cascade');
+            // $table->unsignedBigInteger('group_farm_id');
+            // $table->foreign('group_farm_id')->references('id_group_farm')->on('group_farms')->onDelete('cascade');
+            $table->unsignedBigInteger('id_group_farm');
+            $table->foreign('id_group_farm')->references('id_group_farm')->on('group_farms')->onDelete('cascade');
 
             $table->timestamps();
         });

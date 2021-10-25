@@ -34,12 +34,14 @@ class ReportController extends Controller
 
         if ($request->groupFarm) {
 
-            $farmers = Farmer::where('group_farm_id', $request->groupFarm)->pluck('id_farmer');
-            $orders = $orders->whereIn('farmer_id', $farmers);
+            // $farmers = Farmer::where('group_farm_id', $request->groupFarm)->pluck('id_farmer');
+            $farmers = Farmer::where('id_group_farm', $request->groupFarm)->pluck('id_farmer');
+            // $orders = $orders->whereIn('farmer_id', $farmers);
+            $orders = $orders->whereIn('id_farm', $farmers);
             $farmerActive = $request->groupFarm;
         }
 
-        $orders = $orders->get();
+        $orders = $orders->where('status', '=', 2)->get();
 
         $total = 0;
         foreach ($orders as $order) {

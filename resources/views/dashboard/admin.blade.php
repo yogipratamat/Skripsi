@@ -77,6 +77,9 @@
         <div class="card">
             <table class="table text-nowrap table-customers">
                 <thead>
+                    <div class="text-center bg-dark p-1">
+                        <h3 class="mt-1">Penyewaan Baru</h3>
+                    </div>
                     <tr>
                         <th>No</th>
                         <th>Nama Alat</th>
@@ -101,9 +104,13 @@
                                         Dipesan
                                     </span>
 
-                                @else
+                                @elseif ($rent->status == 1)
                                     <span class="badge badge-success">
                                         Diselesaikan
+                                    </span>
+                                @else
+                                    <span class="badge badge-danger">
+                                        Dibatalkan
                                     </span>
                                 @endif
                             </td>

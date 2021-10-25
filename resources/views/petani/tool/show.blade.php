@@ -26,6 +26,12 @@
 @section('content')
     <!-- Content area -->
     <div class="content">
+        @if (Session::has('error'))
+            <div class="alert alert-success border-0 alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
+                <span class="font-weight-semibold">{{ Session('error') }} </span>
+            </div>
+        @endif
         <div class="d-flex align-items-start flex-column flex-md-row">
             <div class="w-100 overflow-auto order-2 order-md-1">
                 <div class="row">
@@ -54,7 +60,7 @@
                                 <form action="{{ route('petani.tool.show', [$tool->id_tool]) }}">
                                     <div class="row">
                                         <div class="col-sm-2">
-                                            <input required type="number" placeholder="Luas Lahan" name="area"
+                                            <input required type="number" placeholder="Luas Lahan" min="1" name="area"
                                                 class="form-control">
                                         </div>
                                         <div class="col-sm-3">

@@ -20,7 +20,8 @@ class BuyerController extends Controller
         $authUser = auth()->user();
         $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
-        $buyers = Buyer::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+        // $buyers = Buyer::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+        $buyers = Buyer::where('id_group_farm', $groupFarmId)->orderBy('created_at', 'desc')->get();
 
         return view('admin.buyer.index', compact('buyers'));
     }
@@ -68,7 +69,8 @@ class BuyerController extends Controller
             'price' => $request->price,
             'phone' => $request->phone,
             'description' => $request->description,
-            'group_farm_id' => $groupFarmId,
+            // 'group_farm_id' => $groupFarmId,
+            'id_group_farm' => $groupFarmId,
         ];
 
         $buyer = Buyer::create($data);
@@ -139,7 +141,9 @@ class BuyerController extends Controller
             'price' => $request->price,
             'phone' => $request->phone,
             'description' => $request->description,
-            'group_farm_id' => $groupFarmId,
+            // 'group_farm_id' => $groupFarmId,
+            'id_group_farm' => $groupFarmId,
+
         ];
 
         $buyer->update($data);
@@ -156,9 +160,9 @@ class BuyerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_buyer)
     {
-        $buyer = Buyer::find($id);
+        $buyer = Buyer::find($id_buyer);
         $buyer->delete();
 
         $message = 'Data berhasil di hapus!';

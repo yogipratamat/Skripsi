@@ -14,7 +14,9 @@ class AbsenController extends Controller
         $authUser = auth()->user();
         $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
-        $farmers = Farmer::where('group_farm_id', $groupFarmId)->where('id_farmer', '!=', $authUser->farmer->id_farmer)->orderBy('created_at', 'desc')->get();
+        // $farmers = Farmer::where('group_farm_id', $groupFarmId)->where('id_farmer', '!=', $authUser->farmer->id_farmer)->orderBy('created_at', 'desc')->get();
+        $farmers = Farmer::where('id_group_farm', $groupFarmId)->where('id_farmer', '!=', $authUser->farmer->id_farmer)->orderBy('created_at', 'desc')->get();
+
 
         if ($request->has('cetak')) {
             $pdf = PDF::loadView('admin.meeting.cetak', [

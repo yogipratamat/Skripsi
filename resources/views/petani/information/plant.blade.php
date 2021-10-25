@@ -51,7 +51,7 @@
                         <th>Tanggal Awal</th>
                         <th>Tanggal Akhir</th>
                         <th>Keterangan</th>
-                        <th></th>
+                        <th>Tanam</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -63,7 +63,7 @@
                             <td>{{ idFormat($plant->start_date) }}</td>
                             <td>{{ idFormat($plant->end_date) }}</td>
                             <td>{{ $plant->description }}</td>
-                            <th></th>
+                            <th>Padi</th>
                             <td class="pl-0"></td>
                         </tr>
                     @endforeach

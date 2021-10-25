@@ -90,7 +90,7 @@
                 <table class="table text-nowrap">
                     <thead>
                         <tr>
-                            <th>Nama Produk</th>
+                            <th colspan="2">Nama Produk</th>
                             <th>Jumlah</th>
                             <th>Harga Satuan</th>
                             <th>Total Harga</th>
@@ -99,6 +99,11 @@
                     <tbody>
                         @foreach ($order->products as $product)
                             <tr>
+                                <td class="pr-0" style="width: 40px;">
+                                    <a href="#">
+                                        <img src="{{ asset('/storage' . $product['image']) }}" height="60" alt="">
+                                    </a>
+                                </td>
                                 <td>{{ $product->name }}</td>
                                 <td>{{ $product->pivot->qty }}</td>
                                 <td>{{ price($product->pivot->price) }}</td>
@@ -106,7 +111,7 @@
                             </tr>
                         @endforeach
                         <tr>
-                            <td colspan="3" class="text-right"><b>Total di bayar</b></td>
+                            <td colspan="4" class="text-right"><b>Total di bayar</b></td>
                             <td><b>: {{ price($total) }}</b></td>
                         </tr>
                     </tbody>

@@ -22,9 +22,11 @@ class SubsidyController extends Controller
     {
         $user = auth()->user();
 
-        $farmer = Farmer::where('user_id', $user->id_user)->first();
+        // $farmer = Farmer::where('user_id', $user->id_user)->first();
+        $farmer = Farmer::where('id_user', $user->id_user)->first();
 
-        $groupFarmId = $farmer->group_farm_id;
+        // $groupFarmId = $farmer->group_farm_id;
+        $groupFarmId = $farmer->id_group_farm;
 
         //subsidy batas
         $monthStartDate = Carbon::now()->startOfMonth()->format('Y-m-d'); // awal bulan
@@ -38,10 +40,13 @@ class SubsidyController extends Controller
             $monthEndDate = $request->endDate;
         }
 
-        $subsidies = Subsidy::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->whereBetween('date', [$monthStartDate, $monthEndDate]);
+        // $subsidies = Subsidy::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->whereBetween('date', [$monthStartDate, $monthEndDate]);
+        $subsidies = Subsidy::where('id_group_farm', $groupFarmId)->orderBy('created_at', 'desc')->whereBetween('date', [$monthStartDate, $monthEndDate]);
+
 
         if ($request->farmer) {
-            $subsidiess = $subsidies->where('farmer_id', $request->farmer);
+            // $subsidiess = $subsidies->where('farmer_id', $request->farmer);
+            $subsidiess = $subsidies->where('id_farmer', $request->farmer);
             $farmerActive = $request->farmer;
         }
 
@@ -76,14 +81,16 @@ class SubsidyController extends Controller
 
         $user = auth()->user();
 
-        $farmer = Farmer::where('user_id', $user->id_user)->first();
+        // $farmer = Farmer::where('user_id', $user->id_user)->first();
+        $farmer = Farmer::where('id_user', $user->id_user)->first();
 
         $groupFarm = $farmer->groupFarm;
 
         $farmers = $groupFarm->farmers;
 
         $data = [
-            'group_farm_id' => $groupFarm->id_group_farm,
+            // 'group_farm_id' => $groupFarm->id_group_farm,
+            'id_group_farm' => $groupFarm->id_group_farm,
             'periode' => $request->periode,
             'type' => $request->type,
             'name' => $request->name,
@@ -111,8 +118,10 @@ class SubsidyController extends Controller
                     'qty' => ($value->land_area * $perArea),
                     'status' => 0,
                     'price' => ($value->land_area * $perArea) * $request->price,
-                    'subsidy_id' => $subsidy->id_subsidy,
-                    'farmer_id' => $value->id_farmer
+                    // 'subsidy_id' => $subsidy->id_subsidy,
+                    // 'farmer_id' => $value->id_farmer
+                    'id_subsidy' => $subsidy->id_subsidy,
+                    'id_farmer' => $value->id_farmer
                 ]);
             }
         }
@@ -159,7 +168,9 @@ class SubsidyController extends Controller
     {
         $user = auth()->user();
 
-        $farmer = Farmer::where('user_id', $user->id_user)->first();
+        // $farmer = Farmer::where('user_id', $user->id_user)->first();
+        $farmer = Farmer::where('id_user', $user->id_user)->first();
+
 
         $groupFarm = $farmer->groupFarm;
 
@@ -168,7 +179,9 @@ class SubsidyController extends Controller
         $subsidy = Subsidy::find($id_subsidy);
 
 
-        DB::table('subsidy_farmers')->where('subsidy_id', $id_subsidy)->delete();
+        // DB::table('subsidy_farmers')->where('subsidy_id', $id_subsidy)->delete();
+        DB::table('subsidy_farmers')->where('id_subsidy', $id_subsidy)->delete();
+
 
         $data = [
             'periode' => $request->periode,
@@ -198,8 +211,10 @@ class SubsidyController extends Controller
                     'qty' => ($value->land_area * $perArea),
                     'status' => 0,
                     'price' => ($value->land_area * $perArea) * $request->price,
-                    'subsidy_id' => $subsidy->id_subsidy,
-                    'farmer_id' => $value->id_farmer
+                    // 'subsidy_id' => $subsidy->id_subsidy,
+                    // 'farmer_id' => $value->id_farmer
+                    'id_subsidy' => $subsidy->id_subsidy,
+                    'id_farmer' => $value->id_farmer
                 ]);
             }
         }
@@ -216,9 +231,9 @@ class SubsidyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_subsidy)
     {
-        $subsidy = Subsidy::find($id);
+        $subsidy = Subsidy::find($id_subsidy);
         $subsidy->delete();
 
         $message = 'Data berhasil di hapus!';
@@ -231,8 +246,10 @@ class SubsidyController extends Controller
     public function process($subsidy, $farmer)
     {
         DB::table('subsidy_farmers')
-            ->where('subsidy_id', $subsidy)
-            ->where('farmer_id', $farmer)
+            // ->where('subsidy_id', $subsidy)
+            // ->where('farmer_id', $farmer)
+            ->where('id_subsidy', $subsidy)
+            ->where('id_farmer', $farmer)
             ->update([
                 'status' => 1
             ]);

@@ -83,17 +83,10 @@
                             <td>{{ price($order->price) }}</td>
                             <td>{{ idFormat($order->date) }}</td>
                             <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item" data-toggle="dropdown">
-                                            <i class="icon-menu7"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('petani.order.show', [$order->id_order]) }}"
-                                                class="dropdown-item"><i class="icon-eye"></i>Show</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="btn btn-outline-primary"
+                                    href="{{ route('petani.order.show', [$order->id_order]) }}">
+                                    <i class="icon-eye"> Detail</i>
+                                </a>
                             </td>
                             <td class="pl-0"></td>
                         </tr>

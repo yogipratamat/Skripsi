@@ -44,9 +44,8 @@
                         <th>Periode</th>
                         <th>Subsidy</th>
                         <th>Nama</th>
-                        <th>Berat</th>
-                        <th>Harga/Kg</th>
-                        <th>Batas <br> Pengambilan</th>
+                        <th>Batas Awal <br> Pengambilan</th>
+                        <th>Batas Akhir<br> Pengambilan</th>
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
@@ -57,21 +56,12 @@
                             <td>{{ $subsidy->periode }}</td>
                             <td>{{ $subsidy->type == 1 ? 'Pupuk' : 'Benih' }}</td>
                             <td>{{ $subsidy->name }}</td>
-                            <td>{{ $subsidy->qty }} Kg</td>
-                            <td>{{ price($subsidy->price) }}</td>
-                            <td>{{ $subsidy->date }}</td>
+                            <td>{{ idFormat($subsidy->created_at) }}</td>
+                            <td>{{ idFormat($subsidy->date) }}</td>
                             <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item" data-toggle="dropdown">
-                                            <i class="icon-menu9"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('petani.subsidy.show', [$subsidy]) }}"
-                                                class="dropdown-item"><i class="icon-eye"></i>Detail</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="btn btn-outline-primary" href="{{ route('petani.subsidy.show', [$subsidy]) }}">
+                                    <i class="icon-eye"></i> Detail
+                                </a>
                             </td>
                         </tr>
                     @endforeach

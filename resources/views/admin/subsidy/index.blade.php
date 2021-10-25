@@ -62,7 +62,7 @@
                             <td>{{ $subsidy->type == 1 ? 'Pupuk' : 'Benih' }}</td>
                             <td>{{ $subsidy->name }}</td>
                             <td>{{ $subsidy->qty }} Kg</td>
-                            <td>{{ $subsidy->date }}</td>
+                            <td>{{ idFormat($subsidy->date) }}</td>
                             <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">

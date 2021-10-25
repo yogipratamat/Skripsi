@@ -77,7 +77,7 @@
                             <td>{{ price($buyer->price) }} / Kg</td>
                             <td>{{ $buyer->phone }}</td>
                             <td>{{ $buyer->description }}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">
                                         <a href="#" class="list-icons-item" data-toggle="dropdown">

@@ -70,14 +70,14 @@
                         <tr>
                             <td>{!! $loop->iteration !!}</td>
                             <td>{{ $meeting->name }}</td>
-                            <td>{{ $meeting->date }}</td>
+                            <td>{{ idFormat($meeting->date) }}</td>
                             <td>{{ $meeting->time }}</td>
                             <td>{{ $meeting->place }}</td>
                             <td>{{ $meeting->description }}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">
-                                        <br><br>
+                                        <br>
                                         <a href="#" class="list-icons-item" data-toggle="dropdown">
                                             <i class="icon-menu7"></i>
                                         </a>
@@ -87,7 +87,7 @@
                                             <button class="dropdown-item" onclick="hapus({{ $meeting->id_meeting }})"><i
                                                     class="icon-bin"></i> Delete</button>
                                         </div>
-                                        <br><br><br>
+                                        <br><br>
                                     </div>
                                 </div>
                             </td>

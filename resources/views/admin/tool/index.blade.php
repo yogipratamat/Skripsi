@@ -59,7 +59,7 @@
                         <th>Merk</th>
                         <th>Harga Jasa</th>
                         <th>Deskripsi</th>
-                        <th>Actions</th>
+                        <th class="text-center">Actions</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -77,7 +77,7 @@
                             <td>{{ $tool->merk }}</td>
                             <td>{{ price($tool->price) }} /are</td>
                             <td>{{ $tool->description }}</td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <div class="list-icons">
                                     <div class="dropdown">
                                         <a href="#" class="list-icons-item" data-toggle="dropdown">

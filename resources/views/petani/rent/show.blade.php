@@ -91,6 +91,14 @@
                             @endif
                         </td>
                     </tr>
+                    @if ($rent->status == 2)
+                        <tr>
+                            <td>Keterangan</td>
+                            <td>
+                                : Terjadi Kerusakan / Lain Hal
+                            </td>
+                        </tr>
+                    @endif
 
                 </thead>
             </table>

@@ -20,7 +20,8 @@ class PlantController extends Controller
         $authUser = auth()->user();
         $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
-        $plants = Plant::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+        // $plants = Plant::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+        $plants = Plant::where('id_group_farm', $groupFarmId)->orderBy('created_at', 'desc')->get();
 
         return view('admin.plant.index', compact('plants'));
     }
@@ -51,7 +52,8 @@ class PlantController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'description' => $request->description,
-            'group_farm_id' => $groupFarmId,
+            // 'group_farm_id' => $groupFarmId,
+            'id_group_farm' => $groupFarmId,
         ];
 
         $plants = Plant::create($data);
@@ -104,7 +106,8 @@ class PlantController extends Controller
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'description' => $request->description,
-            'group_farm_id' => $groupFarmId,
+            // 'group_farm_id' => $groupFarmId,
+            'id_group_farm' => $groupFarmId,
         ];
 
         $plant->update($data);

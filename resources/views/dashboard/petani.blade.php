@@ -65,5 +65,10 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            @foreach ($educations as $education)
+
+            @endforeach
+        </div>
     </div>
 @endsection

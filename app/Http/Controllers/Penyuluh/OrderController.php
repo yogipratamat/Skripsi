@@ -23,8 +23,10 @@ class OrderController extends Controller
 
         if ($request->groupFarm) {
 
-            $farmers = Farmer::where('group_farm_id', $request->groupFarm)->pluck('id_farmer');
-            $orders = $orders->whereIn('farmer_id', $farmers);
+            // $farmers = Farmer::where('group_farm_id', $request->groupFarm)->pluck('id_farmer');
+            $farmers = Farmer::where('id_group_farm', $request->groupFarm)->pluck('id_farmer');
+            // $orders = $orders->whereIn('farmer_id', $farmers);
+            $orders = $orders->whereIn('id_farmer', $farmers);
             $farmerActive = $request->groupFarm;
         }
 

@@ -65,7 +65,7 @@
                                 <label>Solusi:</label>
                                 <textarea name="solution" id="" class="form-control" value="{{ $education->solution }}"
                                     required oninvalid="this.setCustomValidity('Masukan Solusi!')"
-                                    oninput="setCustomValidity('')">{{ $education->ciri }}</textarea>
+                                    oninput="setCustomValidity('')">{{ $education->solution }}</textarea>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <a class="btn btn-warning" href="{{ route('penyuluh.education.index') }}">Cancel</a>

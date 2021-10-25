@@ -76,15 +76,16 @@
         </div>
         <div class="card">
             <table class="table text-nowrap table-customers">
+
                 <thead>
+                    <div class="text-center bg-dark p-1">
+                        <h3 class="mt-1">Pesanan Baru</h3>
+                    </div>
                     <tr>
                         <th>No</th>
-                        <th>Petani</th>
-                        <th>Status</th>
-                        <th>Harga</th>
-                        <th>Tanggal</th>
-                        {{-- <th class="text-center"></th> --}}
-                        {{-- <th></th> --}}
+                        <th>Nama Petani</th>
+                        <th>Status Pesanan</th>
+                        <th>Tanggal Pesanan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -109,7 +110,6 @@
                                     </span>
                                 @endif
                             </td>
-                            <td>{{ price($order->price) }}</td>
                             <td>{{ idFormat($order->date) }}</td>
                         </tr>
                     @endforeach

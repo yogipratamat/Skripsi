@@ -18,7 +18,9 @@ class CetakSubsidyController extends Controller
 
         $farmer = Farmer::where('id_farmer', $id_farmer)->first();
 
-        $subsidyFarmer = SubsidyFarmer::where('subsidy_id', $id_subsidy)->where('farmer_id', $id_farmer)->first();
+        // $subsidyFarmer = SubsidyFarmer::where('subsidy_id', $id_subsidy)->where('farmer_id', $id_farmer)->first();
+        $subsidyFarmer = SubsidyFarmer::where('id_subsidy', $id_subsidy)->where('id_farmer', $id_farmer)->first();
+
         $subsidy = Subsidy::find($id_subsidy);
 
         if ($request->has('cetak')) {

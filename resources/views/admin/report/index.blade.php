@@ -55,10 +55,10 @@
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <label>Kelompok Tani</label>
+                            <label>Pilih Petani</label>
                             <div>
                                 <select class="form-control" name="farmer">
-                                    <option value="">Pilih Petani</option>
+                                    <option value="">Semua Petani</option>
                                     @foreach ($farmers as $farmer)
                                         <option {{ $farmer->id_farmer == $farmerActive ? 'selected' : '' }}
                                             value="{{ $farmer->id_farmer }}">{{ $farmer->name }}</option>
@@ -77,32 +77,34 @@
                     </div>
                 </form>
             </div>
-            <table class="table text-nowrap table-customers">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Nama Pemesan</th>
-                        <th>Nama Alat</th>
-                        <th>Tanggal Pesanan</th>
-                        <th>Total Harga</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($rents as $rent)
+            <div class="table-responsive">
+                <table class="table text-nowrap table-customers">
+                    <thead>
                         <tr>
-                            <td>{!! $loop->iteration !!}</td>
-                            <td>{{ $rent->farmer->name }}</td>
-                            <td>{{ $rent->tool->name }}</td>
-                            <td>{{ idFormat($rent->date) }}</td>
-                            <td>{{ price($rent->tool->price * $rent->land_area) }}</td>
+                            <th>No</th>
+                            <th>Nama Pemesan</th>
+                            <th>Nama Alat</th>
+                            <th>Tanggal Pesanan</th>
+                            <th>Total Harga</th>
                         </tr>
-                    @endforeach
-                    <tr class="bg-secondary text-white">
-                        <td class="text-right" colspan="4">Total Penyewaan</td>
-                        <td>{{ price($total) }}</td>
-                    </tr>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach ($rents as $rent)
+                            <tr>
+                                <td>{!! $loop->iteration !!}</td>
+                                <td>{{ $rent->farmer->name }}</td>
+                                <td>{{ $rent->tool->name }}</td>
+                                <td>{{ idFormat($rent->date) }}</td>
+                                <td>{{ price($rent->tool->price * $rent->land_area) }}</td>
+                            </tr>
+                        @endforeach
+                        <tr class="bg-secondary text-white">
+                            <td class="text-right" colspan="4">Total Penyewaan</td>
+                            <td>{{ price($total) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection

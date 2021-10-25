@@ -20,7 +20,8 @@ class MeetingController extends Controller
         $authUser = auth()->user();
         $groupFarmId = $authUser->farmer->groupFarm->id_group_farm;
 
-        $meetings = Meeting::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+        // $meetings = Meeting::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->get();
+        $meetings = Meeting::where('id_group_farm', $groupFarmId)->orderBy('created_at', 'desc')->get();
 
         return view('admin.meeting.index', compact('meetings'));
     }
@@ -52,7 +53,8 @@ class MeetingController extends Controller
             'time' => $request->time,
             'date' => $request->date,
             'description' => $request->description,
-            'group_farm_id' => $groupFarmId,
+            // 'group_farm_id' => $groupFarmId,
+            'id_group_farm' => $groupFarmId,
         ];
 
         $meeting = Meeting::create($data);
@@ -106,7 +108,8 @@ class MeetingController extends Controller
             'time' => $request->time,
             'date' => $request->date,
             'description' => $request->description,
-            'group_farm_id' => $groupFarmId,
+            // 'group_farm_id' => $groupFarmId,
+            'id_group_farm' => $groupFarmId,
         ];
 
         $meeting->update($data);

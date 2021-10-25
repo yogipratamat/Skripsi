@@ -55,10 +55,9 @@
                         <th>Petani</th>
                         <th>Nama Alat</th>
                         <th>Luas Lahan</th>
-                        {{-- <th>Total Harga</th> --}}
                         <th>Status</th>
                         <th>Tanggal</th>
-                        <th>Actions</th>
+                        <th class="text-center">Actions</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -69,7 +68,6 @@
                             <td>{{ $rent->farmer->name }}</td>
                             <td>{{ $rent->tool->name }}</td>
                             <td>{{ $rent->land_area }} are</td>
-                            {{-- <td>{{ price($rent->tool->price) }}</td> --}}
                             <td>
                                 @if ($rent->status == 0)
 
@@ -89,17 +87,10 @@
                             </td>
                             <td>{{ idFormat($rent->date) }}</td>
                             <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="dropdown">
-                                        <a href="#" class="list-icons-item" data-toggle="dropdown">
-                                            <i class="icon-menu7"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="{{ route('petani.rent.show', [$rent->id_rent]) }}"
-                                                class="dropdown-item"><i class="icon-eye"></i>Detail</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="btn btn-outline-primary"
+                                    href="{{ route('petani.rent.show', [$rent->id_rent]) }}">
+                                    <i class="icon-eye"> Detail</i>
+                                </a>
                             </td>
                             <td class="pl-0"></td>
                         </tr>
