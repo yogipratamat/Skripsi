@@ -41,7 +41,7 @@ class SubsidyController extends Controller
         }
 
         // $subsidies = Subsidy::where('group_farm_id', $groupFarmId)->orderBy('created_at', 'desc')->whereBetween('date', [$monthStartDate, $monthEndDate]);
-        $subsidies = Subsidy::where('id_group_farm', $groupFarmId)->orderBy('created_at', 'desc')->whereBetween('date', [$monthStartDate, $monthEndDate]);
+        $subsidies = Subsidy::where('id_group_farm', $groupFarmId)->orderBy('created_at', 'desc');
 
 
         if ($request->farmer) {

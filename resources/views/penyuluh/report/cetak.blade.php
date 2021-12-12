@@ -64,7 +64,7 @@
 
 <body>
     <center>
-        <h1>LAPORAN PEMBELIAN PESTISIDA</h1>
+        <h3>LAPORAN PEMBELIAN PESTISIDA</h3>
     </center>
     <table cellspacing='0'>
         <thead>

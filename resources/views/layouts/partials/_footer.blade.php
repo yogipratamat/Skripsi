@@ -8,7 +8,7 @@
 
     <div class="navbar-collapse collapse" id="navbar-footer">
         <span class="navbar-text">
-            &copy; 2020 - 2021. <a href="#">SI-GoTani</a> by <a href="https://www.instagram.com/yogipratama4995/"
+            &copy; 2020 - 2021. <a href="#">SI-GoTani</a> by <a href="https://www.instagram.com/yogiprata23/"
                 target="_blank">Yogi Pratama</a>
         </span>
     </div>
